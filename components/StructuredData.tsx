@@ -9,7 +9,7 @@ export default function StructuredData() {
       "https://co2london.com"
     ],
     "logo": "https://co2london.com/images/logo.png",
-    "image": "https://co2london.com/images/home1.jpg",
+    "image": "https://co2london.com/images/co2laser-skin-rejeuvenation.jpeg",
     "description": "Expert CO2 laser treatment clinic in London led by Nurse Elanda, specializing in acne scar treatment, wrinkle reduction, skin texture improvement, and anti-aging treatments.",
     "address": {
       "@type": "PostalAddress",

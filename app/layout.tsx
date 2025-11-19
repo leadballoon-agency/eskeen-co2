@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     locale: 'en_GB',
     images: [
       {
-        url: '/images/home1.jpg',
+        url: '/images/co2laser-skin-rejeuvenation.jpeg',
         width: 1200,
-        height: 630,
-        alt: 'CO2 Laser Treatment at Eskeen Clinic London',
+        height: 675,
+        alt: 'CO2 Laser Skin Resurfacing Before and After Results - Eskeen Clinic London',
       },
     ],
   },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'CO2 Laser Treatment London | Eskeen Clinic',
     description: 'Transform your skin with CO2 laser treatment. Gold standard treatment for acne scars, wrinkles & skin texture. 70-80% scar reduction.',
-    images: ['/images/home1.jpg'],
+    images: ['/images/co2laser-skin-rejeuvenation.jpeg'],
   },
   robots: {
     index: true,
