@@ -5,11 +5,11 @@ interface TeamSectionProps {
 export default function TeamSection({ onBookingClick }: TeamSectionProps) {
   const team = [
     {
-      name: 'Nurse Elanda',
+      name: 'Elanda RN',
       title: 'Advanced Aesthetics Practitioner',
       credentials: '',
       image: '/images/team/Elanda.jpg',
-      bio: 'With 9 years of experience in the medical industry, I bring expertise from Greece to London\'s aesthetic scene. Having spent the past 5 years refining my skills in one of the best and most highly rated clinics in London, I specialise in advanced CO2 laser treatments for acne scars, wrinkles, and skin rejuvenation.',
+      bio: 'With 9 years of experience in the medical industry, I bring expertise from Greece to London\'s aesthetic scene. Having spent the past 5 years refining my skills in one of the best and most highly rated clinics in London, I specialise in advanced CO2 laser treatments for acne scars, wrinkles, and skin rejuvenation. Together with Mavra, we provide comprehensive care at Eskeen Clinic.',
       qualifications: [
         '9+ Years Medical Industry Experience',
         'Advanced CO2 Laser Specialist',
@@ -22,7 +22,7 @@ export default function TeamSection({ onBookingClick }: TeamSectionProps) {
       title: 'Advanced Aesthetician & Pharmacist Practitioner',
       credentials: '',
       image: '/images/team/Mavra.jpg',
-      bio: 'Advanced Aesthetician for the last 9 years with a highly qualified medical background. I specialise in Botox and Dermal fillers, anti-ageing treatments, and skin rejuvenation using the latest techniques and technologies. Together with Nurse Elanda, we provide comprehensive CO2 laser care at Eskeen Clinic.',
+      bio: 'Advanced Aesthetician for the last 9 years with a highly qualified medical background. I specialise in Botox and Dermal fillers, anti-ageing treatments, and skin rejuvenation using the latest techniques and technologies. Together with Elanda, we provide comprehensive CO2 laser care at Eskeen Clinic.',
       qualifications: [
         '9 Years Aesthetic Medicine Experience',
         'Pharmacist Practitioner',

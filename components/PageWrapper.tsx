@@ -5,7 +5,6 @@ import Navigation from '@/components/Navigation'
 import PremiumHero from '@/components/PremiumHero'
 import AssessmentTool from '@/components/AssessmentTool'
 import AboutSection from '@/components/AboutSection'
-import TeamSection from '@/components/TeamSection'
 import PremiumTreatments from '@/components/PremiumTreatments'
 import ResultsGallery from '@/components/ResultsGallery'
 import Reviews from '@/components/Reviews'
@@ -41,10 +40,6 @@ export default function PageWrapper() {
           onAssessmentComplete={(data) => setAssessmentData(data)}
         />
         <AboutSection onBookingClick={() => {
-          setAssessmentData({ skipToCalendar: true })
-          setIsBookingModalOpen(true)
-        }} />
-        <TeamSection onBookingClick={() => {
           setAssessmentData({ skipToCalendar: true })
           setIsBookingModalOpen(true)
         }} />

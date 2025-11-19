@@ -10,7 +10,7 @@ export default function StructuredData() {
     ],
     "logo": "https://co2london.com/images/logo.png",
     "image": "https://co2london.com/images/co2laser-skin-rejeuvenation.jpeg",
-    "description": "Expert CO2 laser treatment clinic in London led by Nurse Elanda, specializing in acne scar treatment, wrinkle reduction, skin texture improvement, and anti-aging treatments.",
+    "description": "Expert CO2 laser treatment clinic in London led by Elanda RN and Prescriber Mavra, specializing in acne scar treatment, wrinkle reduction, skin texture improvement, and anti-aging treatments.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "London",
@@ -104,7 +104,7 @@ export default function StructuredData() {
     "name": "Eskeen Clinic CO2 Laser",
     "alternateName": "CO2 Laser London",
     "url": "https://co2london.com",
-    "description": "Expert CO2 laser treatment for acne scars, wrinkles, skin texture & pigmentation in London by Nurse Elanda",
+    "description": "Expert CO2 laser treatment for acne scars, wrinkles, skin texture & pigmentation in London by Elanda RN",
     "publisher": {
       "@type": "Organization",
       "name": "Eskeen Clinic"
@@ -122,7 +122,7 @@ export default function StructuredData() {
     "name": "Eskeen Clinic",
     "alternateName": "CO2 Laser London",
     "image": "https://co2london.com/images/clinic/inside1.webp",
-    "description": "Expert CO2 laser treatment clinic in Putney, London. Specializing in acne scar treatment, wrinkle reduction, skin resurfacing, and pigmentation removal led by Nurse Elanda.",
+    "description": "Expert CO2 laser treatment clinic in Putney, London. Specializing in acne scar treatment, wrinkle reduction, skin resurfacing, and pigmentation removal with our highly qualified medical team.",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "115 Lower Richmond Road",
@@ -194,7 +194,7 @@ export default function StructuredData() {
     "@context": "https://schema.org",
     "@type": "Service",
     "name": "CO2 Laser Treatment London",
-    "description": "Expert fractional CO2 laser treatment for acne scars, wrinkles, skin texture, and pigmentation led by Nurse Elanda",
+    "description": "Expert fractional CO2 laser treatment for acne scars, wrinkles, skin texture, and pigmentation led by Prescriber Mavra",
     "provider": {
       "@type": "MedicalBusiness",
       "name": "Eskeen Clinic",
