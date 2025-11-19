@@ -35,7 +35,7 @@ export default function Navigation({ onBookingClick }: NavigationProps) {
             <img
               src="/images/eskeeen-logo-final-1024x449.png"
               alt="Eskeen Clinic"
-              className="h-12 w-auto"
+              className="h-12 w-auto logo-greek-blue"
             />
           </a>
 

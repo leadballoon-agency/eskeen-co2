@@ -12,7 +12,7 @@ export default function Header() {
           <img
             src="/images/eskeeen-logo-final-1024x449.png"
             alt="Eskeen Clinic"
-            className="h-10"
+            className="h-10 logo-greek-blue"
           />
           
           <nav className="hidden md:flex space-x-8">

@@ -18,9 +18,13 @@
   .gradient-text {
     @apply bg-gradient-to-r from-primary-500 to-primary-700 bg-clip-text text-transparent;
   }
-  
+
   .section-padding {
     @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .logo-greek-blue {
+    filter: brightness(0) saturate(100%) invert(29%) sepia(98%) saturate(1654%) hue-rotate(192deg) brightness(95%) contrast(93%);
   }
 }
 

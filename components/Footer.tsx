@@ -7,7 +7,7 @@ export default function Footer() {
             <img
               src="/images/eskeeen-logo-final-1024x449.png"
               alt="Eskeen Clinic"
-              className="h-12 mb-4"
+              className="h-12 mb-4 logo-greek-blue"
             />
             <p className="text-gray-400">
               Expert CO2 laser treatments in London
