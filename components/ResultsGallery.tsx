@@ -11,20 +11,20 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
 
   const results = [
     {
-      image: '/images/Acne Scarring Before and After.jpeg',
-      title: 'Acne Scarring',
-      description: 'Dramatic improvement in skin texture',
-      time: 'Results Vary',
-      isAvailable: true,
-      featured: false
-    },
-    {
       image: '/images/co2laser-skin-rejeuvenation.jpeg',
       title: 'Skin Resurfacing',
       description: 'Complete skin rejuvenation, renewal and tightening',
       time: 'Results Vary',
       isAvailable: true,
       featured: true
+    },
+    {
+      image: '/images/Acne Scarring Before and After.jpeg',
+      title: 'Acne Scarring',
+      description: 'Dramatic improvement in skin texture',
+      time: 'Results Vary',
+      isAvailable: true,
+      featured: false
     },
     {
       image: '/images/graeme.png',
@@ -52,10 +52,10 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
     },
     {
       image: '/images/model-day-tile.svg',
-      title: 'Model Day',
-      description: 'Limited spots available for model patients',
-      time: 'FULL',
-      isAvailable: false,
+      title: 'Book a Consultation',
+      description: 'See your transformation - schedule your free consultation',
+      time: 'Book Now',
+      isAvailable: true,
       featured: false
     }
   ]
