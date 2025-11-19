@@ -6,31 +6,31 @@ export default function ProcessSection({ onBookingClick }: ProcessSectionProps) 
   const steps = [
     {
       number: '01',
-      title: 'Consultation & Assessment',
-      description: 'Comprehensive skin analysis and treatment planning',
+      title: 'Consultation & Patch Test',
+      description: 'Comprehensive skin analysis and patch test on treatment area',
       icon: '💬',
-      duration: '30 mins'
+      duration: '20 mins'
     },
     {
       number: '02',
-      title: 'Same-Day Treatment',
-      description: 'Professional CO2 laser treatment with numbing cream',
+      title: 'Treatment Session',
+      description: 'Professional CO2 laser treatment 48 hours after consultation',
       icon: '🔬',
-      duration: '60-90 mins'
+      duration: '48 hours later'
     },
     {
       number: '03',
       title: 'Recovery & Aftercare',
       description: 'Guided healing process with dedicated support',
       icon: '✨',
-      duration: '5-7 days'
+      duration: '3-5 days'
     },
     {
       number: '04',
       title: 'Results & Follow-Up',
       description: 'Progress assessment and maintenance planning',
       icon: '📈',
-      duration: '2-4 weeks'
+      duration: '1-3 weeks'
     }
   ]
 
@@ -54,7 +54,7 @@ export default function ProcessSection({ onBookingClick }: ProcessSectionProps) 
             <span className="block gradient-text">Process</span>
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-neutral-600 mt-2 sm:mt-4 max-w-2xl mx-auto px-4">
-            Simple, convenient process - consultation and treatment on the same day
+            Safe, professional process with patch testing before your treatment
           </p>
         </div>
 
@@ -126,10 +126,10 @@ export default function ProcessSection({ onBookingClick }: ProcessSectionProps) 
             <div>
               <div className="bg-gradient-to-r from-primary-100 to-primary-50 rounded-xl p-4 mb-4">
                 <div className="flex items-center mb-2">
-                  <span className="text-2xl mr-2">⚡</span>
-                  <h4 className="font-bold text-primary-800">Same-Day Treatment Available</h4>
+                  <span className="text-2xl mr-2">🔬</span>
+                  <h4 className="font-bold text-primary-800">Patch Test for Your Safety</h4>
                 </div>
-                <p className="text-sm text-primary-700">No lengthy preparation required - consultation and treatment can often be completed in one visit.</p>
+                <p className="text-sm text-primary-700">We perform a patch test during consultation, then proceed with treatment 48 hours later to ensure your safety and optimal results.</p>
               </div>
 
               <h3 className="font-display text-xl sm:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4">
