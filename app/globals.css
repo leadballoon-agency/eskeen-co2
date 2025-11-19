@@ -26,6 +26,10 @@
   .logo-greek-blue {
     filter: brightness(0) saturate(100%) invert(29%) sepia(98%) saturate(1654%) hue-rotate(192deg) brightness(95%) contrast(93%);
   }
+
+  .logo-white {
+    filter: brightness(0) invert(1);
+  }
 }
 
 @keyframes modal-slide-up {
