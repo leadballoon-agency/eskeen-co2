@@ -8,6 +8,7 @@ import AboutSection from '@/components/AboutSection'
 import TeamSection from '@/components/TeamSection'
 import PremiumTreatments from '@/components/PremiumTreatments'
 import ResultsGallery from '@/components/ResultsGallery'
+import Reviews from '@/components/Reviews'
 import ProcessSection from '@/components/ProcessSection'
 import FinanceSection from '@/components/FinanceSection'
 import FAQ from '@/components/FAQ'
@@ -55,6 +56,7 @@ export default function PageWrapper() {
           setAssessmentData({ skipToCalendar: true })
           setIsBookingModalOpen(true)
         }} />
+        <Reviews />
         <ProcessSection onBookingClick={() => {
           setAssessmentData({ skipToCalendar: true })
           setIsBookingModalOpen(true)

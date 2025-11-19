@@ -116,6 +116,80 @@ export default function StructuredData() {
     }
   }
 
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalClinic",
+    "name": "Eskeen Clinic",
+    "alternateName": "CO2 Laser London",
+    "image": "https://co2london.com/images/clinic/inside1.webp",
+    "description": "Expert CO2 laser treatment clinic in Putney, London. Specializing in acne scar treatment, wrinkle reduction, skin resurfacing, and pigmentation removal led by Nurse Elanda.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "115 Lower Richmond Road",
+      "addressLocality": "Putney",
+      "addressRegion": "London",
+      "postalCode": "SW15 1EX",
+      "addressCountry": "GB"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "51.4598",
+      "longitude": "-0.2166"
+    },
+    "url": "https://co2london.com",
+    "telephone": "+447846888649",
+    "email": "info@eskeen.co.uk",
+    "priceRange": "££-£££",
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "09:00",
+        "closes": "17:00"
+      }
+    ],
+    "paymentAccepted": ["Cash", "Credit Card", "Debit Card", "Clearpay"],
+    "currenciesAccepted": "GBP",
+    "areaServed": [
+      {
+        "@type": "City",
+        "name": "London"
+      },
+      {
+        "@type": "City",
+        "name": "Putney"
+      },
+      {
+        "@type": "City",
+        "name": "Wimbledon"
+      },
+      {
+        "@type": "City",
+        "name": "Richmond"
+      },
+      {
+        "@type": "City",
+        "name": "Chelsea"
+      },
+      {
+        "@type": "City",
+        "name": "Fulham"
+      }
+    ],
+    "hasMap": "https://maps.google.com/?q=115+Lower+Richmond+Road,+Putney,+London+SW15+1EX",
+    "medicalSpecialty": [
+      "Dermatology",
+      "Aesthetic Medicine",
+      "Cosmetic Dermatology"
+    ]
+  }
+
   const serviceSchema = {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -126,26 +200,32 @@ export default function StructuredData() {
       "name": "Eskeen Clinic",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "London",
-        "addressRegion": "Greater London",
+        "streetAddress": "115 Lower Richmond Road",
+        "addressLocality": "Putney",
+        "addressRegion": "London",
+        "postalCode": "SW15 1EX",
         "addressCountry": "GB"
       },
-      "telephone": "+44 7846888649"
+      "telephone": "+447846888649"
     },
     "areaServed": [
       "London",
+      "Putney",
+      "Wimbledon",
+      "Richmond",
       "Westminster",
       "Camden",
       "Islington",
       "Kensington",
       "Chelsea",
+      "Fulham",
       "Hammersmith",
       "Greater London"
     ],
     "availableChannel": {
       "@type": "ServiceChannel",
       "serviceUrl": "https://co2london.com",
-      "serviceSmsNumber": "+44 7846888649"
+      "serviceSmsNumber": "+447846888649"
     },
     "category": "Medical Treatment",
     "hasOfferCatalog": {
@@ -176,6 +256,105 @@ export default function StructuredData() {
     }
   }
 
+  const reviewSchema = {
+    "@context": "https://schema.org",
+    "@type": "MedicalBusiness",
+    "name": "Eskeen Clinic",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "6",
+      "bestRating": "5",
+      "worstRating": "5"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Maria B."
+        },
+        "datePublished": "2024-10-28",
+        "reviewBody": "I honestly can't recommend Elanda enough! She's truly the best at what she does. She has so much experience, knowledge, and passion for her work. What makes her stand out is how she really listens and tailors everything perfectly to your needs.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Zoyyah I."
+        },
+        "datePublished": "2024-09-15",
+        "reviewBody": "I've struggled with insecurity related to acne scars for years, and PRP has finally made a real difference! The clinic team - particularly Mavra was professional, I was super nervous and she took the time to explain the process and put me at ease.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Inês R."
+        },
+        "datePublished": "2024-09-20",
+        "reviewBody": "I had PRP for the hyperpigmentation on my skin from Mavra and just 2 sessions in, I can already see a huge difference! Mavra explained the process thoroughly and made me feel so comfortable she was gentle, informative, and really took her time.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Olivia B."
+        },
+        "datePublished": "2024-10-25",
+        "reviewBody": "Elanda is an exceptionally knowledgeable practitioner as well as being a nurse she is very patient through her consultations and will always explain everything to you and there is no pressure to have anything done that she doesn't feel is right for you.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Eva C."
+        },
+        "datePublished": "2024-09-18",
+        "reviewBody": "I've been seeing Elanda at Eskeen Clinic for a course of PRP sessions and I couldn't be happier with the results! She's incredibly knowledgeable, professional, and really takes the time to explain everything so I feel informed and comfortable.",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      },
+      {
+        "@type": "Review",
+        "author": {
+          "@type": "Person",
+          "name": "Ljiljana P."
+        },
+        "datePublished": "2024-09-22",
+        "reviewBody": "What an incredible young lady Elanda is! Knowledgable, polite, professional, explains everything to a detail. Shows all the products and labels. Done the job precisely and with care. Much better priced services than anywhere else too. Highly recommend!",
+        "reviewRating": {
+          "@type": "Rating",
+          "ratingValue": "5",
+          "bestRating": "5"
+        }
+      }
+    ]
+  }
+
   return (
     <>
       <script
@@ -188,7 +367,15 @@ export default function StructuredData() {
       />
       <script
         type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+      />
+      <script
+        type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(reviewSchema) }}
       />
     </>
   )
