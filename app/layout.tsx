@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 import StructuredData from '@/components/StructuredData'
 
@@ -72,8 +73,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-GB">
-      <head>
-        <script
+      <body className={inter.className}>
+        {/* Meta Pixel Code - Next.js Script component for proper execution */}
+        <Script
+          id="facebook-pixel"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
               !function(f,b,e,v,n,t,s)
@@ -97,8 +101,7 @@ export default function RootLayout({
             src="https://www.facebook.com/tr?id=463566641956136&ev=PageView&noscript=1"
           />
         </noscript>
-      </head>
-      <body className={inter.className}>
+
         <StructuredData />
         {children}
       </body>
