@@ -26,7 +26,7 @@ export default function AppleIcon() {
           borderRadius: '20px',
         }}
       >
-        ND
+        EC
       </div>
     ),
     {

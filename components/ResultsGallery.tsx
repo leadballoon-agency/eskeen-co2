@@ -135,23 +135,36 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
 
         {/* Reception Area Section - Mobile Optimized */}
         <div className="mt-8 sm:mt-12">
-          <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-premium">
-            <img
-              src="/images/clinic/inside1.webp"
-              alt="Eskeen Clinic Interior"
-              className="w-full"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 sm:from-black/60 via-black/40 sm:via-transparent to-transparent flex items-center">
-              <div className="p-6 sm:p-8 md:p-12 max-w-full sm:max-w-lg">
-                <h3 className="text-white text-xl sm:text-2xl lg:text-3xl font-bold mb-2 sm:mb-4">
+          <div className="relative rounded-xl sm:rounded-2xl overflow-hidden shadow-premium h-[400px] sm:h-[500px] lg:h-[600px]">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover"
+            >
+              <source
+                src="https://storage.googleapis.com/msgsndr/USJbaW3fRzevnqAcsm2W/media/6920bfa43937417f1076a11a.mp4"
+                type="video/mp4"
+              />
+              {/* Fallback for browsers that don't support video */}
+              <img
+                src="/images/clinic/inside1.webp"
+                alt="Eskeen Clinic Interior"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+            </video>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/75 sm:from-black/60 via-black/50 sm:via-black/40 to-transparent flex items-center">
+              <div className="p-5 sm:p-8 md:p-12 max-w-full sm:max-w-lg">
+                <h3 className="text-white text-2xl sm:text-2xl lg:text-3xl font-bold leading-tight mb-3 sm:mb-4">
                   Welcome to Eskeen Clinic
                 </h3>
-                <p className="text-white/90 text-sm sm:text-base mb-4 sm:mb-6">
+                <p className="text-white/95 text-sm sm:text-base leading-relaxed mb-5 sm:mb-6">
                   Step into our modern, welcoming clinic designed for your comfort and relaxation during your CO2 laser journey.
                 </p>
                 <button
                   onClick={onBookingClick}
-                  className="inline-flex items-center bg-white text-primary-600 px-4 sm:px-6 py-2.5 sm:py-3 rounded-full font-medium text-sm sm:text-base hover:shadow-lg transition-all duration-300"
+                  className="inline-flex items-center bg-white text-primary-600 px-5 sm:px-6 py-3 sm:py-3 rounded-full font-semibold text-sm sm:text-base hover:shadow-lg transition-all duration-300"
                 >
                   Schedule Consultation
                 </button>

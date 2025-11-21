@@ -26,7 +26,7 @@ export default function Icon() {
           borderRadius: '6px',
         }}
       >
-        ND
+        EC
       </div>
     ),
     {
