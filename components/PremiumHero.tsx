@@ -19,30 +19,30 @@ export default function PremiumHero({ onBookingClick, onVideoClick }: PremiumHer
         </div>
       </div>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24 lg:py-32">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          <div className="space-y-4 sm:space-y-6 lg:space-y-8 animate-slide-up text-center lg:text-left">
+          <div className="space-y-5 sm:space-y-6 lg:space-y-8 animate-slide-up text-center lg:text-left">
             {/* Premium Badge */}
-            <div className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-primary-100 rounded-full mx-auto lg:mx-0">
+            <div className="inline-flex items-center px-4 sm:px-4 py-2 sm:py-2 bg-primary-100 rounded-full mx-auto lg:mx-0">
               <span className="w-2 h-2 bg-primary-500 rounded-full animate-pulse mr-2"></span>
-              <span className="text-primary-700 font-medium text-xs sm:text-sm">Advanced CO2 Laser Treatment</span>
+              <span className="text-primary-700 font-semibold text-xs sm:text-sm">Advanced CO2 Laser Treatment</span>
             </div>
 
             {/* Main Heading */}
-            <h1 className="font-display text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.1]">
+            <h1 className="font-display text-3xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
               Transform Your
-              <span className="block gradient-text mt-1">Skin Today</span>
+              <span className="block gradient-text mt-1 sm:mt-2">Skin Today</span>
             </h1>
 
-            <p className="text-base sm:text-lg md:text-xl text-neutral-600 leading-relaxed max-w-xl mx-auto lg:mx-0">
+            <p className="text-sm sm:text-lg md:text-xl text-neutral-600 leading-relaxed max-w-xl mx-auto lg:mx-0 px-2 sm:px-0">
               The gold standard treatment for acne scars, wrinkles, and skin texture. Expert care by Nurse Elanda and Prescriber Mavra at Eskeen Clinic, London.
             </p>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start pt-1">
               <button
                 onClick={onBookingClick}
-                className="inline-flex items-center justify-center bg-gradient-to-r from-primary-500 to-primary-600 text-white px-7 py-3.5 rounded-full font-medium text-base hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
+                className="inline-flex items-center justify-center bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-4 rounded-full font-semibold text-base hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
               >
                 Book Consultation
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,7 +51,7 @@ export default function PremiumHero({ onBookingClick, onVideoClick }: PremiumHer
               </button>
               <button
                 onClick={onVideoClick}
-                className="inline-flex items-center justify-center border-2 border-primary-500 text-primary-600 px-7 py-3.5 rounded-full font-medium text-base hover:bg-primary-50 transition-all duration-300 w-full sm:w-auto group"
+                className="inline-flex items-center justify-center border-2 border-primary-500 text-primary-600 px-8 py-4 rounded-full font-semibold text-base hover:bg-primary-50 transition-all duration-300 w-full sm:w-auto group"
               >
                 <svg className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
@@ -60,26 +60,23 @@ export default function PremiumHero({ onBookingClick, onVideoClick }: PremiumHer
               </button>
             </div>
 
-            {/* Social Proof - Mobile Optimized */}
-            <div className="flex items-center justify-center lg:justify-start space-x-6 pt-2">
+            {/* Social Proof - Mobile Optimized with Grid */}
+            <div className="grid grid-cols-2 sm:flex sm:items-center sm:justify-center lg:justify-start gap-4 sm:gap-6 pt-2 max-w-md mx-auto lg:mx-0">
               <div className="text-center">
-                <p className="text-2xl font-bold text-primary-600">70-80%</p>
-                <p className="text-xs text-neutral-600">Scar Reduction</p>
+                <p className="text-xl sm:text-2xl font-bold text-primary-600">70-80%</p>
+                <p className="text-xs text-neutral-600 whitespace-nowrap">Scar Reduction</p>
               </div>
-              <div className="text-neutral-300">|</div>
               <div className="text-center">
-                <p className="text-2xl font-bold text-primary-600">1-3</p>
-                <p className="text-xs text-neutral-600">Sessions</p>
+                <p className="text-xl sm:text-2xl font-bold text-primary-600">1-3</p>
+                <p className="text-xs text-neutral-600 whitespace-nowrap">Sessions</p>
               </div>
-              <div className="text-neutral-300">|</div>
               <div className="text-center">
-                <p className="text-2xl font-bold text-primary-600">95%</p>
-                <p className="text-xs text-neutral-600">Satisfaction</p>
+                <p className="text-xl sm:text-2xl font-bold text-primary-600">95%</p>
+                <p className="text-xs text-neutral-600 whitespace-nowrap">Satisfaction</p>
               </div>
-              <div className="text-neutral-300">|</div>
               <div className="text-center">
-                <p className="text-2xl font-bold text-primary-600">500+</p>
-                <p className="text-xs text-neutral-600">Patients</p>
+                <p className="text-xl sm:text-2xl font-bold text-primary-600">500+</p>
+                <p className="text-xs text-neutral-600 whitespace-nowrap">Patients</p>
               </div>
             </div>
           </div>
