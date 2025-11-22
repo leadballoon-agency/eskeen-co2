@@ -1,29 +1,33 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Script from 'next/script'
 
 declare global {
   interface Window {
     fbq: any
+    _fbq: any
   }
 }
 
 const FACEBOOK_PIXEL_ID = '1420040315939258'
 
 export default function FacebookPixel() {
+  const [loaded, setLoaded] = useState(false)
+
   useEffect(() => {
-    // Track PageView on client-side mount to ensure it fires
-    if (typeof window !== 'undefined' && window.fbq) {
+    // Only track PageView after script is loaded
+    if (loaded && typeof window !== 'undefined' && window.fbq) {
       window.fbq('track', 'PageView')
     }
-  }, [])
+  }, [loaded])
 
   return (
     <>
       <Script
         id="facebook-pixel"
         strategy="afterInteractive"
+        onLoad={() => setLoaded(true)}
         dangerouslySetInnerHTML={{
           __html: `
             !function(f,b,e,v,n,t,s)
@@ -36,7 +40,6 @@ export default function FacebookPixel() {
             'https://connect.facebook.net/en_US/fbevents.js');
 
             fbq('init', '${FACEBOOK_PIXEL_ID}');
-            fbq('track', 'PageView');
           `,
         }}
       />
