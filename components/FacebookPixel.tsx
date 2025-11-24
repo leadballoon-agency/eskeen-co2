@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+import { usePathname, useSearchParams } from 'next/navigation'
 import Script from 'next/script'
 
 declare global {
@@ -10,24 +11,70 @@ declare global {
   }
 }
 
-const FACEBOOK_PIXEL_ID = '1420040315939258'
+const FACEBOOK_PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || '1420040315939258'
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+const TEST_MODE = process.env.NEXT_PUBLIC_META_PIXEL_TEST_MODE === 'true'
 
 export default function FacebookPixel() {
-  const [loaded, setLoaded] = useState(false)
+  const pathname = usePathname()
+  const searchParams = useSearchParams()
+  const [pixelLoaded, setPixelLoaded] = useState(false)
+  const initialized = useRef(false)
 
+  // Don't load pixel in development unless test mode is enabled
+  if (!IS_PRODUCTION && !TEST_MODE) {
+    return null
+  }
+
+  // Check when pixel script is fully loaded
   useEffect(() => {
-    // Only track PageView after script is loaded
-    if (loaded && typeof window !== 'undefined' && window.fbq) {
+    const checkPixel = setInterval(() => {
+      if (typeof window !== 'undefined' && window.fbq && window.fbq.version) {
+        setPixelLoaded(true)
+        clearInterval(checkPixel)
+      }
+    }, 100)
+
+    const timeout = setTimeout(() => {
+      clearInterval(checkPixel)
+      if (!pixelLoaded) {
+        console.warn('Meta Pixel: Script failed to load within 10 seconds')
+      }
+    }, 10000)
+
+    return () => {
+      clearInterval(checkPixel)
+      clearTimeout(timeout)
+    }
+  }, [pixelLoaded])
+
+  // Track PageView on navigation
+  useEffect(() => {
+    // In development with StrictMode, prevent double-firing
+    if (!IS_PRODUCTION && initialized.current) {
+      return
+    }
+    initialized.current = true
+
+    if (typeof window !== 'undefined' && window.fbq && pixelLoaded) {
+      if (TEST_MODE) {
+        console.log('[Meta Pixel TEST] PageView:', pathname, searchParams?.toString())
+      }
       window.fbq('track', 'PageView')
     }
-  }, [loaded])
+  }, [pathname, searchParams, pixelLoaded])
 
   return (
     <>
       <Script
         id="facebook-pixel"
         strategy="afterInteractive"
-        onLoad={() => setLoaded(true)}
+        onLoad={() => {
+          console.log('Meta Pixel: Script loaded successfully')
+        }}
+        onError={(e) => {
+          console.error('Meta Pixel: Script failed to load', e)
+        }}
         dangerouslySetInnerHTML={{
           __html: `
             !function(f,b,e,v,n,t,s)
@@ -38,7 +85,6 @@ export default function FacebookPixel() {
             t.src=v;s=b.getElementsByTagName(e)[0];
             s.parentNode.insertBefore(t,s)}(window, document,'script',
             'https://connect.facebook.net/en_US/fbevents.js');
-
             fbq('init', '${FACEBOOK_PIXEL_ID}');
           `,
         }}
@@ -56,11 +102,32 @@ export default function FacebookPixel() {
   )
 }
 
-// Custom events for tracking conversions
+// Enhanced tracking with retry logic
 export const trackEvent = (eventName: string, parameters?: any) => {
-  if (typeof window !== 'undefined' && window.fbq) {
-    window.fbq('track', eventName, parameters)
+  if (typeof window === 'undefined') return
+  if (!IS_PRODUCTION && !TEST_MODE) {
+    console.log(`[Meta Pixel DEV] Would track: ${eventName}`, parameters)
+    return
   }
+
+  const maxAttempts = 10
+  let attempts = 0
+
+  const attemptTrack = () => {
+    if (window.fbq && window.fbq.version) {
+      if (TEST_MODE) {
+        console.log(`[Meta Pixel TEST] Event: ${eventName}`, parameters)
+      }
+      window.fbq('track', eventName, parameters)
+    } else if (attempts < maxAttempts) {
+      attempts++
+      setTimeout(attemptTrack, 100)
+    } else {
+      console.warn(`Meta Pixel: Failed to track ${eventName} after ${maxAttempts} attempts`)
+    }
+  }
+
+  attemptTrack()
 }
 
 // Specific tracking functions for our landing page
