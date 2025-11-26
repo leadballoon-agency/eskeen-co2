@@ -5,10 +5,12 @@ import Script from 'next/script'
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
 export default function ConvertBox() {
-  // Only load in production environment
-  if (!IS_PRODUCTION) {
-    return null
-  }
+  // Temporarily removed production check for debugging
+  // if (!IS_PRODUCTION) {
+  //   return null
+  // }
+
+  console.log('ConvertBox component rendering, NODE_ENV:', process.env.NODE_ENV)
 
   return (
     <Script
