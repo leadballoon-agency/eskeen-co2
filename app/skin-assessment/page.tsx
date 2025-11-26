@@ -7,6 +7,8 @@ import Link from 'next/link'
 // Configuration
 const CONFIG = {
   webhookUrl: 'https://services.leadconnectorhq.com/hooks/USJbaW3fRzevnqAcsm2W/webhook-trigger/8f82c8f8-b4c7-408d-a57d-f8e63dc75417',
+  bookingUrlSuitable: 'https://link.leadballoon.co.uk/widget/booking/syK16SjNrYdMzEIta7Bb',
+  bookingUrlAlternative: 'https://link.leadballoon.co.uk/widget/booking/syK16SjNrYdMzEIta7Bb',
   tagSuitable: 'CO2 Laser - Qualified',
   tagNotSuitable: 'CO2 Laser - Not Suitable',
 }
