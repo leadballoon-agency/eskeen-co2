@@ -5,7 +5,7 @@ interface TeamSectionProps {
 export default function TeamSection({ onBookingClick }: TeamSectionProps) {
   const team = [
     {
-      name: 'Elanda RN',
+      name: 'Elanda',
       title: 'Advanced Aesthetics Practitioner',
       credentials: '',
       image: '/images/team/Elanda.jpg',

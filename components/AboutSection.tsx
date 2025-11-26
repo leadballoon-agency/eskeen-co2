@@ -5,7 +5,7 @@ interface AboutSectionProps {
 export default function AboutSection({ onBookingClick }: AboutSectionProps) {
   const practitioners = [
     {
-      name: 'Elanda RN',
+      name: 'Elanda',
       title: 'Advanced Aesthetics Practitioner',
       image: '/images/team/Elanda.jpg',
       bio: 'With 9 years of experience in the medical industry, I bring expertise from Greece to London\'s aesthetic scene. Having spent the past 5 years refining my skills in one of the best and most highly rated clinics in London, I specialise in advanced CO2 laser treatments for acne scars, wrinkles, and skin rejuvenation. Together with Mavra, we provide comprehensive care at Eskeen Clinic.',

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { trackAssessmentStart, trackAssessmentComplete } from './FacebookPixel'
+import AssessmentModal from './AssessmentModal'
 
 interface AssessmentToolProps {
   onBookingClick?: () => void
@@ -12,6 +13,7 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
   const [step, setStep] = useState(1)
   const [answers, setAnswers] = useState<any>({})
   const [selectedSkinTone, setSelectedSkinTone] = useState<number | null>(null)
+  const [showModal, setShowModal] = useState(false)
 
   const skinTones = [
     { type: 1, name: 'Very Fair', color: '#FFE4D6', desc: 'Always burns, never tans' },
@@ -304,10 +306,26 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
               </div>
 
               <div className="flex flex-col gap-3 sm:gap-4">
+                {!getRecommendation().isSuitable && (
+                  <button
+                    onClick={() => setShowModal(true)}
+                    type="button"
+                    className="w-full inline-flex items-center justify-center bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 sm:py-4 rounded-full font-medium hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  >
+                    Continue to Full Assessment
+                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </button>
+                )}
                 <button
                   onClick={onBookingClick}
                   type="button"
-                  className="w-full inline-flex items-center justify-center bg-gradient-to-r from-primary-500 to-primary-600 text-white px-6 py-3 sm:py-4 rounded-full font-medium hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  className={`w-full inline-flex items-center justify-center ${
+                    !getRecommendation().isSuitable
+                      ? 'border-2 border-primary-500 text-primary-600 bg-white hover:bg-primary-50'
+                      : 'bg-gradient-to-r from-primary-500 to-primary-600 text-white hover:shadow-xl hover:scale-105'
+                  } px-6 py-3 sm:py-4 rounded-full font-medium transition-all duration-300`}
                 >
                   Book Consultation
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -325,6 +343,17 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
           )}
         </div>
       </div>
+
+      {/* Assessment Modal */}
+      <AssessmentModal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        initialData={{
+          skinType: answers[1],
+          concern: answers[2],
+          age: answers[3]
+        }}
+      />
     </section>
   )
 }

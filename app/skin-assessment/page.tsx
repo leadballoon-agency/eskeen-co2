@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 
 // Configuration
@@ -12,8 +13,8 @@ const CONFIG = {
   tagNotSuitable: 'CO2 Laser - Not Suitable',
 }
 
-// Quiz data
-const questions = [
+// Fitzpatrick quiz data
+const fitzpatrickQuestions = [
   {
     id: 'eye_color',
     question: 'What is your natural eye colour?',
@@ -82,6 +83,55 @@ const questions = [
   }
 ]
 
+// Qualifying questions
+const qualifyingQuestions = [
+  {
+    id: 'previous_treatments',
+    question: 'What treatments have you previously tried? (Select all that apply)',
+    type: 'multi-select',
+    options: [
+      { value: 'chemical_peels', label: 'Chemical Peels' },
+      { value: 'microneedling', label: 'Microneedling' },
+      { value: 'laser_treatments', label: 'Laser Treatments' },
+      { value: 'fillers_botox', label: 'Fillers/Botox' },
+      { value: 'rf_treatments', label: 'RF Treatments' },
+      { value: 'none', label: 'None' }
+    ]
+  },
+  {
+    id: 'budget',
+    question: 'What is your budget range for treatment?',
+    type: 'single-select',
+    options: [
+      { value: '200-500', label: '£200-500' },
+      { value: '500-1000', label: '£500-1,000' },
+      { value: '1000-2000', label: '£1,000-2,000' },
+      { value: '2000+', label: '£2,000+' }
+    ]
+  },
+  {
+    id: 'downtime',
+    question: 'How much downtime can you accommodate?',
+    type: 'single-select',
+    options: [
+      { value: 'none', label: 'No downtime' },
+      { value: '1-3', label: '1-3 days' },
+      { value: '3-7', label: '3-7 days' },
+      { value: '1-2weeks', label: '1-2 weeks' }
+    ]
+  },
+  {
+    id: 'intensity',
+    question: 'What treatment intensity do you prefer?',
+    type: 'single-select',
+    options: [
+      { value: 'gentle', label: 'Gentle/gradual results' },
+      { value: 'moderate', label: 'Moderate intensity' },
+      { value: 'aggressive', label: 'Aggressive/maximum results' }
+    ]
+  }
+]
+
 const fitzTypes: Record<number, any> = {
   1: {
     type: 'Type I', name: 'Very Fair',
@@ -133,17 +183,72 @@ const fitzTypes: Record<number, any> = {
   }
 }
 
+// Helper to map skin type to Fitzpatrick scores
+const skinTypeToFitzpatrickScores = (skinType: number): Record<string, number> => {
+  // Calculate average score per question to reach the total score for this skin type
+  const totalScoreRanges = [
+    { type: 1, maxScore: 6 },
+    { type: 2, maxScore: 12 },
+    { type: 3, maxScore: 18 },
+    { type: 4, maxScore: 24 },
+    { type: 5, maxScore: 30 },
+    { type: 6, maxScore: 36 }
+  ]
+
+  const range = totalScoreRanges.find(r => r.type === skinType)
+  const avgScore = range ? Math.floor((range.maxScore - (range.maxScore > 6 ? 6 : 0)) / 6) : 2
+
+  return {
+    'eye_color': avgScore,
+    'hair_color': avgScore,
+    'skin_color': avgScore,
+    'freckles': avgScore,
+    'sun_reaction': avgScore,
+    'tanning': avgScore
+  }
+}
+
 export default function SkinAssessmentPage() {
-  const [currentStep, setCurrentStep] = useState(0)
-  const [answers, setAnswers] = useState<Record<string, number>>({})
-  const [showLeadForm, setShowLeadForm] = useState(false)
-  const [showResults, setShowResults] = useState(false)
+  const searchParams = useSearchParams()
+
+  // URL parameters
+  const [initialData, setInitialData] = useState<{skinType?: number, concern?: string, age?: string} | null>(null)
+
+  // Quiz state
+  const [quizPhase, setQuizPhase] = useState<'intro' | 'fitzpatrick' | 'qualifying' | 'lead' | 'results'>('intro')
+  const [fitzpatrickStep, setFitzpatrickStep] = useState(0)
+  const [qualifyingStep, setQualifyingStep] = useState(0)
+  const [fitzpatrickAnswers, setFitzpatrickAnswers] = useState<Record<string, number>>({})
+  const [qualifyingAnswers, setQualifyingAnswers] = useState<Record<string, any>>({})
+  const [selectedMultiOptions, setSelectedMultiOptions] = useState<string[]>([])
+
+  // Lead form
   const [leadData, setLeadData] = useState({ firstName: '', lastName: '', email: '', phone: '' })
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [submitting, setSubmitting] = useState(false)
 
-  const calculateType = () => {
-    const total = Object.values(answers).reduce((sum, score) => sum + score, 0)
+  // Parse URL parameters on mount
+  useEffect(() => {
+    const skinTypeParam = searchParams?.get('skinType')
+    const concernParam = searchParams?.get('concern')
+    const ageParam = searchParams?.get('age')
+
+    if (skinTypeParam) {
+      const skinType = parseInt(skinTypeParam)
+      setInitialData({
+        skinType,
+        concern: concernParam || undefined,
+        age: ageParam || undefined
+      })
+
+      // Pre-fill Fitzpatrick answers based on skin type
+      const preFilled = skinTypeToFitzpatrickScores(skinType)
+      setFitzpatrickAnswers(preFilled)
+    }
+  }, [searchParams])
+
+  const calculateFitzpatrickType = () => {
+    const total = Object.values(fitzpatrickAnswers).reduce((sum, score) => sum + score, 0)
     if (total <= 6) return 1
     if (total <= 12) return 2
     if (total <= 18) return 3
@@ -152,16 +257,107 @@ export default function SkinAssessmentPage() {
     return 6
   }
 
-  const handleAnswer = (score: number) => {
-    setAnswers({ ...answers, [questions[currentStep].id]: score })
+  const handleFitzpatrickAnswer = (score: number) => {
+    const newAnswers = { ...fitzpatrickAnswers, [fitzpatrickQuestions[fitzpatrickStep].id]: score }
+    setFitzpatrickAnswers(newAnswers)
 
     setTimeout(() => {
-      if (currentStep < questions.length - 1) {
-        setCurrentStep(currentStep + 1)
+      if (fitzpatrickStep < fitzpatrickQuestions.length - 1) {
+        setFitzpatrickStep(fitzpatrickStep + 1)
       } else {
-        setShowLeadForm(true)
+        setQuizPhase('qualifying')
+        setQualifyingStep(0)
       }
     }, 400)
+  }
+
+  const handleQualifyingAnswer = (value: any) => {
+    const currentQ = qualifyingQuestions[qualifyingStep]
+
+    if (currentQ.type === 'multi-select') {
+      // For multi-select, store the selected options
+      setQualifyingAnswers({ ...qualifyingAnswers, [currentQ.id]: selectedMultiOptions })
+      setTimeout(() => {
+        if (qualifyingStep < qualifyingQuestions.length - 1) {
+          setQualifyingStep(qualifyingStep + 1)
+          setSelectedMultiOptions([])
+        } else {
+          setQuizPhase('lead')
+        }
+      }, 400)
+    } else {
+      // For single-select
+      setQualifyingAnswers({ ...qualifyingAnswers, [currentQ.id]: value })
+      setTimeout(() => {
+        if (qualifyingStep < qualifyingQuestions.length - 1) {
+          setQualifyingStep(qualifyingStep + 1)
+        } else {
+          setQuizPhase('lead')
+        }
+      }, 400)
+    }
+  }
+
+  const toggleMultiOption = (value: string) => {
+    if (selectedMultiOptions.includes(value)) {
+      setSelectedMultiOptions(selectedMultiOptions.filter(v => v !== value))
+    } else {
+      setSelectedMultiOptions([...selectedMultiOptions, value])
+    }
+  }
+
+  const getEnhancedRecommendation = () => {
+    const fitzType = calculateFitzpatrickType()
+    const result = fitzTypes[fitzType]
+    const budget = qualifyingAnswers.budget
+    const downtime = qualifyingAnswers.downtime
+    const intensity = qualifyingAnswers.intensity
+
+    // If suitable for CO2 laser, return that recommendation
+    if (result.isSuitable) {
+      return {
+        treatment: 'CO2 Laser Resurfacing',
+        price: budget === '2000+' ? '£1,500 - £2,500' : budget === '1000-2000' ? '£700 - £1,500' : '£450 - £700',
+        description: 'Based on your skin type, concerns, and preferences, CO2 laser resurfacing is an excellent choice for dramatic results.',
+        isSuitable: true,
+        fitzType: result
+      }
+    }
+
+    // For unsuitable candidates, recommend based on budget and downtime
+    if (downtime === 'none' && budget === '2000+') {
+      return {
+        treatment: 'HIFU Skin Tightening',
+        price: '£800 - £1,200',
+        description: 'No downtime, high-end treatment perfect for your skin type. Non-invasive ultrasound technology for lifting and tightening.',
+        isSuitable: false,
+        fitzType: result
+      }
+    } else if (downtime === 'none' || downtime === '1-3') {
+      return {
+        treatment: 'RF Microneedling',
+        price: '£600 - £900',
+        description: 'Minimal downtime treatment that combines radiofrequency with microneedling. Safe and effective for darker skin tones.',
+        isSuitable: false,
+        fitzType: result
+      }
+    } else if (budget === '200-500' || budget === '500-1000') {
+      return {
+        treatment: 'Chemical Peel (TCA)',
+        price: '£250 - £500',
+        description: 'Cost-effective treatment specially formulated for darker skin tones. Addresses pigmentation and texture concerns safely.',
+        isSuitable: false,
+        fitzType: result
+      }
+    } else {
+      return {
+        treatment: 'Microneedling with PRF',
+        price: '£400 - £700',
+        description: 'Uses your own growth factors for natural healing. Safe and effective for all skin types with moderate downtime.',
+        isSuitable: false,
+        fitzType: result
+      }
+    }
   }
 
   const validateForm = () => {
@@ -180,8 +376,9 @@ export default function SkinAssessmentPage() {
 
     setSubmitting(true)
 
-    const fitzType = calculateType()
+    const fitzType = calculateFitzpatrickType()
     const result = fitzTypes[fitzType]
+    const recommendation = getEnhancedRecommendation()
 
     const suitabilityLabels: Record<string, string> = {
       'excellent': 'Excellent Candidate',
@@ -200,8 +397,16 @@ export default function SkinAssessmentPage() {
       fitzpatrick_name: `${result.type} - ${result.name}`,
       co2_laser_suitability: suitabilityLabels[result.laserSuitability],
       co2_laser_suitable: result.isSuitable,
+      recommended_treatment: recommendation.treatment,
+      recommended_price: recommendation.price,
+      previous_treatments: qualifyingAnswers.previous_treatments?.join(', ') || 'None',
+      budget_range: qualifyingAnswers.budget || 'Not specified',
+      downtime_available: qualifyingAnswers.downtime || 'Not specified',
+      treatment_intensity: qualifyingAnswers.intensity || 'Not specified',
+      initial_concern: initialData?.concern || 'Not specified',
+      initial_age_range: initialData?.age || 'Not specified',
       tags: result.isSuitable ? CONFIG.tagSuitable : CONFIG.tagNotSuitable,
-      assessment_source: 'Fitzpatrick Skin Type Quiz',
+      assessment_source: 'Enhanced Fitzpatrick Quiz',
       submitted_at: new Date().toISOString()
     }
 
@@ -216,22 +421,26 @@ export default function SkinAssessmentPage() {
       console.error('Webhook error:', error)
     }
 
-    setShowLeadForm(false)
-    setShowResults(true)
+    setQuizPhase('results')
+    setSubmitting(false)
   }
 
   const restart = () => {
-    setCurrentStep(0)
-    setAnswers({})
-    setShowLeadForm(false)
-    setShowResults(false)
+    setQuizPhase('intro')
+    setFitzpatrickStep(0)
+    setQualifyingStep(0)
+    setFitzpatrickAnswers({})
+    setQualifyingAnswers({})
+    setSelectedMultiOptions([])
     setLeadData({ firstName: '', lastName: '', email: '', phone: '' })
     setErrors({})
   }
 
-  const progress = ((currentStep + 1) / questions.length) * 100
-  const fitzType = calculateType()
-  const result = fitzTypes[fitzType]
+  const fitzpatrickProgress = ((fitzpatrickStep + 1) / fitzpatrickQuestions.length) * 50
+  const qualifyingProgress = 50 + ((qualifyingStep + 1) / qualifyingQuestions.length) * 50
+  const currentFitzQ = fitzpatrickQuestions[fitzpatrickStep]
+  const currentQualifyingQ = qualifyingQuestions[qualifyingStep]
+  const recommendation = getEnhancedRecommendation()
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-12 px-4">
@@ -241,43 +450,117 @@ export default function SkinAssessmentPage() {
           <Link href="/" className="text-sm text-gray-600 hover:text-gray-900 mb-4 inline-block">
             ← Back to Home
           </Link>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">Skin Type Assessment</h1>
-          <p className="text-gray-600">Discover your Fitzpatrick skin type and CO2 laser suitability</p>
+          <h1 className="text-4xl font-bold text-gray-900 mb-2">Enhanced Skin Assessment</h1>
+          <p className="text-gray-600">Comprehensive evaluation for personalized treatment recommendations</p>
         </div>
 
-        {/* Questions */}
-        {!showLeadForm && !showResults && (
+        {/* Intro Screen */}
+        {quizPhase === 'intro' && (
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <div className="text-center mb-6">
+              <div className="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mx-auto mb-6 flex items-center justify-center">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-3">Welcome to Your Personalized Assessment</h2>
+              <p className="text-gray-600 mb-6">
+                We'll ask 10 questions to provide you with the most accurate treatment recommendations for your skin type and goals.
+              </p>
+
+              {initialData && (
+                <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4 mb-6 text-left">
+                  <p className="text-sm font-semibold text-blue-900 mb-2">Your Initial Assessment Results:</p>
+                  <ul className="text-sm text-blue-800 space-y-1">
+                    {initialData.skinType && <li>• Skin Type: Type {initialData.skinType}</li>}
+                    {initialData.concern && <li>• Primary Concern: {initialData.concern}</li>}
+                    {initialData.age && <li>• Age Range: {initialData.age}</li>}
+                  </ul>
+                  <p className="text-xs text-blue-700 mt-3">
+                    We've pre-filled some answers based on your initial assessment, but you can review and adjust them if needed.
+                  </p>
+                </div>
+              )}
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-gray-50 rounded-lg p-4">
+                <h3 className="font-semibold text-gray-900 mb-2">What to expect:</h3>
+                <ul className="text-sm text-gray-600 space-y-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">1-6:</span>
+                    <span>Fitzpatrick skin type questions (validates your skin type)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-blue-600 font-bold">7-10:</span>
+                    <span>Qualifying questions about your treatment preferences</span>
+                  </li>
+                </ul>
+              </div>
+
+              <button
+                onClick={() => setQuizPhase('fitzpatrick')}
+                className="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 shadow-lg hover:shadow-xl"
+              >
+                Start Assessment
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Fitzpatrick Questions */}
+        {quizPhase === 'fitzpatrick' && currentFitzQ && (
           <div className="bg-white rounded-2xl shadow-lg p-8">
             {/* Progress */}
             <div className="mb-8">
               <div className="flex justify-between text-sm text-gray-600 mb-2">
-                <span>Question {currentStep + 1} of {questions.length}</span>
-                <span>{Math.round(progress)}%</span>
+                <span>Question {fitzpatrickStep + 1} of 10</span>
+                <span>{Math.round(fitzpatrickProgress)}%</span>
               </div>
               <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                 <div
                   className="h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
-                  style={{ width: `${progress}%` }}
+                  style={{ width: `${fitzpatrickProgress}%` }}
                 />
               </div>
             </div>
 
             {/* Question */}
+            <div className="mb-2">
+              <span className="text-sm text-blue-600 font-medium">SKIN TYPE VALIDATION</span>
+            </div>
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-              {questions[currentStep].question}
+              {currentFitzQ.question}
             </h2>
+
+            {/* Show pre-filled notice */}
+            {initialData && fitzpatrickAnswers[currentFitzQ.id] !== undefined && (
+              <div className="mb-4 text-sm text-blue-600 bg-blue-50 border border-blue-200 rounded-lg p-3">
+                Pre-filled based on your initial assessment. You can change if needed.
+              </div>
+            )}
 
             {/* Options */}
             <div className="space-y-3">
-              {questions[currentStep].options.map((option, idx) => (
+              {currentFitzQ.options.map((option, idx) => (
                 <button
                   key={idx}
-                  onClick={() => handleAnswer(option.score)}
-                  className="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 group"
+                  onClick={() => handleFitzpatrickAnswer(option.score)}
+                  className={`w-full p-4 text-left border-2 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 group ${
+                    fitzpatrickAnswers[currentFitzQ.id] === option.score
+                      ? 'border-blue-500 bg-blue-50'
+                      : 'border-gray-200'
+                  }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-5 h-5 rounded-full border-2 border-gray-300 group-hover:border-blue-500 flex items-center justify-center">
-                      <div className="w-2 h-2 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${
+                      fitzpatrickAnswers[currentFitzQ.id] === option.score
+                        ? 'border-blue-500 bg-blue-500'
+                        : 'border-gray-300 group-hover:border-blue-500'
+                    }`}>
+                      {fitzpatrickAnswers[currentFitzQ.id] === option.score && (
+                        <div className="w-2 h-2 rounded-full bg-white" />
+                      )}
                     </div>
                     <span className="text-gray-700 group-hover:text-gray-900">{option.text}</span>
                   </div>
@@ -287,8 +570,93 @@ export default function SkinAssessmentPage() {
           </div>
         )}
 
+        {/* Qualifying Questions */}
+        {quizPhase === 'qualifying' && currentQualifyingQ && (
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            {/* Progress */}
+            <div className="mb-8">
+              <div className="flex justify-between text-sm text-gray-600 mb-2">
+                <span>Question {6 + qualifyingStep + 1} of 10</span>
+                <span>{Math.round(qualifyingProgress)}%</span>
+              </div>
+              <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-blue-500 to-blue-600 transition-all duration-500"
+                  style={{ width: `${qualifyingProgress}%` }}
+                />
+              </div>
+            </div>
+
+            {/* Question */}
+            <div className="mb-2">
+              <span className="text-sm text-blue-600 font-medium">TREATMENT PREFERENCES</span>
+            </div>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+              {currentQualifyingQ.question}
+            </h2>
+
+            {/* Options */}
+            {currentQualifyingQ.type === 'multi-select' ? (
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  {currentQualifyingQ.options.map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => toggleMultiOption(option.value)}
+                      className={`w-full p-4 text-left border-2 rounded-xl transition-all duration-200 ${
+                        selectedMultiOptions.includes(option.value)
+                          ? 'border-blue-500 bg-blue-50'
+                          : 'border-gray-200 hover:border-blue-300 hover:bg-gray-50'
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <div className={`w-5 h-5 rounded border-2 flex items-center justify-center ${
+                          selectedMultiOptions.includes(option.value)
+                            ? 'border-blue-500 bg-blue-500'
+                            : 'border-gray-300'
+                        }`}>
+                          {selectedMultiOptions.includes(option.value) && (
+                            <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
+                            </svg>
+                          )}
+                        </div>
+                        <span className="text-gray-700">{option.label}</span>
+                      </div>
+                    </button>
+                  ))}
+                </div>
+                <button
+                  onClick={() => handleQualifyingAnswer(selectedMultiOptions)}
+                  disabled={selectedMultiOptions.length === 0}
+                  className="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Continue
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {currentQualifyingQ.options.map((option) => (
+                  <button
+                    key={option.value}
+                    onClick={() => handleQualifyingAnswer(option.value)}
+                    className="w-full p-4 text-left border-2 border-gray-200 rounded-xl hover:border-blue-500 hover:bg-blue-50 transition-all duration-200 group"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-5 h-5 rounded-full border-2 border-gray-300 group-hover:border-blue-500 flex items-center justify-center">
+                        <div className="w-2 h-2 rounded-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                      </div>
+                      <span className="text-gray-700 group-hover:text-gray-900">{option.label}</span>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Lead Form */}
-        {showLeadForm && (
+        {quizPhase === 'lead' && (
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <div className="text-center mb-8">
               <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -296,8 +664,8 @@ export default function SkinAssessmentPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Results Are Ready!</h2>
-              <p className="text-gray-600">Enter your details to see your personalised assessment</p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Your Personalized Results Are Ready!</h2>
+              <p className="text-gray-600">Enter your details to see your tailored treatment recommendations</p>
             </div>
 
             <div className="space-y-4">
@@ -365,64 +733,40 @@ export default function SkinAssessmentPage() {
         )}
 
         {/* Results */}
-        {showResults && result && (
+        {quizPhase === 'results' && recommendation && (
           <div className="bg-white rounded-2xl shadow-lg p-8">
             <div className="text-center mb-8">
               <div
                 className="w-24 h-24 rounded-full mx-auto mb-4 flex items-center justify-center shadow-lg"
                 style={{
-                  background: `linear-gradient(145deg, ${result.color}, ${result.color}CC)`,
-                  color: result.textColor
+                  background: `linear-gradient(145deg, ${recommendation.fitzType.color}, ${recommendation.fitzType.color}CC)`,
+                  color: recommendation.fitzType.textColor
                 }}
               >
-                <span className="text-4xl font-bold">{fitzType}</span>
+                <span className="text-4xl font-bold">{calculateFitzpatrickType()}</span>
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">{result.type}</h2>
-              <p className="text-xl text-gray-600 mb-2">{result.name}</p>
-              <p className="text-gray-500">{result.description}</p>
-
-              <div className="mt-6">
-                <span className={`inline-block px-6 py-2 rounded-full text-white font-semibold text-sm ${
-                  result.laserSuitability === 'excellent' ? 'bg-green-500' :
-                  result.laserSuitability === 'good' ? 'bg-blue-500' :
-                  result.laserSuitability === 'moderate' ? 'bg-yellow-500' :
-                  result.laserSuitability === 'limited' ? 'bg-orange-500' :
-                  'bg-purple-600'
-                }`}>
-                  {result.laserSuitability === 'excellent' ? 'EXCELLENT CANDIDATE' :
-                   result.laserSuitability === 'good' ? 'GOOD CANDIDATE' :
-                   result.laserSuitability === 'moderate' ? 'MODERATE CANDIDATE' :
-                   result.laserSuitability === 'limited' ? 'LIMITED CANDIDATE' :
-                   'NOT RECOMMENDED'}
-                </span>
-              </div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">{recommendation.fitzType.type}</h2>
+              <p className="text-xl text-gray-600 mb-2">{recommendation.fitzType.name}</p>
+              <p className="text-gray-500">{recommendation.fitzType.description}</p>
             </div>
 
-            {/* Assessment */}
-            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 mb-6">
-              <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
-                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                CO2 LASER ASSESSMENT
-              </h3>
-              <p className="text-gray-700 mb-4">{result.laserMessage}</p>
+            {/* Recommended Treatment */}
+            <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-6 text-white mb-6">
+              <h3 className="text-sm font-semibold mb-3">YOUR PERSONALIZED RECOMMENDATION</h3>
+              <h4 className="text-2xl font-bold mb-2">{recommendation.treatment}</h4>
+              <p className="text-xl font-semibold mb-3">{recommendation.price}</p>
+              <p className="text-blue-50 mb-4">{recommendation.description}</p>
 
-              <h4 className="text-sm font-semibold text-gray-600 mb-2">KEY CONSIDERATIONS</h4>
-              <ul className="space-y-2">
-                {result.considerations.map((item: string, idx: number) => (
-                  <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
-                    <span className="text-blue-600 mt-1">•</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              <div className="bg-white/10 rounded-lg p-4 mb-4">
+                <p className="text-sm font-medium mb-2">Based on your assessment:</p>
+                <ul className="text-sm space-y-1 text-blue-100">
+                  <li>• Budget: {qualifyingAnswers.budget === '200-500' ? '£200-500' : qualifyingAnswers.budget === '500-1000' ? '£500-1,000' : qualifyingAnswers.budget === '1000-2000' ? '£1,000-2,000' : '£2,000+'}</li>
+                  <li>• Downtime: {qualifyingAnswers.downtime === 'none' ? 'No downtime' : qualifyingAnswers.downtime === '1-3' ? '1-3 days' : qualifyingAnswers.downtime === '3-7' ? '3-7 days' : '1-2 weeks'}</li>
+                  <li>• Intensity: {qualifyingAnswers.intensity === 'gentle' ? 'Gentle/gradual' : qualifyingAnswers.intensity === 'moderate' ? 'Moderate' : 'Aggressive/maximum results'}</li>
+                </ul>
+              </div>
 
-            {/* CTA */}
-            {result.isSuitable ? (
-              <div className="bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl p-6 text-white mb-6">
-                <p className="mb-4">Great news! You're a strong candidate for CO2 laser treatment. Ready to discuss your personalised treatment plan?</p>
+              {recommendation.isSuitable ? (
                 <a
                   href={CONFIG.bookingUrlSuitable}
                   target="_blank"
@@ -431,21 +775,38 @@ export default function SkinAssessmentPage() {
                 >
                   Book Your Consultation
                 </a>
-              </div>
-            ) : (
-              <div className="border-2 border-yellow-400 bg-yellow-50 rounded-xl p-6 mb-6">
-                <h3 className="font-semibold text-gray-900 mb-2">Alternative Treatments Available</h3>
-                <p className="text-gray-700 mb-4">While CO2 laser may not be ideal for your skin type, we offer several effective alternatives that could achieve your goals safely.</p>
+              ) : (
                 <a
                   href={CONFIG.bookingUrlAlternative}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block w-full py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-colors text-center"
+                  className="block w-full py-3 bg-white text-blue-700 font-semibold rounded-lg hover:bg-gray-100 transition-colors text-center"
                 >
-                  Explore Your Options
+                  Explore This Treatment
                 </a>
-              </div>
-            )}
+              )}
+            </div>
+
+            {/* Fitzpatrick Assessment */}
+            <div className="bg-gradient-to-br from-gray-50 to-gray-100 rounded-xl p-6 mb-6">
+              <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                SKIN TYPE ANALYSIS
+              </h3>
+              <p className="text-gray-700 mb-4">{recommendation.fitzType.laserMessage}</p>
+
+              <h4 className="text-sm font-semibold text-gray-600 mb-2">KEY CONSIDERATIONS</h4>
+              <ul className="space-y-2">
+                {recommendation.fitzType.considerations.map((item: string, idx: number) => (
+                  <li key={idx} className="text-sm text-gray-600 flex items-start gap-2">
+                    <span className="text-blue-600 mt-1">•</span>
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
             <button
               onClick={restart}

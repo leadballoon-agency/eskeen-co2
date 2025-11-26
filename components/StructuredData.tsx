@@ -10,7 +10,7 @@ export default function StructuredData() {
     ],
     "logo": "https://co2london.com/images/logo.png",
     "image": "https://co2london.com/images/co2laser-skin-rejeuvenation.jpeg",
-    "description": "Expert CO2 laser treatment clinic in London led by Elanda RN and Prescriber Mavra, specializing in acne scar treatment, wrinkle reduction, skin texture improvement, and anti-aging treatments.",
+    "description": "Expert CO2 laser treatment clinic in London led by Nurse Elanda and Prescriber Mavra, specializing in acne scar treatment, wrinkle reduction, skin texture improvement, and anti-aging treatments.",
     "address": {
       "@type": "PostalAddress",
       "addressLocality": "London",
@@ -104,7 +104,7 @@ export default function StructuredData() {
     "name": "Eskeen Clinic CO2 Laser",
     "alternateName": "CO2 Laser London",
     "url": "https://co2london.com",
-    "description": "Expert CO2 laser treatment for acne scars, wrinkles, skin texture & pigmentation in London by Elanda RN",
+    "description": "Expert CO2 laser treatment for acne scars, wrinkles, skin texture & pigmentation in London by Nurse Elanda",
     "publisher": {
       "@type": "Organization",
       "name": "Eskeen Clinic"
