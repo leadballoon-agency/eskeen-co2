@@ -6,9 +6,7 @@ import Link from 'next/link'
 
 // Configuration
 const CONFIG = {
-  webhookUrl: 'https://services.leadconnectorhq.com/hooks/YOUR_WEBHOOK_ID_HERE',
-  bookingUrlSuitable: 'https://calendly.com/your-clinic/co2-laser-consultation',
-  bookingUrlAlternative: 'https://calendly.com/your-clinic/skin-consultation',
+  webhookUrl: 'https://services.leadconnectorhq.com/hooks/USJbaW3fRzevnqAcsm2W/webhook-trigger/8f82c8f8-b4c7-408d-a57d-f8e63dc75417',
   tagSuitable: 'CO2 Laser - Qualified',
   tagNotSuitable: 'CO2 Laser - Not Suitable',
 }
@@ -388,6 +386,33 @@ export default function SkinAssessmentPage() {
       'not-recommended': 'Not Recommended'
     }
 
+    const previousTreatments = qualifyingAnswers.previous_treatments?.join(', ') || 'None'
+    const budgetRange = qualifyingAnswers.budget || 'Not specified'
+    const downtimeAvailable = qualifyingAnswers.downtime || 'Not specified'
+    const treatmentIntensity = qualifyingAnswers.intensity || 'Not specified'
+    const initialConcern = initialData?.concern || 'Not specified'
+    const initialAge = initialData?.age || 'Not specified'
+
+    const formattedNotes = `📋 SKIN ASSESSMENT RESULTS
+━━━━━━━━━━━━━━━━━━━━━━━━━
+Fitzpatrick Type: ${result.type} - ${result.name}
+CO2 Laser Suitability: ${suitabilityLabels[result.laserSuitability]}
+
+💊 RECOMMENDATION
+Treatment: ${recommendation.treatment}
+Price Range: ${recommendation.price}
+
+📝 PREFERENCES
+Budget: ${budgetRange}
+Downtime Available: ${downtimeAvailable}
+Intensity: ${treatmentIntensity}
+
+🔄 PREVIOUS TREATMENTS
+${previousTreatments}
+
+Primary Concern: ${initialConcern}
+Age Range: ${initialAge}`
+
     const payload = {
       firstName: leadData.firstName,
       lastName: leadData.lastName,
@@ -399,14 +424,15 @@ export default function SkinAssessmentPage() {
       co2_laser_suitable: result.isSuitable,
       recommended_treatment: recommendation.treatment,
       recommended_price: recommendation.price,
-      previous_treatments: qualifyingAnswers.previous_treatments?.join(', ') || 'None',
-      budget_range: qualifyingAnswers.budget || 'Not specified',
-      downtime_available: qualifyingAnswers.downtime || 'Not specified',
-      treatment_intensity: qualifyingAnswers.intensity || 'Not specified',
-      initial_concern: initialData?.concern || 'Not specified',
-      initial_age_range: initialData?.age || 'Not specified',
+      previous_treatments: previousTreatments,
+      budget_range: budgetRange,
+      downtime_available: downtimeAvailable,
+      treatment_intensity: treatmentIntensity,
+      initial_concern: initialConcern,
+      initial_age_range: initialAge,
       tags: result.isSuitable ? CONFIG.tagSuitable : CONFIG.tagNotSuitable,
       assessment_source: 'Enhanced Fitzpatrick Quiz',
+      notes: formattedNotes,
       submitted_at: new Date().toISOString()
     }
 
