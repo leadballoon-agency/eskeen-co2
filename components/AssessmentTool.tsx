@@ -27,12 +27,6 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
   const questions = [
     {
       id: 1,
-      question: "What is your natural skin tone?",
-      subtext: "Select the shade that best matches your skin in areas not exposed to sun",
-      type: 'skin-tone'
-    },
-    {
-      id: 2,
       question: "What is your primary skin concern?",
       options: [
         { value: 'wrinkles', label: 'Fine lines & wrinkles', icon: '🔍' },
@@ -44,7 +38,7 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
       ]
     },
     {
-      id: 3,
+      id: 2,
       question: "What is your age range?",
       options: [
         { value: '20-30', label: '20-30', icon: '🌱' },
@@ -52,6 +46,12 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
         { value: '41-50', label: '41-50', icon: '🌳' },
         { value: '50+', label: '50+', icon: '🌲' }
       ]
+    },
+    {
+      id: 3,
+      question: "What is your natural skin tone?",
+      subtext: "Select the shade that best matches your skin in areas not exposed to sun",
+      type: 'skin-tone'
     }
   ]
 
@@ -86,9 +86,9 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
   }
 
   const getRecommendation = (assessmentAnswers: any = answers) => {
-    const skinType = assessmentAnswers[1]
-    const concern = assessmentAnswers[2]
-    const ageRange = assessmentAnswers[3]
+    const concern = assessmentAnswers[1]
+    const ageRange = assessmentAnswers[2]
+    const skinType = assessmentAnswers[3]
 
     // Types V-VI (5-6) - NOT suitable for CO2 laser
     if (skinType >= 5) {
@@ -349,9 +349,9 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
         isOpen={showModal}
         onClose={() => setShowModal(false)}
         initialData={{
-          skinType: answers[1],
-          concern: answers[2],
-          age: answers[3]
+          skinType: answers[3],
+          concern: answers[1],
+          age: answers[2]
         }}
       />
     </section>

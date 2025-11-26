@@ -13,8 +13,41 @@ const CONFIG = {
   tagNotSuitable: 'CO2 Laser - Not Suitable',
 }
 
-// Fitzpatrick quiz data
+// Fitzpatrick quiz data - ordered to ask behavior questions first, appearance last
 const fitzpatrickQuestions = [
+  {
+    id: 'sun_reaction',
+    question: 'How does your skin react to sun exposure?',
+    options: [
+      { text: 'Always burns, blisters, and peels', score: 0 },
+      { text: 'Often burns, blisters, and peels', score: 1 },
+      { text: 'Burns moderately', score: 2 },
+      { text: 'Burns rarely', score: 3 },
+      { text: 'Rarely or never burns', score: 4 }
+    ]
+  },
+  {
+    id: 'tanning',
+    question: 'Does your skin tan?',
+    options: [
+      { text: 'Never — I just burn and peel', score: 0 },
+      { text: 'Seldom', score: 1 },
+      { text: 'Sometimes', score: 2 },
+      { text: 'Often', score: 3 },
+      { text: 'Always — I never burn', score: 4 }
+    ]
+  },
+  {
+    id: 'freckles',
+    question: 'How many freckles do you have on unexposed areas?',
+    options: [
+      { text: 'Many', score: 0 },
+      { text: 'Several', score: 1 },
+      { text: 'A few', score: 2 },
+      { text: 'Very few', score: 3 },
+      { text: 'None', score: 4 }
+    ]
+  },
   {
     id: 'eye_color',
     question: 'What is your natural eye colour?',
@@ -46,39 +79,6 @@ const fitzpatrickQuestions = [
       { text: 'Fair to beige with golden undertone', score: 2 },
       { text: 'Olive or light brown', score: 3 },
       { text: 'Dark brown or black', score: 4 }
-    ]
-  },
-  {
-    id: 'freckles',
-    question: 'How many freckles do you have on unexposed areas?',
-    options: [
-      { text: 'Many', score: 0 },
-      { text: 'Several', score: 1 },
-      { text: 'A few', score: 2 },
-      { text: 'Very few', score: 3 },
-      { text: 'None', score: 4 }
-    ]
-  },
-  {
-    id: 'sun_reaction',
-    question: 'How does your skin react to sun exposure?',
-    options: [
-      { text: 'Always burns, blisters, and peels', score: 0 },
-      { text: 'Often burns, blisters, and peels', score: 1 },
-      { text: 'Burns moderately', score: 2 },
-      { text: 'Burns rarely', score: 3 },
-      { text: 'Rarely or never burns', score: 4 }
-    ]
-  },
-  {
-    id: 'tanning',
-    question: 'Does your skin tan?',
-    options: [
-      { text: 'Never — I just burn and peel', score: 0 },
-      { text: 'Seldom', score: 1 },
-      { text: 'Sometimes', score: 2 },
-      { text: 'Often', score: 3 },
-      { text: 'Always — I never burn', score: 4 }
     ]
   }
 ]
