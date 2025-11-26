@@ -14,18 +14,15 @@ export default function ConvertBox() {
 
   return (
     <Script
-      id="convertbox"
+      id="app-convertbox-script"
+      src="https://cdn.convertbox.com/convertbox/js/embed.js"
       strategy="afterInteractive"
+      data-uuid="e2b4b048-1e07-482a-9efe-79ea173c2cff"
       onLoad={() => {
         console.log('ConvertBox: Script loaded successfully')
       }}
       onError={(e) => {
         console.error('ConvertBox: Script failed to load', e)
-      }}
-      dangerouslySetInnerHTML={{
-        __html: `
-          !function(e,t){(e=t.createElement("script")).src="https://cdn.convertbox.com/convertbox/js/embed.js",e.id="app-convertbox-script",e.async=true,e.dataset.uuid="e2b4b048-1e07-482a-9efe-79ea173c2cff",document.getElementsByTagName("head")[0].appendChild(e)}(window,document);
-        `,
       }}
     />
   )
