@@ -14,6 +14,14 @@ interface Review {
 export default function Reviews() {
   const reviews: Review[] = [
     {
+      name: "Semhar Y.",
+      rating: 5,
+      date: "2024-12-03",
+      treatment: "CO2 Laser",
+      text: "I had a CO2 laser treatment with Mavra and the improvement in my acne scars has been incredible. My skin texture is so much smoother and has noticeably improved. Mavra guided me through every step, made the downtime easy and the results have been absolutely worth it. Highly recommend her for anyone dealing with stubborn acne scarring!",
+      verified: true
+    },
+    {
       name: "Ghada M.",
       rating: 5,
       date: "2024-12-02",
@@ -45,15 +53,7 @@ export default function Reviews() {
       text: "Had CO2 laser treatment with Elanda at Eskeen clinic and I'm so happy with the results! After only 1 treatment I can see the improvement on my scarring already. Will definitely come back for more.",
       verified: true
     },
-    {
-      name: "Maria B.",
-      rating: 5,
-      date: "2024-10-28",
-      treatment: "CO2 Laser",
-      text: "I honestly can't recommend Elanda enough! She's truly the best at what she does. She has so much experience, knowledge, and passion for her work. What makes her stand out is how she really listens and tailors everything perfectly to your needs.",
-      verified: true
-    },
-    {
+        {
       name: "Zoyyah I.",
       rating: 5,
       date: "2024-09-15",
@@ -135,28 +135,52 @@ export default function Reviews() {
         </div>
 
         {/* Google Reviews CTA */}
-        <div className="mt-12 sm:mt-16 text-center">
-          <div className="inline-flex items-center space-x-4 bg-gradient-to-r from-primary-50 to-primary-100 rounded-2xl p-6 sm:p-8">
-            <svg className="w-12 h-12 sm:w-16 sm:h-16" viewBox="0 0 48 48">
+        <div className="mt-12 sm:mt-16 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
+          {/* Read Reviews Button */}
+          <a
+            href="https://www.google.com/search?q=eskeen+clinic+putney+reviews"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-3 bg-gradient-to-r from-primary-50 to-primary-100 hover:from-primary-100 hover:to-primary-200 rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:shadow-lg"
+          >
+            <svg className="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 48 48">
               <path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
               <path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
               <path fill="#FBBC05" d="M11.69 28.18C11.25 26.86 11 25.45 11 24s.25-2.86.69-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24c0 3.55.85 6.91 2.34 9.88l7.35-5.7z"/>
               <path fill="#EA4335" d="M24 10.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 4.18 29.93 2 24 2 15.4 2 7.96 6.93 4.34 14.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
             </svg>
             <div className="text-left">
-              <p className="font-semibold text-neutral-900 text-base sm:text-lg mb-1">Read more reviews on Google</p>
+              <p className="font-semibold text-neutral-900 text-sm sm:text-base">Read More Reviews</p>
               <div className="flex items-center space-x-2">
                 <div className="flex">
                   {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-4 h-4 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                    <svg key={i} className="w-3.5 h-3.5 text-yellow-400 fill-current" viewBox="0 0 20 20">
                       <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                     </svg>
                   ))}
                 </div>
-                <span className="text-sm text-neutral-600">5.0 rating</span>
+                <span className="text-xs text-neutral-600">on Google</span>
               </div>
             </div>
-          </div>
+          </a>
+
+          {/* Leave a Review Button */}
+          <a
+            href="https://search.google.com/local/writereview?placeid=ChIJx6VvnBcPdkgRhfH8QlSxdlk"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center space-x-3 bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white rounded-2xl p-5 sm:p-6 transition-all duration-300 hover:shadow-lg"
+          >
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-full flex items-center justify-center">
+              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+              </svg>
+            </div>
+            <div className="text-left">
+              <p className="font-semibold text-sm sm:text-base">Leave a Review</p>
+              <p className="text-xs text-white/80">Share your experience</p>
+            </div>
+          </a>
         </div>
       </div>
     </section>

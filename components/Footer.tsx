@@ -35,7 +35,7 @@ export default function Footer() {
               <li><a href="#treatments" className="hover:text-white">Treatments</a></li>
               <li><a href="#results" className="hover:text-white">Results</a></li>
               <li><a href="#contact" className="hover:text-white">Contact</a></li>
-              <li><a href="https://eskeen.co.uk/privacy-policy-2/" target="_blank" rel="noopener noreferrer" className="hover:text-white">Privacy Policy</a></li>
+              <li><a href="/privacy" className="hover:text-white">Privacy Policy</a></li>
             </ul>
           </div>
         </div>
