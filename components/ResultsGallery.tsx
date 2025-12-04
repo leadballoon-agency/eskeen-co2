@@ -203,7 +203,7 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
         <div className="mt-10 sm:mt-12 lg:mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {[
             { number: '20+', label: 'Years Experience' },
-            { number: 'RN', label: 'Nurse-Led' },
+            { number: 'Nurse', label: 'Led Care' },
             { number: '£395', label: 'Starting From' },
             { number: '5', label: 'Expert Practitioners' }
           ].map((stat, index) => (
