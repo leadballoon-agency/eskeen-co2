@@ -8,6 +8,7 @@ interface ResultsGalleryProps {
 
 export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) {
   const [selectedImage, setSelectedImage] = useState<number | null>(null)
+  const [isModelModalOpen, setIsModelModalOpen] = useState(false)
 
   const results = [
     {
@@ -16,7 +17,8 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
       description: 'Complete skin rejuvenation, renewal and tightening',
       time: 'Results Vary',
       isAvailable: true,
-      featured: true
+      featured: true,
+      isModelCard: false
     },
     {
       image: '/images/Acne Scarring Before and After.jpeg',
@@ -24,7 +26,8 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
       description: 'Dramatic improvement in skin texture',
       time: 'Results Vary',
       isAvailable: true,
-      featured: false
+      featured: false,
+      isModelCard: false
     },
     {
       image: '/images/graeme.png',
@@ -32,7 +35,8 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
       description: 'Effective results for men and women',
       time: 'Results Vary',
       isAvailable: true,
-      featured: false
+      featured: false,
+      isModelCard: false
     },
     {
       image: '/images/stretch marks.jpeg',
@@ -40,7 +44,8 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
       description: 'Significant reduction in appearance',
       time: 'Results Vary',
       isAvailable: true,
-      featured: false
+      featured: false,
+      isModelCard: false
     },
     {
       image: '/images/pigmentation.png',
@@ -48,17 +53,38 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
       description: 'Even skin tone restoration',
       time: 'Results Vary',
       isAvailable: true,
-      featured: false
+      featured: false,
+      isModelCard: false
     },
     {
       image: '/images/model-day-tile.svg',
-      title: 'Book a Consultation',
-      description: 'See your transformation - schedule your free consultation',
-      time: 'Book Now',
+      title: 'Become a Model',
+      description: 'Get discounted treatments in exchange for before & after photos',
+      time: 'Apply Now',
       isAvailable: true,
-      featured: false
+      featured: false,
+      isModelCard: true
     }
   ]
+
+  const handleCardClick = (index: number) => {
+    const result = results[index]
+    if (!result.isAvailable) return
+
+    if (result.isModelCard) {
+      setIsModelModalOpen(true)
+    } else {
+      setSelectedImage(index)
+    }
+  }
+
+  const openWhatsAppWithMessage = () => {
+    const phoneNumber = '447846888649'
+    const message = encodeURIComponent(
+      `Hi Eskeen Clinic! 👋\n\nI'm interested in becoming a model for your CO2 laser treatments.\n\nI understand I can receive discounted treatments in exchange for allowing my before & after photos to be used.\n\nPlease let me know what the next steps are!\n\n[I will send photos of my skin concern in the next message]`
+    )
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank')
+  }
 
   return (
     <section id="results" className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-primary-50 to-white">
@@ -82,10 +108,10 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
               className={`group relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-premium transition-all duration-300 ${
                 result.isAvailable ? 'sm:hover:shadow-premium-lg cursor-pointer' : 'opacity-90 cursor-not-allowed'
               } ${result.featured ? 'md:col-span-2' : ''}`}
-              onClick={() => result.isAvailable && setSelectedImage(index)}
+              onClick={() => handleCardClick(index)}
             >
-              {/* Before/After Label - Only show for available results */}
-              {result.isAvailable && (
+              {/* Before/After Label - Only show for available results, not for model card */}
+              {result.isAvailable && !result.isModelCard && (
                 <div className="absolute top-2 sm:top-4 left-2 sm:left-4 z-10 flex gap-1.5 sm:gap-2">
                   <span className="bg-white/90 backdrop-blur px-2 sm:px-3 py-0.5 sm:py-1 rounded-full text-[10px] sm:text-xs font-medium">
                     Before
@@ -190,17 +216,17 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
 
         {/* Lightbox Modal - Mobile Optimized */}
         {selectedImage !== null && (
-          <div 
+          <div
             className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-3 sm:p-4"
             onClick={() => setSelectedImage(null)}
           >
             <div className="relative max-w-4xl w-full">
-              <img 
-                src={results[selectedImage].image} 
+              <img
+                src={results[selectedImage].image}
                 alt={results[selectedImage].title}
                 className="w-full rounded-lg"
               />
-              <button 
+              <button
                 onClick={() => setSelectedImage(null)}
                 className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-white/90 backdrop-blur rounded-full p-1.5 sm:p-2 hover:bg-white transition"
               >
@@ -208,6 +234,106 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                 </svg>
               </button>
+            </div>
+          </div>
+        )}
+
+        {/* Model Application Modal */}
+        {isModelModalOpen && (
+          <div className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center sm:p-4">
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+              onClick={() => setIsModelModalOpen(false)}
+            />
+
+            {/* Modal */}
+            <div className="relative w-full max-w-lg bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[90vh] sm:max-h-[85vh] flex flex-col">
+              {/* Header */}
+              <div className="relative bg-gradient-to-br from-primary-500 to-primary-600 p-6 sm:p-8 text-white flex-shrink-0">
+                <button
+                  onClick={() => setIsModelModalOpen(false)}
+                  className="absolute top-4 right-4 sm:top-6 sm:right-6 w-8 h-8 sm:w-10 sm:h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+                >
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+
+                <div className="text-center">
+                  <div className="inline-flex items-center justify-center w-14 h-14 sm:w-16 sm:h-16 bg-white/20 backdrop-blur rounded-full mb-3 sm:mb-4">
+                    <span className="text-3xl">📸</span>
+                  </div>
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-2">Become a Model</h2>
+                  <p className="text-white/90 text-sm sm:text-base">
+                    Get discounted CO2 laser treatments
+                  </p>
+                </div>
+              </div>
+
+              {/* Content */}
+              <div className="flex-1 overflow-y-auto p-6 sm:p-8">
+                <div className="space-y-6">
+                  <div className="bg-primary-50 rounded-2xl p-5">
+                    <h3 className="font-semibold text-lg mb-3">What's the deal?</h3>
+                    <ul className="space-y-2 text-sm text-neutral-700">
+                      <li className="flex items-start">
+                        <span className="text-primary-500 mr-2 mt-0.5">✓</span>
+                        <span>Receive <strong>discounted treatments</strong> at Eskeen Clinic</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary-500 mr-2 mt-0.5">✓</span>
+                        <span>In exchange, we use your <strong>before & after photos</strong> for marketing</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary-500 mr-2 mt-0.5">✓</span>
+                        <span>Photos can be <strong>anonymous</strong> (face not shown)</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="text-primary-500 mr-2 mt-0.5">✓</span>
+                        <span>Perfect for acne scars, pigmentation, stretch marks & more</span>
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-neutral-50 rounded-2xl p-5">
+                    <h3 className="font-semibold text-lg mb-3">How to apply</h3>
+                    <ol className="space-y-3 text-sm text-neutral-700">
+                      <li className="flex items-start">
+                        <span className="bg-primary-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-3 mt-0.5 flex-shrink-0">1</span>
+                        <span>Click the WhatsApp button below</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="bg-primary-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-3 mt-0.5 flex-shrink-0">2</span>
+                        <span>Send photos of your skin concern</span>
+                      </li>
+                      <li className="flex items-start">
+                        <span className="bg-primary-500 text-white rounded-full w-5 h-5 flex items-center justify-center text-xs font-bold mr-3 mt-0.5 flex-shrink-0">3</span>
+                        <span>Our team will review and get back to you</span>
+                      </li>
+                    </ol>
+                  </div>
+
+                  <button
+                    onClick={openWhatsAppWithMessage}
+                    className="w-full bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-2xl p-4 sm:p-5 transition-all duration-300 hover:shadow-lg group"
+                  >
+                    <div className="flex items-center justify-center space-x-3">
+                      <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                      </svg>
+                      <div className="text-left">
+                        <p className="font-bold text-lg">Apply via WhatsApp</p>
+                        <p className="text-sm text-white/90">Send us your photos</p>
+                      </div>
+                    </div>
+                  </button>
+
+                  <p className="text-xs text-center text-neutral-500">
+                    By applying, you agree to allow Eskeen Clinic to use your before & after photos for marketing purposes.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         )}

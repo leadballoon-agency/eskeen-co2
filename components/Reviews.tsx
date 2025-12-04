@@ -14,10 +14,42 @@ interface Review {
 export default function Reviews() {
   const reviews: Review[] = [
     {
+      name: "Ghada M.",
+      rating: 5,
+      date: "2024-12-02",
+      treatment: "CO2 Laser",
+      text: "Second visit to Eskeen clinic had my CO2 laser treatment. I was charged half the price. Went absolutely well, service was excellent. The nurse Elanda was an absolute angel felt so comfortable. Thank you so much will be visiting your clinic more in the future.",
+      verified: true
+    },
+    {
+      name: "Odinaka A.",
+      rating: 5,
+      date: "2024-11-29",
+      treatment: "CO2 Laser",
+      text: "Elanda at Eskeen is amazing! I did my first CO2 laser session with her, and my skin already looks so much better. She's friendly, knowledgeable, and made me feel very comfortable. Highly recommend!",
+      verified: true
+    },
+    {
+      name: "John",
+      rating: 5,
+      date: "2024-12-01",
+      treatment: "CO2 Laser",
+      text: "I came in feeling really nervous about getting injectables for my wrinkles, but Mavra took the time to understand my concerns and suggested trying a CO2 laser instead. I'm so glad I trusted her! The treatment has noticeably smoothed the appearance of my wrinkles, and I'm really happy with the results. I'll definitely be back for more. Thank you, Mavra!",
+      verified: true
+    },
+    {
+      name: "O Xh.",
+      rating: 5,
+      date: "2024-11-27",
+      treatment: "CO2 Laser",
+      text: "Had CO2 laser treatment with Elanda at Eskeen clinic and I'm so happy with the results! After only 1 treatment I can see the improvement on my scarring already. Will definitely come back for more.",
+      verified: true
+    },
+    {
       name: "Maria B.",
       rating: 5,
       date: "2024-10-28",
-      treatment: "Aesthetic Treatment",
+      treatment: "CO2 Laser",
       text: "I honestly can't recommend Elanda enough! She's truly the best at what she does. She has so much experience, knowledge, and passion for her work. What makes her stand out is how she really listens and tailors everything perfectly to your needs.",
       verified: true
     },
@@ -25,40 +57,8 @@ export default function Reviews() {
       name: "Zoyyah I.",
       rating: 5,
       date: "2024-09-15",
-      treatment: "PRP for Acne Scars",
-      text: "I've struggled with insecurity related to acne scars for years, and PRP has finally made a real difference! The clinic team - particularly Mavra was professional, I was super nervous and she took the time to explain the process and put me at ease.",
-      verified: true
-    },
-    {
-      name: "Inês R.",
-      rating: 5,
-      date: "2024-09-20",
-      treatment: "PRP Treatment",
-      text: "I had PRP for the hyperpigmentation on my skin from Mavra and just 2 sessions in, I can already see a huge difference! Mavra explained the process thoroughly and made me feel so comfortable she was gentle, informative, and really took her time.",
-      verified: true
-    },
-    {
-      name: "Olivia B.",
-      rating: 5,
-      date: "2024-10-25",
-      treatment: "Consultation",
-      text: "Elanda is an exceptionally knowledgeable practitioner as well as being a nurse she is very patient through her consultations and will always explain everything to you and there is no pressure to have anything done that she doesn't feel is right for you.",
-      verified: true
-    },
-    {
-      name: "Eva C.",
-      rating: 5,
-      date: "2024-09-18",
-      treatment: "PRP Sessions",
-      text: "I've been seeing Elanda at Eskeen Clinic for a course of PRP sessions and I couldn't be happier with the results! She's incredibly knowledgeable, professional, and really takes the time to explain everything so I feel informed and comfortable.",
-      verified: true
-    },
-    {
-      name: "Ljiljana P.",
-      rating: 5,
-      date: "2024-09-22",
-      treatment: "Skin Treatment",
-      text: "What an incredible young lady Elanda is! Knowledgable, polite, professional, explains everything to a detail. Shows all the products and labels. Done the job precisely and with care. Much better priced services than anywhere else too. Highly recommend!",
+      treatment: "CO2 Laser",
+      text: "I've struggled with insecurity related to acne scars for years, and CO2 laser has finally made a real difference! The clinic team - particularly Mavra was professional, I was super nervous and she took the time to explain the process and put me at ease.",
       verified: true
     }
   ]

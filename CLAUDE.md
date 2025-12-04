@@ -1,124 +1,86 @@
-# CO2 Laser Landing Page - Claude Instructions
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
 ## Project Overview
-CO2 laser treatment landing page built with Next.js 15, TypeScript, and Tailwind CSS. This is a template that can be duplicated and customized for different aesthetic clinics.
 
-## Tech Stack
-- **Framework:** Next.js 15 with App Router
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Deployment:** Vercel
+CO2 laser treatment landing page for Eskeen Clinic, built with Next.js 15 (App Router), TypeScript, and Tailwind CSS. Single-page marketing site with booking integration.
 
 ## Development Commands
+
 ```bash
-npm install        # Install dependencies
-npm run dev        # Start development server
+npm run dev        # Start development server (localhost:3000)
 npm run build      # Build for production
-npm run start      # Start production server
 npm run lint       # Run ESLint
 ```
 
-## MCP Server Configurations
-Available MCP servers for this project:
-- **Notion**: For documentation and process management
-- **Playwright**: For automated testing and screenshots
-- **Context7**: For context management
-- **Firecrawl**: For web scraping and content extraction
+## Architecture
 
-## Project Structure
+### Page Structure
+
+Single-page app using `app/page.tsx` → `PageWrapper.tsx` as the main orchestrator. PageWrapper is a client component that manages:
+- Modal state (booking modal, video modal)
+- Assessment data flow between `AssessmentTool` and `BookingModal`
+- Click handlers passed down to all section components
+
+### Key Component Flow
+
 ```
-/app
-  ├── layout.tsx          # Root layout with SEO metadata
-  ├── page.tsx           # Main page wrapper
-  ├── globals.css        # Global styles
-  └── api/contact/       # Contact form API endpoint
-/components
-  ├── PageWrapper.tsx    # Main page component orchestrator
-  ├── Navigation.tsx     # Header navigation with booking
-  ├── PremiumHero.tsx    # Hero section
-  ├── AboutSection.tsx   # About the clinic
-  ├── TeamSection.tsx    # Team/practitioner info
-  ├── AssessmentTool.tsx # Skin assessment questionnaire
-  ├── PremiumTreatments.tsx # Treatment options
-  ├── ResultsGallery.tsx # Before/after gallery
-  ├── ProcessSection.tsx # Treatment process
-  ├── FAQ.tsx           # Frequently asked questions
-  ├── CTASection.tsx    # Call to action
-  ├── Footer.tsx        # Footer with contact info
-  └── BookingModal.tsx  # Booking form modal
-/public/images/
-  ├── logo.png          # Main logo (navigation)
-  ├── footer.png        # Footer logo
-  ├── home1.jpg         # Hero image
-  ├── beforeafter*.jpg  # Results gallery images
-  └── treatment.jpg     # Treatment images
+app/layout.tsx (metadata, fonts, analytics)
+  └── app/page.tsx
+        └── PageWrapper.tsx (client, state management)
+              ├── Navigation
+              ├── PremiumHero
+              ├── AssessmentTool → captures user responses → BookingModal
+              ├── AboutSection, PremiumTreatments, ResultsGallery, etc.
+              └── BookingModal (GHL calendar iframe)
 ```
 
-## Customization Checklist
-When creating a new clinic version:
+### Booking Integration
 
-### 1. Branding & Images
-- [ ] Replace logo.png with new clinic logo
-- [ ] Replace footer.png with new footer logo
-- [ ] Update hero images (home1.jpg, home2.jpg)
-- [ ] Replace before/after gallery images
-- [ ] Update treatment images
+Booking uses GoHighLevel (GHL) embedded calendar:
+- `BookingModal.tsx` loads GHL script and iframe from `link.leadballoon.co.uk`
+- Assessment data from `AssessmentTool` can be passed to booking flow
+- Phone number click tracking via `FacebookPixel.tsx`
 
-### 2. Contact Information
-- [ ] components/Footer.tsx - Contact details, address
-- [ ] components/Navigation.tsx - Any contact links
-- [ ] README.md - Contact information
-- [ ] app/layout.tsx - SEO metadata
+### SEO & Structured Data
 
-### 3. SEO & Metadata
-- [ ] app/layout.tsx - title, description, keywords
-- [ ] Update business name throughout
-- [ ] Location-specific keywords
+- `app/layout.tsx` - Comprehensive Next.js metadata export (OG, Twitter, robots)
+- `components/StructuredData.tsx` - JSON-LD schemas (MedicalBusiness, LocalBusiness, Service, Review)
+- `app/sitemap.ts` and `app/robots.ts` - Dynamic sitemap and robots.txt
 
-### 4. Content Customization
-- [ ] Business name and description
-- [ ] Team/practitioner information
-- [ ] Location and address
-- [ ] Phone and email
-- [ ] Treatment descriptions
-- [ ] Pricing (if applicable)
-- [ ] FAQ answers
+### Analytics
 
-### 5. Testing
-- [ ] npm run build (ensure builds successfully)
-- [ ] npm run lint (fix any linting issues)
-- [ ] Test all forms and modals
-- [ ] Verify responsive design
-- [ ] Check all links and navigation
+- `FacebookPixel.tsx` - FB Pixel with custom event tracking functions
+- `ConvertBox.tsx` - ConvertBox popup integration (loaded in Suspense)
 
-## Key Files to Customize
+### Styling
 
-### High Priority (Must Change)
-1. `components/Footer.tsx` - Contact info, business name, logo
-2. `app/layout.tsx` - SEO metadata, business name
-3. `README.md` - Project description, contact info
-4. `/public/images/logo.png` - Main navigation logo
-5. `/public/images/footer.png` - Footer logo
+Custom Tailwind config with:
+- `primary` color palette (blue shades, primary-500: #0D5EAF)
+- `neutral` grays
+- Custom fonts: Playfair Display (display), Inter (sans)
+- Custom animations: `float`, `fade-in`, `slide-up`
 
-### Medium Priority (Should Change)
-1. `components/PremiumHero.tsx` - Hero copy and messaging
-2. `components/AboutSection.tsx` - Business description
-3. `components/TeamSection.tsx` - Practitioner information
-4. Hero and gallery images in `/public/images/`
+### Path Aliases
 
-### Low Priority (Optional)
-1. Color scheme in Tailwind config
-2. Component styling adjustments
-3. Additional content sections
+Uses `@/*` path alias mapping to project root (configured in tsconfig.json).
 
-## Domain Setup
-- Update package.json name field
-- Configure Vercel deployment for new domain
-- Update any hardcoded URLs
+## Customization for New Clinics
 
-## Notes
-- All components use TypeScript strict mode
-- Responsive design mobile-first
-- Uses Tailwind CSS custom color palette
-- Form submissions go to /api/contact endpoint
-- Booking modal integrates with assessment tool
+When duplicating for a new clinic, update in order:
+
+1. **Hardcoded content** (search for "Eskeen", "co2london.com", phone numbers)
+2. **`app/layout.tsx`** - All metadata, metadataBase URL
+3. **`components/StructuredData.tsx`** - All schema data (address, phone, pricing, reviews)
+4. **`components/BookingModal.tsx`** - GHL calendar URL and phone number
+5. **`components/Footer.tsx`** - Contact details, address
+6. **`tailwind.config.js`** - Brand colors if needed
+7. **`/public/images/`** - Logo, hero, before/after images
+
+## External Services
+
+- **GoHighLevel**: Booking calendar and form handling
+- **Facebook Pixel**: Conversion tracking
+- **ConvertBox**: Popup/lead capture
+- **Vercel**: Deployment platform
