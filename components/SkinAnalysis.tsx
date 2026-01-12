@@ -86,17 +86,17 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
             <div className="relative">
               {/* Main Card */}
               <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-premium">
-                <div className="aspect-square relative rounded-xl sm:rounded-2xl overflow-hidden bg-gradient-to-br from-primary-100 to-primary-200">
-                  {/* Decorative skin analysis graphic */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="w-24 h-24 sm:w-32 sm:h-32 mx-auto mb-4 rounded-full bg-white/80 backdrop-blur flex items-center justify-center shadow-lg">
-                        <svg className="w-12 h-12 sm:w-16 sm:h-16 text-primary-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                      </div>
-                      <p className="text-primary-700 font-semibold text-lg sm:text-xl">Skin Analysis</p>
-                      <p className="text-primary-600 text-sm mt-1">Complimentary</p>
+                <div className="aspect-square relative rounded-xl sm:rounded-2xl overflow-hidden">
+                  <img
+                    src="/images/skin-analysis.jpeg"
+                    alt="Eskeen Clinic Skin Analysis Machine"
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Overlay with text */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end justify-center pb-6">
+                    <div className="text-center text-white">
+                      <p className="font-semibold text-lg sm:text-xl drop-shadow-lg">Skin Analysis</p>
+                      <p className="text-sm mt-1 drop-shadow-lg">Complimentary</p>
                     </div>
                   </div>
                 </div>
