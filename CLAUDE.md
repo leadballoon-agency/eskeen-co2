@@ -4,7 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-CO2 laser treatment landing page for Eskeen Clinic, built with Next.js 15 (App Router), TypeScript, and Tailwind CSS. Single-page marketing site with booking integration.
+CO2 laser treatment landing page for Eskeen Clinic, built with Next.js 15.5.9 (App Router), TypeScript, and Tailwind CSS. Single-page marketing site with booking integration.
+
+**Live site:** https://co2london.com
+**Vercel project:** `eskeen-co2` (not eskeen-co2laser)
 
 ## Development Commands
 
@@ -19,7 +22,7 @@ npm run lint       # Run ESLint
 ### Page Structure
 
 Single-page app using `app/page.tsx` → `PageWrapper.tsx` as the main orchestrator. PageWrapper is a client component that manages:
-- Modal state (booking modal, video modal)
+- Modal state (booking modal, video modal, skin analysis modal)
 - Assessment data flow between `AssessmentTool` and `BookingModal`
 - Click handlers passed down to all section components
 
@@ -31,15 +34,19 @@ app/layout.tsx (metadata, fonts, analytics)
         └── PageWrapper.tsx (client, state management)
               ├── Navigation
               ├── PremiumHero
+              ├── SkinAnalysis → SkinAnalysisModal (dedicated GHL calendar)
               ├── AssessmentTool → captures user responses → BookingModal
-              ├── AboutSection, PremiumTreatments, ResultsGallery, etc.
-              └── BookingModal (GHL calendar iframe)
+              ├── AboutSection, PremiumTreatments, ResultsGallery, Reviews, etc.
+              ├── BookingModal (GHL calendar iframe)
+              ├── VideoModal
+              └── SkinAnalysisModal (separate GHL calendar for skin analysis bookings)
 ```
 
 ### Booking Integration
 
-Booking uses GoHighLevel (GHL) embedded calendar:
-- `BookingModal.tsx` loads GHL script and iframe from `link.leadballoon.co.uk`
+Booking uses GoHighLevel (GHL) embedded calendars:
+- `BookingModal.tsx` - Main booking calendar from `link.leadballoon.co.uk`
+- `SkinAnalysisModal.tsx` - Dedicated skin analysis calendar from `link.eskeenpay.co.uk`
 - Assessment data from `AssessmentTool` can be passed to booking flow
 - Phone number click tracking via `FacebookPixel.tsx`
 
@@ -74,13 +81,31 @@ When duplicating for a new clinic, update in order:
 2. **`app/layout.tsx`** - All metadata, metadataBase URL
 3. **`components/StructuredData.tsx`** - All schema data (address, phone, pricing, reviews)
 4. **`components/BookingModal.tsx`** - GHL calendar URL and phone number
-5. **`components/Footer.tsx`** - Contact details, address
-6. **`tailwind.config.js`** - Brand colors if needed
-7. **`/public/images/`** - Logo, hero, before/after images
+5. **`components/SkinAnalysisModal.tsx`** - GHL calendar URL for skin analysis
+6. **`components/Reviews.tsx`** - Update reviews and review count
+7. **`components/Footer.tsx`** - Contact details, address
+8. **`tailwind.config.js`** - Brand colors if needed
+9. **`/public/images/`** - Logo, hero, before/after images, skin-analysis.jpeg
 
 ## External Services
 
 - **GoHighLevel**: Booking calendar and form handling
 - **Facebook Pixel**: Conversion tracking
 - **ConvertBox**: Popup/lead capture
-- **Vercel**: Deployment platform
+- **Vercel**: Deployment platform (project: `eskeen-co2`)
+
+## Feature Toggles
+
+- **Model Card** in `ResultsGallery.tsx`: Set `SHOW_MODEL_CARD = true/false` at top of file to show/hide the "Become a Model" card without removing code
+
+## Content Updates
+
+### Reviews (`components/Reviews.tsx`)
+- Currently shows 92 Google reviews with 5.0 average rating
+- Review dates should reflect actual review dates (currently showing Jan 2026, Dec 2025)
+- Update review count in the "Based on X Google reviews" text when reviews change
+
+### Skin Analysis Section (`components/SkinAnalysis.tsx`)
+- Promotes free 15-minute skin analysis consultations
+- Uses image at `/public/images/skin-analysis.jpeg`
+- Opens `SkinAnalysisModal` with dedicated booking calendar
