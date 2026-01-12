@@ -14,9 +14,33 @@ interface Review {
 export default function Reviews() {
   const reviews: Review[] = [
     {
+      name: "Rachel B.",
+      rating: 5,
+      date: "2026-01-08",
+      treatment: "Multiple Treatments",
+      text: "I have been going to Eskeen Clinic since not long after it opened, and have now had a variety of treatments with the amazing Mavra. I've been to other clinics in the past but now I would never deviate from Eskeen - everything from the personable service, to the gorgeous clinic and most importantly the immaculate results are just unmatched.",
+      verified: true
+    },
+    {
+      name: "Ellie H.",
+      rating: 5,
+      date: "2026-01-05",
+      treatment: "Skin Treatment",
+      text: "I had an amazing experience at Eskeen Clinic. From the moment I walked in, I was impressed by how clean, tidy, and beautifully designed the entire place was. The clinic has a calming, modern atmosphere that instantly makes you feel at ease. Elanda and Mavra were both incredibly professional and friendly.",
+      verified: true
+    },
+    {
+      name: "Jade L.",
+      rating: 5,
+      date: "2025-12-28",
+      treatment: "Chin Filler",
+      text: "Absolutely loved my treatment with the Eskeen team! Nurse Elanda did my treatment and she was amazing. I had chin filler for the first time and she listened and knew exactly what I wanted and was honest and realistic about my results too. Highly recommend!",
+      verified: true
+    },
+    {
       name: "Semhar Y.",
       rating: 5,
-      date: "2024-12-03",
+      date: "2025-12-22",
       treatment: "CO2 Laser",
       text: "I had a CO2 laser treatment with Mavra and the improvement in my acne scars has been incredible. My skin texture is so much smoother and has noticeably improved. Mavra guided me through every step, made the downtime easy and the results have been absolutely worth it. Highly recommend her for anyone dealing with stubborn acne scarring!",
       verified: true
@@ -24,7 +48,7 @@ export default function Reviews() {
     {
       name: "Ghada M.",
       rating: 5,
-      date: "2024-12-02",
+      date: "2025-12-18",
       treatment: "CO2 Laser",
       text: "Second visit to Eskeen clinic had my CO2 laser treatment. I was charged half the price. Went absolutely well, service was excellent. The nurse Elanda was an absolute angel felt so comfortable. Thank you so much will be visiting your clinic more in the future.",
       verified: true
@@ -32,33 +56,9 @@ export default function Reviews() {
     {
       name: "Odinaka A.",
       rating: 5,
-      date: "2024-11-29",
+      date: "2025-12-15",
       treatment: "CO2 Laser",
       text: "Elanda at Eskeen is amazing! I did my first CO2 laser session with her, and my skin already looks so much better. She's friendly, knowledgeable, and made me feel very comfortable. Highly recommend!",
-      verified: true
-    },
-    {
-      name: "John",
-      rating: 5,
-      date: "2024-12-01",
-      treatment: "CO2 Laser",
-      text: "I came in feeling really nervous about getting injectables for my wrinkles, but Mavra took the time to understand my concerns and suggested trying a CO2 laser instead. I'm so glad I trusted her! The treatment has noticeably smoothed the appearance of my wrinkles, and I'm really happy with the results. I'll definitely be back for more. Thank you, Mavra!",
-      verified: true
-    },
-    {
-      name: "O Xh.",
-      rating: 5,
-      date: "2024-11-27",
-      treatment: "CO2 Laser",
-      text: "Had CO2 laser treatment with Elanda at Eskeen clinic and I'm so happy with the results! After only 1 treatment I can see the improvement on my scarring already. Will definitely come back for more.",
-      verified: true
-    },
-        {
-      name: "Zoyyah I.",
-      rating: 5,
-      date: "2024-09-15",
-      treatment: "CO2 Laser",
-      text: "I've struggled with insecurity related to acne scars for years, and CO2 laser has finally made a real difference! The clinic team - particularly Mavra was professional, I was super nervous and she took the time to explain the process and put me at ease.",
       verified: true
     }
   ]
@@ -83,7 +83,7 @@ export default function Reviews() {
               ))}
             </div>
             <p className="text-2xl sm:text-3xl font-bold text-neutral-900">5.0</p>
-            <p className="text-sm sm:text-base text-neutral-600 mt-1">Based on {reviews.length} verified reviews</p>
+            <p className="text-sm sm:text-base text-neutral-600 mt-1">Based on 92 Google reviews</p>
           </div>
         </div>
 

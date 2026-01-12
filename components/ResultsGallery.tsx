@@ -2,6 +2,9 @@
 
 import { useState } from 'react'
 
+// Toggle to show/hide the "Become a Model" card - set to true to re-enable
+const SHOW_MODEL_CARD = false
+
 interface ResultsGalleryProps {
   onBookingClick?: () => void
 }
@@ -102,7 +105,7 @@ export default function ResultsGallery({ onBookingClick }: ResultsGalleryProps) 
 
         {/* Premium Results Grid - Mobile Optimized */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8">
-          {results.map((result, index) => (
+          {results.filter(result => SHOW_MODEL_CARD || !result.isModelCard).map((result, index) => (
             <div
               key={index}
               className={`group relative bg-white rounded-xl sm:rounded-2xl overflow-hidden shadow-premium transition-all duration-300 ${

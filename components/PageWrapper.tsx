@@ -15,10 +15,13 @@ import CTASection from '@/components/CTASection'
 import Footer from '@/components/Footer'
 import BookingModal from '@/components/BookingModal'
 import VideoModal from '@/components/VideoModal'
+import SkinAnalysis from '@/components/SkinAnalysis'
+import SkinAnalysisModal from '@/components/SkinAnalysisModal'
 
 export default function PageWrapper() {
   const [isBookingModalOpen, setIsBookingModalOpen] = useState(false)
   const [isVideoModalOpen, setIsVideoModalOpen] = useState(false)
+  const [isSkinAnalysisModalOpen, setIsSkinAnalysisModalOpen] = useState(false)
   const [assessmentData, setAssessmentData] = useState<any>(null)
 
   return (
@@ -35,6 +38,7 @@ export default function PageWrapper() {
           }}
           onVideoClick={() => setIsVideoModalOpen(true)}
         />
+        <SkinAnalysis onBookingClick={() => setIsSkinAnalysisModalOpen(true)} />
         <AssessmentTool
           onBookingClick={() => setIsBookingModalOpen(true)}
           onAssessmentComplete={(data) => setAssessmentData(data)}
@@ -82,6 +86,12 @@ export default function PageWrapper() {
       <VideoModal
         isOpen={isVideoModalOpen}
         onClose={() => setIsVideoModalOpen(false)}
+      />
+
+      {/* Skin Analysis Modal */}
+      <SkinAnalysisModal
+        isOpen={isSkinAnalysisModalOpen}
+        onClose={() => setIsSkinAnalysisModalOpen(false)}
       />
 
       {/* Floating Book Now Button */}
