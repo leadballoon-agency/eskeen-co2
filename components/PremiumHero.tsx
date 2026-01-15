@@ -60,6 +60,17 @@ export default function PremiumHero({ onBookingClick, onVideoClick }: PremiumHer
               </button>
             </div>
 
+            {/* Open Sundays Badge */}
+            <div className="flex justify-center lg:justify-start">
+              <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-amber-200 rounded-full shadow-sm">
+                <span className="text-2xl">☀️</span>
+                <div className="flex flex-col sm:flex-row sm:items-center sm:gap-2">
+                  <span className="font-bold text-amber-700 text-sm sm:text-base">Open Sundays!</span>
+                  <span className="text-xs sm:text-sm text-amber-600">Weekend appointments available</span>
+                </div>
+              </div>
+            </div>
+
             {/* Social Proof - Mobile Optimized with Grid */}
             <div className="grid grid-cols-2 sm:flex sm:items-center sm:justify-center lg:justify-start gap-4 sm:gap-6 pt-2 max-w-md mx-auto lg:mx-0">
               <div className="text-center">
