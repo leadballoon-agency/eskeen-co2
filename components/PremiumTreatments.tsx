@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from 'react'
 import { trackPRPDealView } from './FacebookPixel'
 
 interface PremiumTreatmentsProps {
@@ -5,6 +8,8 @@ interface PremiumTreatmentsProps {
 }
 
 export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsProps) {
+  const [addPRP, setAddPRP] = useState(false)
+
   const treatments = [
     {
       icon: '✨',
@@ -13,7 +18,8 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
       features: ['Full face treatment', '5-7 days downtime', '60-90 minutes', 'Immediate results'],
       price: '£395',
       gradient: 'from-blue-400 to-cyan-600',
-      popular: false
+      popular: false,
+      hasFreePRP: true
     },
     {
       icon: '💎',
@@ -25,11 +31,11 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
       popular: true
     },
     {
-      icon: '🔬',
-      title: 'Single + PRP',
-      description: 'CO2 laser with PRP enhancement',
-      features: ['CO2 laser treatment', 'PRP enhancement included', 'Faster healing', 'Enhanced results'],
-      price: '£495',
+      icon: '👁️',
+      title: 'Eyes Upper & Lower',
+      description: 'CO2 laser eye rejuvenation',
+      features: ['Upper eyelid tightening', 'Lower eye wrinkle reduction', 'Minimal downtime', 'Natural-looking results'],
+      price: '£299',
       gradient: 'from-green-400 to-emerald-600',
       popular: false
     }
@@ -88,14 +94,34 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                   ))}
                 </ul>
 
+                {treatment.hasFreePRP && (
+                  <div className="mb-4 p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                    <label className="flex items-center cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={addPRP}
+                        onChange={(e) => setAddPRP(e.target.checked)}
+                        className="w-4 h-4 text-green-600 border-green-300 rounded focus:ring-green-500"
+                      />
+                      <span className="ml-3 text-sm text-neutral-700">
+                        Add PRP Enhancement <span className="font-bold text-green-600">FREE</span>
+                      </span>
+                    </label>
+                    <p className="text-xs text-green-700 mt-1 ml-7">Faster healing & enhanced results - worth £120!</p>
+                  </div>
+                )}
+
                 <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-neutral-100 mt-auto">
                   <div>
                     <p className="text-xs text-neutral-500 sm:hidden">From</p>
                     <p className="text-xl sm:text-2xl font-bold gradient-text">{treatment.price}</p>
+                    {treatment.hasFreePRP && addPRP && (
+                      <p className="text-xs text-green-600 font-medium">+ FREE PRP</p>
+                    )}
                   </div>
                   <button
                     onClick={() => {
-                      if (treatment.title === '3 Session Package') {
+                      if (treatment.title === '3 Session Package' || (treatment.hasFreePRP && addPRP)) {
                         trackPRPDealView()
                       }
                       onBookingClick?.()

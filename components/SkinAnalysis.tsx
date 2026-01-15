@@ -86,10 +86,13 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
             <div className="relative">
               {/* Main Card */}
               <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 shadow-premium">
-                <div className="aspect-square relative rounded-xl sm:rounded-2xl overflow-hidden">
-                  <img
-                    src="/images/skin-analysis.jpeg"
-                    alt="Eskeen Clinic Skin Analysis Machine"
+                <div className="aspect-[3/4] relative rounded-xl sm:rounded-2xl overflow-hidden">
+                  <video
+                    src="https://storage.googleapis.com/msgsndr/USJbaW3fRzevnqAcsm2W/media/696938c4d01e744ab2ac2717.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
                     className="w-full h-full object-cover"
                   />
                   {/* Overlay with text */}
@@ -121,6 +124,15 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
               {/* Floating Badge */}
               <div className="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-4 py-2 rounded-full text-xs sm:text-sm font-semibold shadow-lg">
                 Now Available
+              </div>
+
+              {/* Floating Image - Real consultation */}
+              <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 w-32 sm:w-40 lg:w-48 rounded-xl sm:rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                <img
+                  src="/skin-analysis.JPG"
+                  alt="Skin analysis consultation in progress"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>
