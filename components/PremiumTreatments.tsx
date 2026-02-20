@@ -37,9 +37,9 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
     icon: '👁️',
     title: 'Eyelid Rejuvenation',
     badge: 'NON-SURGICAL BLEPHAROPLASTY',
-    description: 'Non-surgical lift for upper & lower eyelids',
-    longDescription: 'Fractional CO2 laser resurfacing uses controlled light beams to vaporize damaged skin, stimulate collagen, and tighten loose skin around the eyes. A non-surgical lift to reduce wrinkles, fine lines, and mild excess skin — results comparable to traditional blepharoplasty but without the surgery.',
-    features: ['Upper & lower eyelids', 'Non-surgical alternative to blepharoplasty', 'Stimulates collagen production', 'Tightens loose skin naturally'],
+    description: 'Non-surgical lift for upper eyelids',
+    longDescription: 'Fractional CO2 laser resurfacing uses controlled light beams to vaporize damaged skin, stimulate collagen, and tighten loose skin around the upper eyes. A non-surgical lift to reduce wrinkles, fine lines, and mild excess skin — results comparable to traditional blepharoplasty but without the surgery.',
+    features: ['Upper eyelid tightening', 'Non-surgical alternative to blepharoplasty', 'Stimulates collagen production', 'Tightens loose skin naturally'],
     singlePrice: '£180',
     packagePrice: '£300',
     gradient: 'from-cyan-500 to-primary-600'
