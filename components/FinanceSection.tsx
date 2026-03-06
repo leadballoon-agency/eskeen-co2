@@ -11,7 +11,7 @@ export default function FinanceSection({ onBookingClick }: FinanceSectionProps) 
           <span className="text-primary-600 font-medium tracking-wider uppercase text-xs sm:text-sm">Flexible Payment Options</span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-2 sm:mt-4">
             Spread the Cost
-            <span className="block gradient-text">with Clearpay</span>
+            <span className="block gradient-text">with Klarna</span>
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-neutral-600 mt-2 sm:mt-4 max-w-2xl mx-auto px-4">
             Pay in 4 interest-free instalments • No hidden fees • Instant approval
@@ -20,13 +20,12 @@ export default function FinanceSection({ onBookingClick }: FinanceSectionProps) 
 
         {/* Main Content */}
         <div className="max-w-4xl mx-auto">
-          {/* Clearpay Banner */}
-          <div className="bg-gradient-to-br from-[#B2FCE4] to-[#9EE5D0] rounded-3xl p-8 sm:p-12 shadow-premium mb-8">
-            <img
-              src="/images/Website/Promote the benefits of Clearpay./Book now Pay it in 4 - tile/CP_Web_tile_booknowpayitin4_mintblack_600x449.png"
-              alt="Book now, Pay it in 4 with Clearpay"
-              className="w-full max-w-lg mx-auto"
-            />
+          {/* Klarna Banner */}
+          <div className="bg-gradient-to-br from-[#FFB3C7] to-[#FFD1DC] rounded-3xl p-8 sm:p-12 shadow-premium mb-8 text-center">
+            <div className="max-w-md mx-auto">
+              <p className="text-3xl sm:text-4xl font-bold text-neutral-800 mb-2">Pay in 3</p>
+              <p className="text-lg sm:text-xl text-neutral-700">Interest-free instalments with Klarna</p>
+            </div>
           </div>
 
           {/* Benefits Grid */}
@@ -47,8 +46,8 @@ export default function FinanceSection({ onBookingClick }: FinanceSectionProps) 
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                 </svg>
               </div>
-              <h3 className="font-semibold text-neutral-800 mb-1">Pay in 4</h3>
-              <p className="text-sm text-neutral-600">Split over 6 weeks</p>
+              <h3 className="font-semibold text-neutral-800 mb-1">Pay in 3</h3>
+              <p className="text-sm text-neutral-600">Split over 3 months</p>
             </div>
 
             <div className="bg-white rounded-2xl p-6 shadow-lg text-center">

@@ -154,7 +154,7 @@ export default function StructuredData() {
         "closes": "17:00"
       }
     ],
-    "paymentAccepted": ["Cash", "Credit Card", "Debit Card", "Clearpay"],
+    "paymentAccepted": ["Cash", "Credit Card", "Debit Card", "Klarna"],
     "currenciesAccepted": "GBP",
     "areaServed": [
       {
