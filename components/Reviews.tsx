@@ -90,6 +90,38 @@ export default function Reviews() {
       treatment: "CO2 Laser",
       text: "Mavra did my CO2 laser and I can already see a big difference. I'm so happy with the results and can't wait to come back!",
       verified: true
+    },
+    {
+      name: "Camille",
+      rating: 5,
+      date: "2026-03-19",
+      treatment: "Botox & Filler",
+      text: "I recently had Botox and filler treatments at Eskeen and I cannot recommend them enough. The clinic itself is immaculate with a beautiful modern, calming atmosphere. Mavra is an absolute star — incredibly professional, knowledgeable and skilled. Her technique is precise and gentle. 10 out of 10.",
+      verified: true
+    },
+    {
+      name: "Klarita Sefa",
+      rating: 5,
+      date: "2026-03-19",
+      treatment: "Eskeen Clinic",
+      text: "I had my treatment done by Elanda at Eskeen Clinic and had a great experience. She was very professional, friendly, and took the time to explain everything clearly before starting the procedure. I felt comfortable throughout the appointment.",
+      verified: true
+    },
+    {
+      name: "Marcus",
+      rating: 5,
+      date: "2026-03-19",
+      treatment: "CO2 Laser",
+      text: "Mavra is excellent at CO2 laser treatment. I knew I was in skilled hands, she has lovely aura. Treatment is somewhat tingly, however it's a small price to pay for the amazing results, my sun damaged skin has disappeared, skin looks tighter.",
+      verified: true
+    },
+    {
+      name: "Melanie R",
+      rating: 5,
+      date: "2026-03-19",
+      treatment: "Eskeen Clinic",
+      text: "Elanda is incredible. Not only a true professional, she's also just a lovely person. I trust her implicitly. I've had loads of treatments over the years and couldn't recommend her highly enough.",
+      verified: true
     }
   ]
 
@@ -113,7 +145,7 @@ export default function Reviews() {
               ))}
             </div>
             <p className="text-2xl sm:text-3xl font-bold text-neutral-900">5.0</p>
-            <p className="text-sm sm:text-base text-neutral-600 mt-1">Based on 104 Google reviews</p>
+            <p className="text-sm sm:text-base text-neutral-600 mt-1">Based on 137 Google reviews</p>
           </div>
         </div>
 
