@@ -14,8 +14,8 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
     {
       icon: '✨',
       title: 'Full Face',
-      description: "Full face with under eye & jowls + FREE PRP",
-      features: ['Full face, under eye & jowls', 'FREE PRP enhancement included', 'Neck area +£100', '5-7 days downtime'],
+      description: "Full face + upper & lower eyes + FREE PRP",
+      features: ['Full face resurfacing', 'Upper & lower eyes included (worth £180)', 'FREE PRP enhancement (worth £120)', 'Neck area +£100', '5-7 days downtime'],
       price: '£395',
       gradient: 'from-blue-400 to-cyan-600',
       popular: false,
@@ -36,11 +36,9 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
     icon: '👁️',
     title: 'Eyelid Rejuvenation',
     badge: 'NON-SURGICAL BLEPHAROPLASTY',
-    description: 'Non-surgical lift for upper eyelids',
-    longDescription: 'Fractional CO2 laser resurfacing uses controlled light beams to vaporize damaged skin, stimulate collagen, and tighten loose skin around the upper eyes. A non-surgical lift to reduce wrinkles, fine lines, and mild excess skin — results comparable to traditional blepharoplasty but without the surgery.',
-    features: ['Upper eyelid tightening', 'Non-surgical alternative to blepharoplasty', 'Stimulates collagen production', 'Tightens loose skin naturally'],
-    singlePrice: '£180',
-    packagePrice: '£300',
+    description: 'Non-surgical lift for upper & lower eyelids',
+    longDescription: 'Fractional CO2 laser resurfacing uses controlled light beams to vaporize damaged skin, stimulate collagen, and tighten loose skin around the upper and lower eyes. A non-surgical lift to reduce wrinkles, fine lines, hooded lids and under-eye crepiness — results comparable to traditional blepharoplasty but without the surgery.',
+    features: ['Upper & lower eyelid tightening', 'Non-surgical alternative to blepharoplasty', 'Stimulates collagen production', 'Tightens loose skin naturally'],
     gradient: 'from-cyan-500 to-primary-600'
   }
 
@@ -121,24 +119,21 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                 </div>
 
                 <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-lg text-center">
-                  <p className="text-xs sm:text-sm text-cyan-600 font-semibold mb-2 uppercase tracking-wide">Treatment Pricing</p>
-                  <div className="flex items-center justify-center gap-4 sm:gap-6 mb-4">
-                    <div>
-                      <p className="text-2xl sm:text-3xl font-bold text-cyan-600">{eyesTreatment.singlePrice}</p>
-                      <p className="text-xs sm:text-sm text-neutral-500">Single Session</p>
-                    </div>
-                    <div className="h-12 w-px bg-neutral-200"></div>
-                    <div>
-                      <p className="text-2xl sm:text-3xl font-bold text-cyan-600">{eyesTreatment.packagePrice}</p>
-                      <p className="text-xs sm:text-sm text-neutral-500">3 Sessions</p>
-                    </div>
+                  <div className="inline-block bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-3">
+                    Now Included Free
+                  </div>
+                  <p className="text-xs sm:text-sm text-cyan-600 font-semibold mb-2 uppercase tracking-wide">Bundled into the £395 Offer</p>
+                  <div className="mb-4">
+                    <p className="text-3xl sm:text-4xl font-bold text-cyan-600">£395</p>
+                    <p className="text-xs sm:text-sm text-neutral-500 mt-1">Full Face + Upper & Lower Eyes + FREE PRP</p>
+                    <p className="text-xs text-green-600 font-medium mt-2">Eyes treatment alone was £180 — now included</p>
                   </div>
                   <p className="text-xs text-neutral-500 mb-4">Some downtime for swelling & redness expected</p>
                   <button
                     onClick={() => onBookingClick?.()}
                     className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-primary-600 text-white font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm sm:text-base"
                   >
-                    Book Eyes Treatment
+                    Claim the £395 Offer
                   </button>
                 </div>
               </div>

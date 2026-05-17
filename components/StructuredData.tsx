@@ -36,8 +36,8 @@ export default function StructuredData() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "MedicalProcedure",
-            "name": "Single CO2 Laser Session",
-            "description": "Professional fractional CO2 laser treatment for skin resurfacing"
+            "name": "Full Face CO2 Laser + Upper & Lower Eyes + Free PRP",
+            "description": "Full face fractional CO2 laser resurfacing including upper and lower eyelid treatment, with FREE PRP enhancement included"
           },
           "price": "395",
           "priceCurrency": "GBP"
@@ -234,9 +234,10 @@ export default function StructuredData() {
       "itemListElement": [
         {
           "@type": "Offer",
-          "name": "Single CO2 Laser Session",
+          "name": "Full Face CO2 Laser + Upper & Lower Eyes + Free PRP",
           "price": "395",
-          "priceCurrency": "GBP"
+          "priceCurrency": "GBP",
+          "description": "Full face CO2 laser resurfacing including upper and lower eyelid treatment, with FREE PRP enhancement included"
         },
         {
           "@type": "Offer",
