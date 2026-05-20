@@ -134,17 +134,17 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
         (concern === 'wrinkles' && ageRange === '50+') ||
         (concern === 'pigmentation' && ageRange !== '20-30')) {
       return {
-        treatment: 'PRP For Free Deal',
+        treatment: 'PRP Bundle Deal',
         price: '£700',
-        description: 'Best value - 2 sessions for £350 each + FREE PRP enhancement. Save £300 total! Perfect for deeper concerns.',
+        description: 'Best value — 2 sessions for £350 each + half-price PRP enhancement add-on (£50 instead of £100). Perfect for deeper concerns.',
         isSuitable: true,
         skinType: skinType
       }
     } else if (concern === 'stretch-marks') {
       return {
-        treatment: 'PRP For Free Deal',
+        treatment: 'PRP Bundle Deal',
         price: '£700',
-        description: 'Recommended for stretch marks - 2 sessions with FREE PRP for optimal results',
+        description: 'Recommended for stretch marks — 2 sessions with half-price PRP add-on for optimal results',
         isSuitable: true,
         skinType: skinType
       }

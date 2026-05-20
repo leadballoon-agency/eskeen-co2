@@ -14,12 +14,12 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
     {
       icon: '✨',
       title: 'Full Face',
-      description: "Full face + upper & lower eyes + FREE PRP",
-      features: ['Full face resurfacing', 'Upper & lower eyes included (worth £180)', 'FREE PRP enhancement (worth £120)', 'Neck area +£100', '5-7 days downtime'],
+      description: "Full face + upper & lower eyes (half-price PRP add-on)",
+      features: ['Full face resurfacing', 'Upper & lower eyes included (worth £180)', 'Optional half-price PRP add-on — £50 (normally £100)', 'Neck area +£100', '5-7 days downtime'],
       price: '£395',
       gradient: 'from-blue-400 to-cyan-600',
       popular: false,
-      hasFreePRP: true
+      showPRPAddon: true
     },
     {
       icon: '💎',
@@ -125,8 +125,9 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                   <p className="text-xs sm:text-sm text-cyan-600 font-semibold mb-2 uppercase tracking-wide">Bundled into the £395 Offer</p>
                   <div className="mb-4">
                     <p className="text-3xl sm:text-4xl font-bold text-cyan-600">£395</p>
-                    <p className="text-xs sm:text-sm text-neutral-500 mt-1">Full Face + Upper & Lower Eyes + FREE PRP</p>
+                    <p className="text-xs sm:text-sm text-neutral-500 mt-1">Full Face + Upper &amp; Lower Eyes</p>
                     <p className="text-xs text-green-600 font-medium mt-2">Eyes treatment alone was £180 — now included</p>
+                    <p className="text-xs text-cyan-600 font-medium mt-1">Optional PRP add-on: £50 (normally £100)</p>
                   </div>
                   <p className="text-xs text-neutral-500 mb-4">Some downtime for swelling & redness expected</p>
                   <button
@@ -185,17 +186,17 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                   ))}
                 </ul>
 
-                {treatment.hasFreePRP && (
-                  <div className="mb-4 p-3 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-200">
+                {treatment.showPRPAddon && (
+                  <div className="mb-4 p-3 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl border border-cyan-200">
                     <div className="flex items-center">
-                      <svg className="w-5 h-5 text-green-600 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-5 h-5 text-cyan-600 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
                       <span className="text-sm text-neutral-700">
-                        PRP Enhancement <span className="font-bold text-green-600">INCLUDED FREE</span>
+                        Optional PRP add-on — <span className="font-bold text-cyan-600">HALF PRICE</span>
                       </span>
                     </div>
-                    <p className="text-xs text-green-700 mt-1 ml-7">Faster healing & enhanced results - worth £120!</p>
+                    <p className="text-xs text-cyan-700 mt-1 ml-7">Faster healing &amp; enhanced results — £50 instead of £100</p>
                   </div>
                 )}
 
@@ -203,13 +204,13 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                   <div>
                     <p className="text-xs text-neutral-500 sm:hidden">From</p>
                     <p className="text-xl sm:text-2xl font-bold gradient-text">{treatment.price}</p>
-                    {treatment.hasFreePRP && (
-                      <p className="text-xs text-green-600 font-medium">+ FREE PRP</p>
+                    {treatment.showPRPAddon && (
+                      <p className="text-xs text-cyan-600 font-medium">+ PRP add-on £50 (was £100)</p>
                     )}
                   </div>
                   <button
                     onClick={() => {
-                      if (treatment.title === '3 Session Package' || treatment.hasFreePRP) {
+                      if (treatment.title === '3 Session Package' || treatment.showPRPAddon) {
                         trackPRPDealView()
                       }
                       onBookingClick?.()

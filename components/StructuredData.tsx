@@ -36,8 +36,8 @@ export default function StructuredData() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "MedicalProcedure",
-            "name": "Full Face CO2 Laser + Upper & Lower Eyes + Free PRP",
-            "description": "Full face fractional CO2 laser resurfacing including upper and lower eyelid treatment, with FREE PRP enhancement included"
+            "name": "Full Face CO2 Laser + Upper & Lower Eyes",
+            "description": "Full face fractional CO2 laser resurfacing including upper and lower eyelid treatment. Optional half-price PRP add-on (£50, normally £100) available."
           },
           "price": "395",
           "priceCurrency": "GBP"
@@ -56,10 +56,10 @@ export default function StructuredData() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "MedicalProcedure",
-            "name": "PRP Enhancement Add-on",
-            "description": "Platelet Rich Plasma therapy add-on for enhanced healing and results"
+            "name": "PRP Enhancement Add-on (Half Price This Month)",
+            "description": "Platelet Rich Plasma therapy add-on for enhanced healing and results — currently half price at £50 (normally £100)"
           },
-          "price": "100",
+          "price": "50",
           "priceCurrency": "GBP"
         }
       ]
@@ -234,10 +234,10 @@ export default function StructuredData() {
       "itemListElement": [
         {
           "@type": "Offer",
-          "name": "Full Face CO2 Laser + Upper & Lower Eyes + Free PRP",
+          "name": "Full Face CO2 Laser + Upper & Lower Eyes",
           "price": "395",
           "priceCurrency": "GBP",
-          "description": "Full face CO2 laser resurfacing including upper and lower eyelid treatment, with FREE PRP enhancement included"
+          "description": "Full face CO2 laser resurfacing including upper and lower eyelid treatment. Optional half-price PRP add-on (£50, normally £100) available."
         },
         {
           "@type": "Offer",
@@ -248,10 +248,10 @@ export default function StructuredData() {
         },
         {
           "@type": "Offer",
-          "name": "PRP Enhancement Add-on",
-          "price": "100",
+          "name": "PRP Enhancement Add-on (Half Price This Month)",
+          "price": "50",
           "priceCurrency": "GBP",
-          "description": "Platelet Rich Plasma therapy add-on per session"
+          "description": "Platelet Rich Plasma therapy add-on per session — currently half price at £50 (normally £100)"
         }
       ]
     }
