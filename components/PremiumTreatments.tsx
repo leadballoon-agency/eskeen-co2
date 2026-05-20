@@ -10,219 +10,221 @@ interface PremiumTreatmentsProps {
 export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsProps) {
   const [showAfterModal, setShowAfterModal] = useState(false)
 
-  const treatments = [
-    {
-      icon: '✨',
-      title: 'Full Face',
-      description: "Full face + upper & lower eyes (optional half-price PRP add-on)",
-      features: ['Full face resurfacing', 'Upper & lower eyes included (worth £180)', 'Optional half-price PRP add-on (available during your treatment)', 'Neck area +£100', '5-7 days downtime'],
-      price: '£395',
-      gradient: 'from-blue-400 to-cyan-600',
-      popular: false,
-      showPRPAddon: true
-    },
-    {
-      icon: '💎',
-      title: '3 Session Package',
-      description: 'Complete transformation package',
-      features: ['3 CO2 laser sessions', 'Save £335 total', 'Book within 6 months', 'Best for acne scars'],
-      price: '£850',
-      gradient: 'from-primary-400 to-primary-600',
-      popular: true
-    }
-  ]
-
-  const eyesTreatment = {
-    icon: '👁️',
-    title: 'Eyelid Rejuvenation',
-    badge: 'NON-SURGICAL BLEPHAROPLASTY',
-    description: 'Non-surgical lift for upper & lower eyelids',
-    longDescription: 'Fractional CO2 laser resurfacing uses controlled light beams to vaporize damaged skin, stimulate collagen, and tighten loose skin around the upper and lower eyes. A non-surgical lift to reduce wrinkles, fine lines, hooded lids and under-eye crepiness — results comparable to traditional blepharoplasty but without the surgery.',
-    features: ['Upper & lower eyelid tightening', 'Non-surgical alternative to blepharoplasty', 'Stimulates collagen production', 'Tightens loose skin naturally'],
-    gradient: 'from-cyan-500 to-primary-600'
+  const trackAndBook = () => {
+    trackPRPDealView()
+    onBookingClick?.()
   }
 
   return (
     <section id="treatments" className="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-primary-50 to-white">
       <div className="max-w-7xl mx-auto section-padding">
         <div className="text-center mb-8 sm:mb-12 lg:mb-16 space-y-2 sm:space-y-4">
-          <span className="text-primary-600 font-medium tracking-wider uppercase text-xs sm:text-sm">Our Services</span>
+          <span className="text-primary-600 font-medium tracking-wider uppercase text-xs sm:text-sm">Our Offer</span>
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold">
-            Treatments That
-            <span className="gradient-text"> Transform</span>
+            One Treatment.
+            <span className="gradient-text"> Four Areas.</span>
           </h2>
           <p className="text-sm sm:text-base lg:text-lg text-neutral-600 max-w-2xl mx-auto px-4">
-            Each treatment is tailored to your unique needs
+            Full face, eyelids, jowls and neck — medical-grade CO2 fractional laser resurfacing, one session.
           </p>
         </div>
 
-        {/* Featured Eyelid Rejuvenation / Blepharoplasty Section */}
-        <div className="mb-10 sm:mb-14 max-w-4xl mx-auto">
-          <div className="relative bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 border-2 border-cyan-200">
-            {/* Animated pulse border effect */}
-            <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-cyan-400 animate-pulse opacity-50"></div>
+        {/* PRIMARY OFFER HERO */}
+        <div className="mb-12 sm:mb-16 max-w-5xl mx-auto relative">
+          {/* Offer badge — sits ABOVE the card, outside the overflow-hidden so it's not clipped */}
+          <div className="absolute left-1/2 -translate-x-1/2 -top-3 sm:-top-4 z-20">
+            <span className="bg-gradient-to-r from-primary-500 to-primary-700 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold shadow-lg uppercase tracking-wider whitespace-nowrap">
+              Limited Offer
+            </span>
+          </div>
 
-            <div className="absolute -top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-              <span className="bg-gradient-to-r from-cyan-500 to-primary-600 text-white px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold shadow-lg">
-                {eyesTreatment.badge}
-              </span>
-            </div>
+          <div className="relative bg-gradient-to-br from-white to-primary-50 rounded-2xl sm:rounded-3xl p-5 sm:p-8 lg:p-10 border-2 border-primary-200 shadow-premium-lg overflow-hidden">
+            {/* Animated pulse border */}
+            <div className="absolute inset-0 rounded-2xl sm:rounded-3xl border-2 border-primary-400 animate-pulse opacity-40 pointer-events-none"></div>
 
-            <div className="relative pt-4">
-              {/* Before/After Images */}
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6">
-                <div className="relative">
-                  <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-xs px-2 py-1 rounded-full z-10">Before</span>
-                  <img
-                    src="/before-eyes.png"
-                    alt="Before eyelid treatment"
-                    className="w-full h-auto rounded-xl"
-                  />
+            <div className="relative grid lg:grid-cols-[1.1fr_0.9fr] gap-6 lg:gap-10 items-center">
+              {/* LEFT — copy + price + included list + CTA */}
+              <div>
+                <p className="text-primary-600 font-semibold text-xs sm:text-sm uppercase tracking-wider mb-2">Eskeen Clinic Offer</p>
+                <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-neutral-800 leading-tight mb-1">
+                  Full Face CO2 Laser
+                </h3>
+                <p className="text-sm sm:text-base text-neutral-600 mb-4 sm:mb-5">Medical-grade fractional resurfacing for face, eyelids, jowls and neck — one session.</p>
+
+                <div className="flex items-baseline gap-3 mb-5 sm:mb-6">
+                  <span className="text-4xl sm:text-5xl lg:text-6xl font-bold gradient-text">£395</span>
+                  <span className="text-sm text-neutral-500">complete</span>
                 </div>
-                <div className="relative">
-                  <button
-                    onClick={() => setShowAfterModal(true)}
-                    className="w-full h-full group cursor-pointer"
-                  >
-                    <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-xs px-2 py-1 rounded-full z-10">After</span>
-                    <span className="absolute top-2 right-2 bg-white/90 text-cyan-600 text-xs px-2 py-1 rounded-full z-10 font-medium group-hover:bg-cyan-500 group-hover:text-white transition-colors">
-                      Tap to enlarge
-                    </span>
-                    <img
-                      src="/after-eyes.png"
-                      alt="After eyelid treatment"
-                      className="w-full h-auto rounded-xl group-hover:ring-2 ring-cyan-400 transition-all"
-                    />
-                  </button>
+
+                <p className="text-xs text-primary-700 font-semibold uppercase tracking-wider mb-2">Includes</p>
+                <ul className="space-y-2 mb-5 sm:mb-6">
+                  {['Full face fractional CO2 resurfacing', 'Upper &amp; lower eyelid rejuvenation (non-surgical blepharoplasty)', 'Jowls &amp; jawline lifting', 'Neck tightening', 'Free 15-minute skin analysis consultation'].map((feature, idx) => (
+                    <li key={idx} className="flex items-start text-sm sm:text-base text-neutral-700">
+                      <svg className="w-5 h-5 text-primary-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      <span dangerouslySetInnerHTML={{ __html: feature }} />
+                    </li>
+                  ))}
+                </ul>
+
+                {/* PRP note */}
+                <div className="mb-5 p-3 bg-cyan-50 rounded-xl border border-cyan-200">
+                  <p className="text-xs sm:text-sm text-cyan-800">
+                    <span className="font-semibold">Optional half-price PRP add-on</span> available during your treatment for faster healing.
+                  </p>
                 </div>
+
+                <button
+                  onClick={trackAndBook}
+                  className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-primary-500 to-primary-700 text-white font-semibold text-base sm:text-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center"
+                >
+                  Book a £25 Consultation
+                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </button>
+                <p className="text-xs text-neutral-500 mt-3">£25 reserves your slot — redeemed off your treatment.</p>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6 items-center">
-                <div>
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-3xl sm:text-4xl">{eyesTreatment.icon}</span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-neutral-800">{eyesTreatment.title}</h3>
-                  </div>
-                  <p className="text-sm sm:text-base text-neutral-600 mb-4">
-                    {eyesTreatment.longDescription}
-                  </p>
-                  <ul className="space-y-1.5 sm:space-y-2 mb-4">
-                    {eyesTreatment.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-xs sm:text-sm text-neutral-700">
-                        <svg className="w-4 h-4 sm:w-5 sm:h-5 text-cyan-500 mr-1.5 sm:mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
+              {/* RIGHT — Skin resurfacing money shot */}
+              <div>
+                <div className="relative rounded-2xl overflow-hidden shadow-premium-lg">
+                  <img
+                    src="/images/co2laser-skin-rejeuvenation.jpeg"
+                    alt="CO2 laser skin resurfacing — visible texture and tone improvement"
+                    className="w-full h-auto"
+                  />
                 </div>
-
-                <div className="bg-white rounded-2xl p-5 sm:p-6 shadow-lg text-center">
-                  <div className="inline-block bg-green-100 text-green-700 text-xs font-bold uppercase tracking-wide px-3 py-1 rounded-full mb-3">
-                    Now Included Free
-                  </div>
-                  <p className="text-xs sm:text-sm text-cyan-600 font-semibold mb-2 uppercase tracking-wide">Bundled into the £395 Offer</p>
-                  <div className="mb-4">
-                    <p className="text-3xl sm:text-4xl font-bold text-cyan-600">£395</p>
-                    <p className="text-xs sm:text-sm text-neutral-500 mt-1">Full Face + Upper &amp; Lower Eyes</p>
-                    <p className="text-xs text-green-600 font-medium mt-2">Eyes treatment alone was £180 — now included</p>
-                    <p className="text-xs text-cyan-600 font-medium mt-1">Optional half-price PRP add-on available during your treatment</p>
-                  </div>
-                  <p className="text-xs text-neutral-500 mb-4">Some downtime for swelling & redness expected</p>
-                  <button
-                    onClick={() => onBookingClick?.()}
-                    className="w-full px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-primary-600 text-white font-medium hover:shadow-lg transition-all duration-300 hover:scale-105 text-sm sm:text-base"
-                  >
-                    Claim the £395 Offer
-                  </button>
-                </div>
+                <p className="text-center text-xs text-neutral-500 mt-3">
+                  Real CO2 fractional laser resurfacing results.
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Full Face Treatments Header */}
-        <div className="text-center mb-6 sm:mb-8">
-          <h3 className="text-lg sm:text-xl font-semibold text-neutral-700">Full Face Treatments</h3>
-        </div>
+        {/* About Non-Surgical Blepharoplasty (included treatment) */}
+        <div className="mb-12 sm:mb-16 max-w-5xl mx-auto">
+          <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 border border-neutral-200 shadow-sm">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-2xl sm:text-3xl">👁️</span>
+              <div>
+                <p className="text-primary-600 font-semibold text-[11px] sm:text-xs uppercase tracking-wider">Included in your £395 treatment</p>
+                <h4 className="text-lg sm:text-xl font-bold text-neutral-800">Non-Surgical Blepharoplasty — Upper &amp; Lower Eyelids</h4>
+              </div>
+            </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
-          {treatments.map((treatment, index) => (
-            <div
-              key={index}
-              className={`group relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 transition-all duration-500 flex flex-col h-full ${
-                treatment.popular ? 'shadow-premium-lg sm:scale-105 border-2 border-primary-200' : 'shadow-premium hover:shadow-premium-lg'
-              } sm:hover:scale-105`}
-            >
-              {treatment.popular && (
-                <div className="absolute -top-2 sm:-top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-3 sm:px-4 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
-                  Best Value
-                </div>
-              )}
-
-              <div className={`absolute inset-0 bg-gradient-to-br ${treatment.gradient} opacity-5 rounded-2xl sm:rounded-3xl transition-opacity group-hover:opacity-10`}></div>
-
-              <div className="relative flex flex-col h-full">
-                <div className="mb-3 sm:mb-4 lg:mb-6">
-                  <div className={`text-3xl sm:text-4xl lg:text-5xl p-2.5 sm:p-3 lg:p-4 bg-gradient-to-br ${treatment.gradient} rounded-xl sm:rounded-2xl bg-opacity-10 inline-block`}>
-                    {treatment.icon}
-                  </div>
-                </div>
-
-                <div className="mb-3 sm:mb-4 lg:mb-6">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-1.5 sm:mb-2">{treatment.title}</h3>
-                  <p className="text-xs sm:text-sm lg:text-base text-neutral-600">{treatment.description}</p>
-                </div>
-
-                <ul className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6 flex-grow">
-                  {treatment.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start sm:items-center text-xs sm:text-sm text-neutral-700">
-                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary-500 mr-1.5 sm:mr-2 flex-shrink-0 mt-0.5 sm:mt-0" fill="currentColor" viewBox="0 0 20 20">
+            <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6 lg:gap-8 items-start">
+              {/* LEFT — copy + features */}
+              <div>
+                <p className="text-sm sm:text-base text-neutral-600 mb-4 leading-relaxed">
+                  Fractional CO2 laser resurfacing uses controlled light beams to vaporize damaged skin, stimulate collagen, and tighten loose skin around the upper and lower eyes. A non-surgical lift to reduce wrinkles, fine lines, hooded lids and under-eye crepiness — results comparable to traditional blepharoplasty, but without the surgery.
+                </p>
+                <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+                  {[
+                    'Upper & lower eyelid tightening',
+                    'Non-surgical alternative to blepharoplasty',
+                    'Stimulates collagen production',
+                    'Tightens loose skin naturally',
+                  ].map((feature, idx) => (
+                    <li key={idx} className="flex items-center text-xs sm:text-sm text-neutral-700">
+                      <svg className="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
                       {feature}
                     </li>
                   ))}
                 </ul>
+              </div>
 
-                {treatment.showPRPAddon && (
-                  <div className="mb-4 p-3 bg-gradient-to-r from-cyan-50 to-blue-50 rounded-xl border border-cyan-200">
-                    <div className="flex items-center">
-                      <svg className="w-5 h-5 text-cyan-600 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      <span className="text-sm text-neutral-700">
-                        Optional PRP add-on — <span className="font-bold text-cyan-600">HALF PRICE</span>
+              {/* RIGHT — before/after eye images */}
+              <div>
+                <div className="grid grid-cols-2 gap-2 sm:gap-3">
+                  <div className="relative">
+                    <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-xs px-2 py-1 rounded-full z-10">Before</span>
+                    <img
+                      src="/before-eyes.png"
+                      alt="Before non-surgical blepharoplasty"
+                      className="w-full h-auto rounded-xl shadow-md"
+                    />
+                  </div>
+                  <div className="relative">
+                    <button
+                      onClick={() => setShowAfterModal(true)}
+                      className="w-full h-full group cursor-pointer"
+                    >
+                      <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-xs px-2 py-1 rounded-full z-10">After</span>
+                      <span className="absolute top-2 right-2 bg-white/90 text-cyan-600 text-xs px-2 py-1 rounded-full z-10 font-medium group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                        Tap to enlarge
                       </span>
-                    </div>
-                    <p className="text-xs text-cyan-700 mt-1 ml-7">Faster healing &amp; enhanced results — add it during your session if you'd like.</p>
+                      <img
+                        src="/after-eyes.png"
+                        alt="After non-surgical blepharoplasty"
+                        className="w-full h-auto rounded-xl shadow-md group-hover:ring-2 ring-cyan-400 transition-all"
+                      />
+                    </button>
                   </div>
-                )}
-
-                <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-neutral-100 mt-auto">
-                  <div>
-                    <p className="text-xs text-neutral-500 sm:hidden">From</p>
-                    <p className="text-xl sm:text-2xl font-bold gradient-text">{treatment.price}</p>
-                    {treatment.showPRPAddon && (
-                      <p className="text-xs text-cyan-600 font-medium">+ Optional half-price PRP add-on</p>
-                    )}
-                  </div>
-                  <button
-                    onClick={() => {
-                      if (treatment.title === '3 Session Package' || treatment.showPRPAddon) {
-                        trackPRPDealView()
-                      }
-                      onBookingClick?.()
-                    }}
-                    className={`px-4 sm:px-5 lg:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r ${treatment.gradient} text-white font-medium hover:shadow-lg transition-all duration-300 sm:hover:scale-105 text-sm sm:text-base`}
-                  >
-                    Get Started
-                  </button>
                 </div>
+                <p className="text-center text-xs text-neutral-500 mt-2">
+                  Real CO2 laser eyelid rejuvenation results.
+                </p>
               </div>
             </div>
-          ))}
+          </div>
+        </div>
+
+        {/* 3-Session Package — the alternative */}
+        <div className="text-center mb-6 sm:mb-8">
+          <p className="text-primary-600 font-medium tracking-wider uppercase text-xs sm:text-sm">For deeper concerns</p>
+          <h3 className="text-xl sm:text-2xl font-semibold text-neutral-800 mt-1">3-Session Package</h3>
+        </div>
+
+        <div className="max-w-md mx-auto">
+          <div className="group relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 transition-all duration-500 flex flex-col h-full shadow-premium-lg border-2 border-primary-200 sm:hover:scale-105">
+            <div className="absolute -top-2 sm:-top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-3 sm:px-4 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
+              Best Value
+            </div>
+
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 opacity-5 rounded-2xl sm:rounded-3xl transition-opacity group-hover:opacity-10"></div>
+
+            <div className="relative flex flex-col h-full">
+              <div className="mb-3 sm:mb-4 lg:mb-6">
+                <div className="text-3xl sm:text-4xl lg:text-5xl p-2.5 sm:p-3 lg:p-4 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl sm:rounded-2xl bg-opacity-10 inline-block">
+                  💎
+                </div>
+              </div>
+
+              <div className="mb-3 sm:mb-4 lg:mb-6">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-1.5 sm:mb-2">3-Session Package</h3>
+                <p className="text-xs sm:text-sm lg:text-base text-neutral-600">Complete transformation package — best for deeper acne scarring and significant texture concerns.</p>
+              </div>
+
+              <ul className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6 flex-grow">
+                {['3 CO2 laser sessions', 'Save £335 total', 'Book within 6 months', 'Best for acne scars'].map((feature, idx) => (
+                  <li key={idx} className="flex items-start sm:items-center text-xs sm:text-sm text-neutral-700">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary-500 mr-1.5 sm:mr-2 flex-shrink-0 mt-0.5 sm:mt-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-neutral-100 mt-auto">
+                <div>
+                  <p className="text-xs text-neutral-500 sm:hidden">From</p>
+                  <p className="text-xl sm:text-2xl font-bold gradient-text">£850</p>
+                </div>
+                <button
+                  onClick={trackAndBook}
+                  className="px-4 sm:px-5 lg:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white font-medium hover:shadow-lg transition-all duration-300 sm:hover:scale-105 text-sm sm:text-base"
+                >
+                  Get Started
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Mobile Call-to-Action */}
@@ -240,15 +242,12 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
           className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-8"
           onClick={() => setShowAfterModal(false)}
         >
-          {/* Backdrop */}
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
-          {/* Modal Content */}
           <div
             className="relative max-w-2xl w-full animate-fade-in"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close Button */}
             <button
               onClick={() => setShowAfterModal(false)}
               className="absolute -top-12 right-0 sm:top-4 sm:right-4 w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-white/30 transition-colors z-10"
@@ -258,11 +257,10 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
               </svg>
             </button>
 
-            {/* Image Container */}
             <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
               <img
                 src="/after-eyes.png"
-                alt="After eyelid treatment - Results"
+                alt="After non-surgical blepharoplasty - real result"
                 className="w-full h-auto"
               />
               <div className="p-4 sm:p-6 bg-gradient-to-r from-cyan-50 to-blue-50">
