@@ -136,7 +136,7 @@ export default function AssessmentTool({ onBookingClick, onAssessmentComplete }:
       return {
         treatment: 'PRP Bundle Deal',
         price: '£700',
-        description: 'Best value — 2 sessions for £350 each + half-price PRP enhancement add-on (£50 instead of £100). Perfect for deeper concerns.',
+        description: 'Best value — 2 sessions for £350 each + optional half-price PRP enhancement add-on (available during your treatment). Perfect for deeper concerns.',
         isSuitable: true,
         skinType: skinType
       }

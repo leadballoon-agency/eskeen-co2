@@ -14,8 +14,8 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
     {
       icon: '✨',
       title: 'Full Face',
-      description: "Full face + upper & lower eyes (half-price PRP add-on)",
-      features: ['Full face resurfacing', 'Upper & lower eyes included (worth £180)', 'Optional half-price PRP add-on — £50 (normally £100)', 'Neck area +£100', '5-7 days downtime'],
+      description: "Full face + upper & lower eyes (optional half-price PRP add-on)",
+      features: ['Full face resurfacing', 'Upper & lower eyes included (worth £180)', 'Optional half-price PRP add-on (available during your treatment)', 'Neck area +£100', '5-7 days downtime'],
       price: '£395',
       gradient: 'from-blue-400 to-cyan-600',
       popular: false,
@@ -127,7 +127,7 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                     <p className="text-3xl sm:text-4xl font-bold text-cyan-600">£395</p>
                     <p className="text-xs sm:text-sm text-neutral-500 mt-1">Full Face + Upper &amp; Lower Eyes</p>
                     <p className="text-xs text-green-600 font-medium mt-2">Eyes treatment alone was £180 — now included</p>
-                    <p className="text-xs text-cyan-600 font-medium mt-1">Optional PRP add-on: £50 (normally £100)</p>
+                    <p className="text-xs text-cyan-600 font-medium mt-1">Optional half-price PRP add-on available during your treatment</p>
                   </div>
                   <p className="text-xs text-neutral-500 mb-4">Some downtime for swelling & redness expected</p>
                   <button
@@ -196,7 +196,7 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                         Optional PRP add-on — <span className="font-bold text-cyan-600">HALF PRICE</span>
                       </span>
                     </div>
-                    <p className="text-xs text-cyan-700 mt-1 ml-7">Faster healing &amp; enhanced results — £50 instead of £100</p>
+                    <p className="text-xs text-cyan-700 mt-1 ml-7">Faster healing &amp; enhanced results — add it during your session if you'd like.</p>
                   </div>
                 )}
 
@@ -205,7 +205,7 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                     <p className="text-xs text-neutral-500 sm:hidden">From</p>
                     <p className="text-xl sm:text-2xl font-bold gradient-text">{treatment.price}</p>
                     {treatment.showPRPAddon && (
-                      <p className="text-xs text-cyan-600 font-medium">+ PRP add-on £50 (was £100)</p>
+                      <p className="text-xs text-cyan-600 font-medium">+ Optional half-price PRP add-on</p>
                     )}
                   </div>
                   <button

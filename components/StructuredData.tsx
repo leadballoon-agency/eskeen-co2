@@ -37,7 +37,7 @@ export default function StructuredData() {
           "itemOffered": {
             "@type": "MedicalProcedure",
             "name": "Full Face CO2 Laser + Upper & Lower Eyes",
-            "description": "Full face fractional CO2 laser resurfacing including upper and lower eyelid treatment. Optional half-price PRP add-on (£50, normally £100) available."
+            "description": "Full face fractional CO2 laser resurfacing including upper and lower eyelid treatment. Optional half-price PRP add-on available during your treatment."
           },
           "price": "395",
           "priceCurrency": "GBP"
@@ -56,11 +56,9 @@ export default function StructuredData() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "MedicalProcedure",
-            "name": "PRP Enhancement Add-on (Half Price This Month)",
-            "description": "Platelet Rich Plasma therapy add-on for enhanced healing and results — currently half price at £50 (normally £100)"
-          },
-          "price": "50",
-          "priceCurrency": "GBP"
+            "name": "PRP Enhancement Add-on",
+            "description": "Optional Platelet Rich Plasma therapy add-on for enhanced healing and results — available at half price during your treatment."
+          }
         }
       ]
     },
@@ -237,7 +235,7 @@ export default function StructuredData() {
           "name": "Full Face CO2 Laser + Upper & Lower Eyes",
           "price": "395",
           "priceCurrency": "GBP",
-          "description": "Full face CO2 laser resurfacing including upper and lower eyelid treatment. Optional half-price PRP add-on (£50, normally £100) available."
+          "description": "Full face CO2 laser resurfacing including upper and lower eyelid treatment. Optional half-price PRP add-on available during your treatment."
         },
         {
           "@type": "Offer",
@@ -248,10 +246,8 @@ export default function StructuredData() {
         },
         {
           "@type": "Offer",
-          "name": "PRP Enhancement Add-on (Half Price This Month)",
-          "price": "50",
-          "priceCurrency": "GBP",
-          "description": "Platelet Rich Plasma therapy add-on per session — currently half price at £50 (normally £100)"
+          "name": "PRP Enhancement Add-on",
+          "description": "Optional Platelet Rich Plasma therapy add-on per session — available at half price during your treatment."
         }
       ]
     }
