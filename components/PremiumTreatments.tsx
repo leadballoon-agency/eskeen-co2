@@ -58,7 +58,7 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
 
                 <p className="text-xs text-primary-700 font-semibold uppercase tracking-wider mb-2">Includes</p>
                 <ul className="space-y-2 mb-5 sm:mb-6">
-                  {['Full face fractional CO2 resurfacing', 'Upper &amp; lower eyelid rejuvenation (non-surgical blepharoplasty)', 'Jowls &amp; jawline lifting', 'Neck tightening', 'Free 15-minute skin analysis consultation'].map((feature, idx) => (
+                  {['Full face fractional CO2 resurfacing', 'Upper &amp; lower eyelid rejuvenation (non-surgical blepharoplasty)', 'Jowls &amp; jawline lifting', 'Neck tightening', 'Skin analysis consultation included', 'Skin patch test included'].map((feature, idx) => (
                     <li key={idx} className="flex items-start text-sm sm:text-base text-neutral-700">
                       <svg className="w-5 h-5 text-primary-500 mr-2 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -79,12 +79,12 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                   onClick={trackAndBook}
                   className="w-full sm:w-auto px-8 py-4 rounded-full bg-gradient-to-r from-primary-500 to-primary-700 text-white font-semibold text-base sm:text-lg hover:shadow-xl transition-all duration-300 hover:scale-105 inline-flex items-center justify-center"
                 >
-                  Book a £25 Consultation
+                  Book a £50 Consultation
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                   </svg>
                 </button>
-                <p className="text-xs text-neutral-500 mt-3">£25 reserves your slot — redeemed off your treatment.</p>
+                <p className="text-xs text-neutral-500 mt-3">£50 reserves your slot — redeemed off your treatment.</p>
               </div>
 
               {/* RIGHT — Skin resurfacing money shot */}

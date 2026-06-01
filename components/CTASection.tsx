@@ -63,11 +63,12 @@ export default function CTASection({ onBookingClick }: CTASectionProps) {
           onClick={onBookingClick}
           className="inline-flex items-center justify-center bg-white text-primary-600 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base lg:text-lg hover:shadow-xl transition-all duration-300 hover:scale-105 w-full sm:w-auto"
         >
-          Book Your Free Consultation
+          Book Your £50 Consultation
           <svg className="w-4 h-4 sm:w-5 sm:h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
           </svg>
         </button>
+        <p className="text-white/80 text-xs sm:text-sm mt-3">£50 redeemable against your treatment</p>
 
         <div className="mt-8 sm:mt-12 flex items-center justify-center flex-wrap gap-4 sm:gap-8">
           <div className="text-center">

@@ -28,8 +28,8 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      title: 'No Obligation',
-      description: 'Complimentary analysis with no pressure - just honest, professional advice'
+      title: 'Honest Advice',
+      description: 'Straight, professional advice from qualified practitioners — we tell you what will work and what won\'t'
     }
   ]
 
@@ -43,13 +43,13 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
               New Service
             </span>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold">
-              Free Skin
-              <span className="block gradient-text">Analysis</span>
+              Book Your
+              <span className="block gradient-text">Consultation</span>
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-neutral-600 mt-4 leading-relaxed">
-              Not sure which treatment is right for you? Book a complimentary skin analysis with our expert practitioners.
-              We&apos;ll assess your skin concerns, discuss your goals, and create a personalised treatment plan
-              tailored specifically for you.
+              Ready to take the next step? Book a 15-minute consultation with our expert practitioners.
+              <span className="block mt-3 font-semibold text-neutral-900">£50 reserves your slot — redeemed in full against your treatment.</span>
+              We&apos;ll discuss your goals, plan your treatment, and answer every question before you commit.
             </p>
 
             {/* Benefits */}
@@ -73,7 +73,7 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
                 onClick={onBookingClick}
                 className="w-full sm:w-auto inline-flex items-center justify-center bg-gradient-to-r from-primary-500 to-primary-600 text-white px-8 py-3 sm:py-4 rounded-full font-medium text-base sm:text-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               >
-                Book Free Skin Analysis
+                Book £50 Consultation
                 <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
@@ -98,8 +98,8 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
                   {/* Overlay with text */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent flex items-end justify-center pb-6">
                     <div className="text-center text-white">
-                      <p className="font-semibold text-lg sm:text-xl drop-shadow-lg">Skin Analysis</p>
-                      <p className="text-sm mt-1 drop-shadow-lg">Complimentary</p>
+                      <p className="font-semibold text-lg sm:text-xl drop-shadow-lg">Consultation</p>
+                      <p className="text-sm mt-1 drop-shadow-lg">£50 redeemable</p>
                     </div>
                   </div>
                 </div>
@@ -111,8 +111,8 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
                     <p className="text-xs sm:text-sm text-neutral-600">Minutes</p>
                   </div>
                   <div>
-                    <p className="text-2xl sm:text-3xl font-bold gradient-text">Free</p>
-                    <p className="text-xs sm:text-sm text-neutral-600">No Cost</p>
+                    <p className="text-2xl sm:text-3xl font-bold gradient-text">£50</p>
+                    <p className="text-xs sm:text-sm text-neutral-600">Redeemable</p>
                   </div>
                   <div>
                     <p className="text-2xl sm:text-3xl font-bold gradient-text">1:1</p>

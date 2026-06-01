@@ -61,9 +61,9 @@ export default function SkinAnalysisModal({ isOpen, onClose }: SkinAnalysisModal
             </svg>
           </button>
 
-          <h2 className="text-lg sm:text-xl font-bold pr-10">Free Skin Analysis</h2>
+          <h2 className="text-lg sm:text-xl font-bold pr-10">Book Your Consultation</h2>
           <p className="text-white/80 text-xs sm:text-sm mt-0.5">
-            15-minute complimentary consultation — pick a slot below.
+            15-minute consultation • £50 redeemable against your treatment
           </p>
         </div>
 
@@ -74,7 +74,7 @@ export default function SkinAnalysisModal({ isOpen, onClose }: SkinAnalysisModal
         >
           <iframe
             src={CALENDAR_URL}
-            title="Eskeen Clinic — Free Skin Analysis Booking"
+            title="Eskeen Clinic — Consultation Booking"
             style={{ width: '100%', border: 'none', display: 'block', minHeight: '640px' }}
             scrolling="yes"
             id="itJPH3ZPoHYBdFjVsGvM"
