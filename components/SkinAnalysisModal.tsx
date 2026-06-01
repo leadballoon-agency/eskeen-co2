@@ -8,8 +8,8 @@ interface SkinAnalysisModalProps {
   onClose: () => void
 }
 
-const CALENDAR_URL = 'https://link.eskeenpay.co.uk/widget/booking/itJPH3ZPoHYBdFjVsGvM'
-const FORM_EMBED_SRC = 'https://link.eskeenpay.co.uk/js/form_embed.js'
+const CALENDAR_URL = 'https://link.leadballoon.co.uk/widget/booking/syK16SjNrYdMzEIta7Bb'
+const FORM_EMBED_SRC = 'https://link.leadballoon.co.uk/js/form_embed.js'
 
 export default function SkinAnalysisModal({ isOpen, onClose }: SkinAnalysisModalProps) {
   useEffect(() => {
@@ -77,7 +77,7 @@ export default function SkinAnalysisModal({ isOpen, onClose }: SkinAnalysisModal
             title="Eskeen Clinic — Consultation Booking"
             style={{ width: '100%', border: 'none', display: 'block', minHeight: '640px' }}
             scrolling="yes"
-            id="itJPH3ZPoHYBdFjVsGvM"
+            id="syK16SjNrYdMzEIta7Bb"
           />
         </div>
 
