@@ -10,8 +10,8 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      title: 'Personalised Assessment',
-      description: 'Get a detailed analysis of your unique skin type, concerns, and goals'
+      title: '3D Visage Skin Analysis & Report',
+      description: 'Full skin scan and personalised report using our 3D Visage equipment — see exactly what your skin needs'
     },
     {
       icon: (
@@ -19,8 +19,8 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
         </svg>
       ),
-      title: 'Expert Recommendations',
-      description: 'Receive tailored treatment suggestions from our experienced practitioners'
+      title: 'CO2 Laser Patch Test',
+      description: 'On-the-day patch test of your skin\'s response to the laser — the safe, standard prerequisite to treatment'
     },
     {
       icon: (
@@ -28,8 +28,8 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       ),
-      title: 'Honest Advice',
-      description: 'Straight, professional advice from qualified practitioners — we tell you what will work and what won\'t'
+      title: '30-Minute 1:1 Consultation',
+      description: 'Sit down with a qualified practitioner to plan your treatment and get honest, professional advice'
     }
   ]
 
@@ -47,9 +47,10 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
               <span className="block gradient-text">Consultation</span>
             </h2>
             <p className="text-sm sm:text-base lg:text-lg text-neutral-600 mt-4 leading-relaxed">
-              Ready to take the next step? Book a 15-minute consultation with our expert practitioners.
+              Ready to take the next step? Book a 30-minute appointment with one of our expert practitioners.
               <span className="block mt-3 font-semibold text-neutral-900">£50 reserves your slot — redeemed in full against your treatment.</span>
-              We&apos;ll discuss your goals, plan your treatment, and answer every question before you commit.
+              Includes your 3D Visage skin analysis, CO2 laser patch test, and a full 1:1 consultation —
+              everything you need before treatment day.
             </p>
 
             {/* Benefits */}
@@ -107,7 +108,7 @@ export default function SkinAnalysis({ onBookingClick }: SkinAnalysisProps) {
                 {/* Stats */}
                 <div className="mt-6 grid grid-cols-3 gap-4 text-center">
                   <div>
-                    <p className="text-2xl sm:text-3xl font-bold gradient-text">15</p>
+                    <p className="text-2xl sm:text-3xl font-bold gradient-text">30</p>
                     <p className="text-xs sm:text-sm text-neutral-600">Minutes</p>
                   </div>
                   <div>

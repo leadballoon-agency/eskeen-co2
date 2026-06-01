@@ -63,7 +63,7 @@ export default function SkinAnalysisModal({ isOpen, onClose }: SkinAnalysisModal
 
           <h2 className="text-lg sm:text-xl font-bold pr-10">Book Your Consultation</h2>
           <p className="text-white/80 text-xs sm:text-sm mt-0.5">
-            15-minute consultation • £50 redeemable against your treatment
+            30-minute consultation • £50 redeemable against your treatment
           </p>
         </div>
 
@@ -81,8 +81,11 @@ export default function SkinAnalysisModal({ isOpen, onClose }: SkinAnalysisModal
           />
         </div>
 
-        {/* Compact footer — phone fallback only */}
-        <div className="flex-shrink-0 border-t border-neutral-200 px-4 py-3 bg-neutral-50 text-center">
+        {/* Compact footer — cancellation policy + phone fallback */}
+        <div className="flex-shrink-0 border-t border-neutral-200 px-4 py-3 bg-neutral-50 text-center space-y-1">
+          <p className="text-xs text-neutral-500">
+            48 hours&apos; notice required to cancel or rearrange.
+          </p>
           <p className="text-xs sm:text-sm text-neutral-600">
             Prefer to call?{' '}
             <a
