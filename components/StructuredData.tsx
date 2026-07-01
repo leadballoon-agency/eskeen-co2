@@ -46,6 +46,26 @@ export default function StructuredData() {
           "@type": "Offer",
           "itemOffered": {
             "@type": "MedicalProcedure",
+            "name": "Non-Surgical Blepharoplasty — Upper Eyelids",
+            "description": "CO2 laser resurfacing of the upper eyelids to lift hooded lids and smooth crepey skin. Non-surgical alternative to blepharoplasty."
+          },
+          "price": "190",
+          "priceCurrency": "GBP"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "MedicalProcedure",
+            "name": "Non-Surgical Blepharoplasty — Lower Eyelids",
+            "description": "CO2 laser resurfacing of the lower eyelids to reduce under-eye crepiness, fine lines and bags. £100 when combined with upper eyelids (£290 for both)."
+          },
+          "price": "190",
+          "priceCurrency": "GBP"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "MedicalProcedure",
             "name": "CO2 Laser 3 Session Package",
             "description": "Comprehensive package for acne scars, wrinkles, and skin rejuvenation - Save £335"
           },
@@ -236,6 +256,20 @@ export default function StructuredData() {
           "price": "395",
           "priceCurrency": "GBP",
           "description": "Full face CO2 laser resurfacing including upper and lower eyelid treatment. Optional half-price PRP add-on available during your treatment."
+        },
+        {
+          "@type": "Offer",
+          "name": "Non-Surgical Blepharoplasty — Upper Eyelids",
+          "price": "190",
+          "priceCurrency": "GBP",
+          "description": "CO2 laser resurfacing of the upper eyelids to lift hooded lids and smooth crepey skin. Non-surgical alternative to blepharoplasty."
+        },
+        {
+          "@type": "Offer",
+          "name": "Non-Surgical Blepharoplasty — Lower Eyelids",
+          "price": "190",
+          "priceCurrency": "GBP",
+          "description": "CO2 laser resurfacing of the lower eyelids to reduce under-eye crepiness, fine lines and bags. £100 when combined with upper eyelids (£290 for both)."
         },
         {
           "@type": "Offer",
