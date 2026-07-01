@@ -8,7 +8,7 @@ interface PremiumTreatmentsProps {
 }
 
 export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsProps) {
-  const [showAfterModal, setShowAfterModal] = useState(false)
+  const [lightboxImg, setLightboxImg] = useState<string | null>(null)
 
   const trackAndBook = () => {
     trackPRPDealView()
@@ -85,9 +85,25 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                   </svg>
                 </button>
                 <p className="text-xs text-neutral-500 mt-3">£50 reserves your slot — redeemed off your treatment.</p>
+
+                {/* Secondary option — 3-session course */}
+                <div className="mt-5 pt-5 border-t border-primary-100 flex items-center justify-between gap-4">
+                  <div>
+                    <p className="text-sm font-semibold text-neutral-800">
+                      Prefer a full course? 3 sessions — <span className="gradient-text">£850</span>
+                    </p>
+                    <p className="text-xs text-neutral-500">Save £335 · best for deeper acne scarring</p>
+                  </div>
+                  <button
+                    onClick={trackAndBook}
+                    className="flex-shrink-0 px-4 py-2 rounded-full border border-primary-300 text-primary-700 font-medium hover:bg-primary-50 transition-colors text-sm"
+                  >
+                    Get Started
+                  </button>
+                </div>
               </div>
 
-              {/* RIGHT — Skin resurfacing money shot */}
+              {/* RIGHT — Skin resurfacing money shot (shown in full) */}
               <div>
                 <div className="relative rounded-2xl overflow-hidden shadow-premium-lg">
                   <img
@@ -104,178 +120,107 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
           </div>
         </div>
 
-        {/* Non-Surgical Blepharoplasty — Upper & Lower available separately */}
-        <div className="mb-12 sm:mb-16 max-w-5xl mx-auto">
-          <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 border border-neutral-200 shadow-sm">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="text-2xl sm:text-3xl">👁️</span>
-              <div>
-                <p className="text-primary-600 font-semibold text-[11px] sm:text-xs uppercase tracking-wider">Also available on their own</p>
-                <h4 className="text-lg sm:text-xl font-bold text-neutral-800">Non-Surgical Blepharoplasty — Upper &amp; Lower Eyelids</h4>
-              </div>
-            </div>
-
-            <p className="text-sm sm:text-base text-neutral-600 mb-6 leading-relaxed">
-              Fractional CO2 laser resurfacing uses controlled light beams to vaporize damaged skin, stimulate collagen, and tighten loose skin around the eyes. A non-surgical lift to reduce wrinkles, fine lines, hooded lids and under-eye crepiness — results comparable to traditional blepharoplasty, but without the surgery. Treat the upper lids, lower lids, or both.
+        {/* Non-Surgical Blepharoplasty — Upper & Lower, available separately */}
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-6 sm:mb-8">
+            <p className="text-primary-600 font-medium tracking-wider uppercase text-xs sm:text-sm">Also available on their own</p>
+            <h3 className="text-xl sm:text-2xl font-semibold text-neutral-800 mt-1">Non-Surgical Blepharoplasty</h3>
+            <p className="text-sm text-neutral-600 max-w-xl mx-auto mt-2">
+              Only want your eyes done? CO2 laser is a non-surgical alternative to blepharoplasty — smoothing and tightening the eye area. Choose the upper lids, lower lids, or both.
             </p>
+          </div>
 
-            {/* Two priced treatments */}
-            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
-              {/* Upper */}
-              <div className="rounded-2xl border border-neutral-200 p-5 flex flex-col">
-                <div className="relative rounded-xl overflow-hidden mb-4">
-                  <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-[10px] px-2 py-0.5 rounded-full z-10">Before &amp; After</span>
-                  <img
-                    src="/images/blepharoplasty-upper.jpeg"
-                    alt="Upper eyelid non-surgical blepharoplasty before and after"
-                    className="w-full h-auto"
-                  />
-                </div>
-                <p className="text-[11px] sm:text-xs text-primary-600 font-semibold uppercase tracking-wider mb-1">Non-Surgical Blepharoplasty</p>
-                <h5 className="text-base sm:text-lg font-bold text-neutral-800 mb-2">Upper Eyelids</h5>
-                <p className="text-xs sm:text-sm text-neutral-600 mb-4">Lifts hooded, heavy upper lids and smooths crepey skin above the eye.</p>
-                <ul className="space-y-2 mb-5 flex-grow">
-                  {[
-                    'Tightens hooded upper lids',
-                    'Smooths fine lines & crepiness',
-                    'Stimulates collagen production',
-                  ].map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-xs sm:text-sm text-neutral-700">
-                      <svg className="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex items-center justify-between pt-3 border-t border-neutral-100 mt-auto">
-                  <p className="text-xl sm:text-2xl font-bold gradient-text">£190</p>
-                  <button
-                    onClick={trackAndBook}
-                    className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white font-medium hover:shadow-lg transition-all duration-300 text-xs sm:text-sm"
-                  >
-                    Book Upper
-                  </button>
-                </div>
-              </div>
-
-              {/* Lower */}
-              <div className="rounded-2xl border border-neutral-200 p-5 flex flex-col">
-                <div className="relative rounded-xl overflow-hidden mb-4">
-                  <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-[10px] px-2 py-0.5 rounded-full z-10">Before &amp; After</span>
-                  <img
-                    src="/images/blepharoplasty-lower.jpeg"
-                    alt="Lower eyelid non-surgical blepharoplasty before and after"
-                    className="w-full h-auto"
-                  />
-                </div>
-                <p className="text-[11px] sm:text-xs text-primary-600 font-semibold uppercase tracking-wider mb-1">Non-Surgical Blepharoplasty</p>
-                <h5 className="text-base sm:text-lg font-bold text-neutral-800 mb-2">Lower Eyelids</h5>
-                <p className="text-xs sm:text-sm text-neutral-600 mb-4">Reduces under-eye crepiness, fine lines and tired-looking bags.</p>
-                <ul className="space-y-2 mb-5 flex-grow">
-                  {[
-                    'Firms under-eye crepiness',
-                    'Softens fine lines & bags',
-                    'Stimulates collagen production',
-                  ].map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-xs sm:text-sm text-neutral-700">
-                      <svg className="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <div className="flex items-center justify-between pt-3 border-t border-neutral-100 mt-auto">
-                  <p className="text-xl sm:text-2xl font-bold gradient-text">£190</p>
-                  <button
-                    onClick={trackAndBook}
-                    className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white font-medium hover:shadow-lg transition-all duration-300 text-xs sm:text-sm"
-                  >
-                    Book Lower
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Bundle note */}
-            <div className="mb-6 p-3 bg-cyan-50 rounded-xl border border-cyan-200">
-              <p className="text-xs sm:text-sm text-cyan-800">
-                <span className="font-semibold">Book both together — £290</span> (save £90). Lower eyelids just £100 when combined with upper.
-              </p>
-            </div>
-
-            {/* Real result — enlargeable before/after */}
-            <div className="max-w-md mx-auto">
+          <div className="grid lg:grid-cols-[1fr_1.3fr_1fr] gap-4 sm:gap-6 items-center">
+            {/* Upper — side */}
+            <div className="order-2 lg:order-none bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden flex flex-col">
               <button
-                onClick={() => setShowAfterModal(true)}
-                className="relative w-full group cursor-pointer block rounded-xl overflow-hidden shadow-md"
+                onClick={() => setLightboxImg('/images/blepharoplasty-upper.jpeg')}
+                className="relative block group cursor-pointer"
               >
-                <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-xs px-2 py-1 rounded-full z-10">Before &amp; After</span>
-                <span className="absolute top-2 right-2 bg-white/90 text-cyan-600 text-xs px-2 py-1 rounded-full z-10 font-medium group-hover:bg-cyan-500 group-hover:text-white transition-colors">
-                  Tap to enlarge
-                </span>
+                <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-[10px] px-2 py-0.5 rounded-full z-10">Before &amp; After</span>
+                <span className="absolute top-2 right-2 bg-white/90 text-cyan-600 text-[10px] px-2 py-0.5 rounded-full z-10 font-medium group-hover:bg-cyan-500 group-hover:text-white transition-colors">Enlarge</span>
                 <img
-                  src="/images/blepharoplasty-result.jpeg"
-                  alt="Non-surgical blepharoplasty before and after — real CO2 laser result"
-                  className="w-full h-auto group-hover:ring-2 ring-cyan-400 transition-all"
+                  src="/images/blepharoplasty-upper.jpeg"
+                  alt="Upper eyelid non-surgical blepharoplasty before and after"
+                  className="w-full aspect-square object-cover"
                 />
               </button>
-              <p className="text-center text-xs text-neutral-500 mt-2">
-                Real CO2 laser eyelid rejuvenation results.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* 3-Session Package — the alternative */}
-        <div className="text-center mb-6 sm:mb-8">
-          <p className="text-primary-600 font-medium tracking-wider uppercase text-xs sm:text-sm">For deeper concerns</p>
-          <h3 className="text-xl sm:text-2xl font-semibold text-neutral-800 mt-1">3-Session Package</h3>
-        </div>
-
-        <div className="max-w-md mx-auto">
-          <div className="group relative bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 transition-all duration-500 flex flex-col h-full shadow-premium-lg border-2 border-primary-200 sm:hover:scale-105">
-            <div className="absolute -top-2 sm:-top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary-500 to-primary-600 text-white px-3 sm:px-4 py-0.5 sm:py-1 rounded-full text-xs sm:text-sm font-medium">
-              Best Value
-            </div>
-
-            <div className="absolute inset-0 bg-gradient-to-br from-primary-400 to-primary-600 opacity-5 rounded-2xl sm:rounded-3xl transition-opacity group-hover:opacity-10"></div>
-
-            <div className="relative flex flex-col h-full">
-              <div className="mb-3 sm:mb-4 lg:mb-6">
-                <div className="text-3xl sm:text-4xl lg:text-5xl p-2.5 sm:p-3 lg:p-4 bg-gradient-to-br from-primary-400 to-primary-600 rounded-xl sm:rounded-2xl bg-opacity-10 inline-block">
-                  💎
+              <div className="p-4 flex flex-col flex-grow">
+                <h4 className="text-base font-bold text-neutral-800">Upper Eyelids</h4>
+                <p className="text-xs sm:text-sm text-neutral-600 mt-1 mb-4 flex-grow">Lifts hooded, heavy lids and smooths crepey skin above the eye.</p>
+                <div className="flex items-center justify-between">
+                  <p className="text-xl font-bold gradient-text">£190</p>
+                  <button
+                    onClick={trackAndBook}
+                    className="px-4 py-2 rounded-full border border-primary-300 text-primary-700 font-medium hover:bg-primary-50 transition-colors text-sm"
+                  >
+                    Book
+                  </button>
                 </div>
               </div>
+            </div>
 
-              <div className="mb-3 sm:mb-4 lg:mb-6">
-                <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-1.5 sm:mb-2">3-Session Package</h3>
-                <p className="text-xs sm:text-sm lg:text-base text-neutral-600">Complete transformation package — best for deeper acne scarring and significant texture concerns.</p>
+            {/* Both — hero (recommended) */}
+            <div className="order-1 lg:order-none relative bg-gradient-to-br from-white to-primary-50 rounded-2xl sm:rounded-3xl border-2 border-primary-300 shadow-premium-lg overflow-hidden flex flex-col lg:scale-105">
+              <div className="absolute left-1/2 -translate-x-1/2 top-0 z-20">
+                <span className="bg-gradient-to-r from-primary-500 to-primary-700 text-white px-4 py-1 rounded-b-lg text-[11px] font-bold shadow uppercase tracking-wider whitespace-nowrap">Recommended</span>
               </div>
-
-              <ul className="space-y-1.5 sm:space-y-2 mb-4 sm:mb-6 flex-grow">
-                {['3 CO2 laser sessions', 'Save £335 total', 'Book within 6 months', 'Best for acne scars'].map((feature, idx) => (
-                  <li key={idx} className="flex items-start sm:items-center text-xs sm:text-sm text-neutral-700">
-                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-primary-500 mr-1.5 sm:mr-2 flex-shrink-0 mt-0.5 sm:mt-0" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-neutral-100 mt-auto">
-                <div>
-                  <p className="text-xs text-neutral-500 sm:hidden">From</p>
-                  <p className="text-xl sm:text-2xl font-bold gradient-text">£850</p>
+              <button
+                onClick={() => setLightboxImg('/images/blepharoplasty-result.jpeg')}
+                className="relative block group cursor-pointer"
+              >
+                <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-[10px] px-2 py-0.5 rounded-full z-10">Upper &amp; lower done</span>
+                <span className="absolute top-2 right-2 bg-white/90 text-cyan-600 text-[10px] px-2 py-0.5 rounded-full z-10 font-medium group-hover:bg-cyan-500 group-hover:text-white transition-colors">Enlarge</span>
+                <img
+                  src="/images/blepharoplasty-result.jpeg"
+                  alt="Upper and lower eyelid non-surgical blepharoplasty before and after"
+                  className="w-full aspect-square object-cover"
+                />
+              </button>
+              <div className="p-5 flex flex-col flex-grow text-center">
+                <p className="text-[11px] text-primary-600 font-semibold uppercase tracking-wider mb-1">Best value</p>
+                <h4 className="text-lg sm:text-xl font-bold text-neutral-800">Both Eyelids Together</h4>
+                <p className="text-xs sm:text-sm text-neutral-600 mt-1 mb-3">Upper &amp; lower treated in one visit.</p>
+                <div className="flex items-baseline justify-center gap-2 mb-4">
+                  <span className="text-3xl sm:text-4xl font-bold gradient-text">£290</span>
+                  <span className="text-sm text-neutral-400 line-through">£380</span>
+                  <span className="text-xs font-semibold text-primary-700">save £90</span>
                 </div>
                 <button
                   onClick={trackAndBook}
-                  className="px-4 sm:px-5 lg:px-6 py-2.5 sm:py-3 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white font-medium hover:shadow-lg transition-all duration-300 sm:hover:scale-105 text-sm sm:text-base"
+                  className="mt-auto w-full px-5 py-3 rounded-full bg-gradient-to-r from-primary-500 to-primary-700 text-white font-semibold hover:shadow-xl transition-all duration-300 hover:scale-[1.02] text-sm sm:text-base"
                 >
-                  Get Started
+                  Book Both — £290
                 </button>
+              </div>
+            </div>
+
+            {/* Lower — side */}
+            <div className="order-3 lg:order-none bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden flex flex-col">
+              <button
+                onClick={() => setLightboxImg('/images/blepharoplasty-lower.jpeg')}
+                className="relative block group cursor-pointer"
+              >
+                <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-[10px] px-2 py-0.5 rounded-full z-10">Before &amp; After</span>
+                <span className="absolute top-2 right-2 bg-white/90 text-cyan-600 text-[10px] px-2 py-0.5 rounded-full z-10 font-medium group-hover:bg-cyan-500 group-hover:text-white transition-colors">Enlarge</span>
+                <img
+                  src="/images/blepharoplasty-lower.jpeg"
+                  alt="Lower eyelid non-surgical blepharoplasty before and after"
+                  className="w-full aspect-square object-cover"
+                />
+              </button>
+              <div className="p-4 flex flex-col flex-grow">
+                <h4 className="text-base font-bold text-neutral-800">Lower Eyelids</h4>
+                <p className="text-xs sm:text-sm text-neutral-600 mt-1 mb-4 flex-grow">Reduces under-eye crepiness, fine lines and tired-looking bags.</p>
+                <div className="flex items-center justify-between">
+                  <p className="text-xl font-bold gradient-text">£190</p>
+                  <button
+                    onClick={trackAndBook}
+                    className="px-4 py-2 rounded-full border border-primary-300 text-primary-700 font-medium hover:bg-primary-50 transition-colors text-sm"
+                  >
+                    Book
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -290,11 +235,11 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
         </div>
       </div>
 
-      {/* After Image Lightbox Modal */}
-      {showAfterModal && (
+      {/* Before/After Lightbox Modal */}
+      {lightboxImg && (
         <div
           className="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-8"
-          onClick={() => setShowAfterModal(false)}
+          onClick={() => setLightboxImg(null)}
         >
           <div className="absolute inset-0 bg-black/80 backdrop-blur-sm" />
 
@@ -303,7 +248,7 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
             onClick={(e) => e.stopPropagation()}
           >
             <button
-              onClick={() => setShowAfterModal(false)}
+              onClick={() => setLightboxImg(null)}
               className="absolute -top-12 right-0 sm:top-4 sm:right-4 w-10 h-10 bg-white/20 backdrop-blur rounded-full flex items-center justify-center hover:bg-white/30 transition-colors z-10"
             >
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -313,8 +258,8 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
 
             <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="/images/blepharoplasty-result.jpeg"
-                alt="Non-surgical blepharoplasty before and after - real result"
+                src={lightboxImg}
+                alt="Non-surgical blepharoplasty before and after — real result"
                 className="w-full h-auto"
               />
               <div className="p-4 sm:p-6 bg-gradient-to-r from-cyan-50 to-blue-50">
@@ -324,7 +269,7 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                 </p>
                 <button
                   onClick={() => {
-                    setShowAfterModal(false)
+                    setLightboxImg(null)
                     onBookingClick?.()
                   }}
                   className="mt-4 w-full px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-primary-600 text-white font-medium hover:shadow-lg transition-all duration-300 text-sm sm:text-base"
