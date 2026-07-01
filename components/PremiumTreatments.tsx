@@ -121,7 +121,7 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
         </div>
 
         {/* Non-Surgical Blepharoplasty — Upper & Lower, available separately */}
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           <div className="text-center mb-6 sm:mb-8">
             <p className="text-primary-600 font-medium tracking-wider uppercase text-xs sm:text-sm">Also available on their own</p>
             <h3 className="text-xl sm:text-2xl font-semibold text-neutral-800 mt-1">Non-Surgical Blepharoplasty</h3>
@@ -130,9 +130,9 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 gap-4 sm:gap-5">
-            {/* Upper */}
-            <div className="bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden flex flex-col">
+          <div className="grid lg:grid-cols-[1fr_1.3fr_1fr] gap-4 sm:gap-6 items-center">
+            {/* Upper — side */}
+            <div className="order-2 lg:order-none bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden flex flex-col">
               <button
                 onClick={() => setLightboxImg('/images/blepharoplasty-upper.jpeg')}
                 className="relative block group cursor-pointer"
@@ -145,14 +145,14 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                   className="w-full aspect-square object-cover"
                 />
               </button>
-              <div className="p-4 sm:p-5 flex flex-col flex-grow">
-                <h4 className="text-base sm:text-lg font-bold text-neutral-800">Upper Eyelids</h4>
+              <div className="p-4 flex flex-col flex-grow">
+                <h4 className="text-base font-bold text-neutral-800">Upper Eyelids</h4>
                 <p className="text-xs sm:text-sm text-neutral-600 mt-1 mb-4 flex-grow">Lifts hooded, heavy lids and smooths crepey skin above the eye.</p>
                 <div className="flex items-center justify-between">
-                  <p className="text-xl sm:text-2xl font-bold gradient-text">£190</p>
+                  <p className="text-xl font-bold gradient-text">£190</p>
                   <button
                     onClick={trackAndBook}
-                    className="px-4 sm:px-5 py-2 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white font-medium hover:shadow-lg transition-all duration-300 text-sm"
+                    className="px-4 py-2 rounded-full border border-primary-300 text-primary-700 font-medium hover:bg-primary-50 transition-colors text-sm"
                   >
                     Book
                   </button>
@@ -160,8 +160,43 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
               </div>
             </div>
 
-            {/* Lower */}
-            <div className="bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden flex flex-col">
+            {/* Both — hero (recommended) */}
+            <div className="order-1 lg:order-none relative bg-gradient-to-br from-white to-primary-50 rounded-2xl sm:rounded-3xl border-2 border-primary-300 shadow-premium-lg overflow-hidden flex flex-col lg:scale-105">
+              <div className="absolute left-1/2 -translate-x-1/2 top-0 z-20">
+                <span className="bg-gradient-to-r from-primary-500 to-primary-700 text-white px-4 py-1 rounded-b-lg text-[11px] font-bold shadow uppercase tracking-wider whitespace-nowrap">Recommended</span>
+              </div>
+              <button
+                onClick={() => setLightboxImg('/images/blepharoplasty-result.jpeg')}
+                className="relative block group cursor-pointer"
+              >
+                <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-[10px] px-2 py-0.5 rounded-full z-10">Upper &amp; lower done</span>
+                <span className="absolute top-2 right-2 bg-white/90 text-cyan-600 text-[10px] px-2 py-0.5 rounded-full z-10 font-medium group-hover:bg-cyan-500 group-hover:text-white transition-colors">Enlarge</span>
+                <img
+                  src="/images/blepharoplasty-result.jpeg"
+                  alt="Upper and lower eyelid non-surgical blepharoplasty before and after"
+                  className="w-full aspect-square object-cover"
+                />
+              </button>
+              <div className="p-5 flex flex-col flex-grow text-center">
+                <p className="text-[11px] text-primary-600 font-semibold uppercase tracking-wider mb-1">Best value</p>
+                <h4 className="text-lg sm:text-xl font-bold text-neutral-800">Both Eyelids Together</h4>
+                <p className="text-xs sm:text-sm text-neutral-600 mt-1 mb-3">Upper &amp; lower treated in one visit.</p>
+                <div className="flex items-baseline justify-center gap-2 mb-4">
+                  <span className="text-3xl sm:text-4xl font-bold gradient-text">£290</span>
+                  <span className="text-sm text-neutral-400 line-through">£380</span>
+                  <span className="text-xs font-semibold text-primary-700">save £90</span>
+                </div>
+                <button
+                  onClick={trackAndBook}
+                  className="mt-auto w-full px-5 py-3 rounded-full bg-gradient-to-r from-primary-500 to-primary-700 text-white font-semibold hover:shadow-xl transition-all duration-300 hover:scale-[1.02] text-sm sm:text-base"
+                >
+                  Book Both — £290
+                </button>
+              </div>
+            </div>
+
+            {/* Lower — side */}
+            <div className="order-3 lg:order-none bg-white rounded-2xl border border-neutral-200 shadow-sm overflow-hidden flex flex-col">
               <button
                 onClick={() => setLightboxImg('/images/blepharoplasty-lower.jpeg')}
                 className="relative block group cursor-pointer"
@@ -174,48 +209,19 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                   className="w-full aspect-square object-cover"
                 />
               </button>
-              <div className="p-4 sm:p-5 flex flex-col flex-grow">
-                <h4 className="text-base sm:text-lg font-bold text-neutral-800">Lower Eyelids</h4>
+              <div className="p-4 flex flex-col flex-grow">
+                <h4 className="text-base font-bold text-neutral-800">Lower Eyelids</h4>
                 <p className="text-xs sm:text-sm text-neutral-600 mt-1 mb-4 flex-grow">Reduces under-eye crepiness, fine lines and tired-looking bags.</p>
                 <div className="flex items-center justify-between">
-                  <p className="text-xl sm:text-2xl font-bold gradient-text">£190</p>
+                  <p className="text-xl font-bold gradient-text">£190</p>
                   <button
                     onClick={trackAndBook}
-                    className="px-4 sm:px-5 py-2 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white font-medium hover:shadow-lg transition-all duration-300 text-sm"
+                    className="px-4 py-2 rounded-full border border-primary-300 text-primary-700 font-medium hover:bg-primary-50 transition-colors text-sm"
                   >
                     Book
                   </button>
                 </div>
               </div>
-            </div>
-          </div>
-
-          {/* Bundle — both eyelids together, featuring the combined result */}
-          <div className="mt-4 sm:mt-5 max-w-2xl mx-auto bg-white rounded-2xl border border-primary-200 shadow-sm overflow-hidden flex flex-col sm:flex-row">
-            <button
-              onClick={() => setLightboxImg('/images/blepharoplasty-result.jpeg')}
-              className="relative sm:w-2/5 group cursor-pointer"
-            >
-              <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-[10px] px-2 py-0.5 rounded-full z-10">Upper &amp; lower done</span>
-              <span className="absolute top-2 right-2 bg-white/90 text-cyan-600 text-[10px] px-2 py-0.5 rounded-full z-10 font-medium group-hover:bg-cyan-500 group-hover:text-white transition-colors">Enlarge</span>
-              <img
-                src="/images/blepharoplasty-result.jpeg"
-                alt="Upper and lower eyelid non-surgical blepharoplasty before and after"
-                className="w-full h-48 sm:h-full object-cover"
-              />
-            </button>
-            <div className="p-4 sm:p-5 flex flex-col justify-center flex-1">
-              <p className="text-[11px] text-primary-600 font-semibold uppercase tracking-wider mb-1">Best value</p>
-              <h4 className="text-base sm:text-lg font-bold text-neutral-800">
-                Both eyelids together — <span className="gradient-text">£290</span>
-              </h4>
-              <p className="text-xs sm:text-sm text-neutral-600 mt-1 mb-4">Upper &amp; lower treated in one visit — save £90.</p>
-              <button
-                onClick={trackAndBook}
-                className="self-start px-5 py-2.5 rounded-full bg-gradient-to-r from-primary-500 to-primary-700 text-white font-medium hover:shadow-lg transition-all duration-300 text-sm"
-              >
-                Book Both — £290
-              </button>
             </div>
           </div>
         </div>
