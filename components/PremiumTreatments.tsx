@@ -104,29 +104,41 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
           </div>
         </div>
 
-        {/* About Non-Surgical Blepharoplasty (included treatment) */}
+        {/* Non-Surgical Blepharoplasty — Upper & Lower available separately */}
         <div className="mb-12 sm:mb-16 max-w-5xl mx-auto">
           <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 border border-neutral-200 shadow-sm">
             <div className="flex items-center gap-3 mb-4">
               <span className="text-2xl sm:text-3xl">👁️</span>
               <div>
-                <p className="text-primary-600 font-semibold text-[11px] sm:text-xs uppercase tracking-wider">Included in your £395 treatment</p>
+                <p className="text-primary-600 font-semibold text-[11px] sm:text-xs uppercase tracking-wider">Also available on their own</p>
                 <h4 className="text-lg sm:text-xl font-bold text-neutral-800">Non-Surgical Blepharoplasty — Upper &amp; Lower Eyelids</h4>
               </div>
             </div>
 
-            <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-6 lg:gap-8 items-start">
-              {/* LEFT — copy + features */}
-              <div>
-                <p className="text-sm sm:text-base text-neutral-600 mb-4 leading-relaxed">
-                  Fractional CO2 laser resurfacing uses controlled light beams to vaporize damaged skin, stimulate collagen, and tighten loose skin around the upper and lower eyes. A non-surgical lift to reduce wrinkles, fine lines, hooded lids and under-eye crepiness — results comparable to traditional blepharoplasty, but without the surgery.
-                </p>
-                <ul className="grid sm:grid-cols-2 gap-x-6 gap-y-2">
+            <p className="text-sm sm:text-base text-neutral-600 mb-6 leading-relaxed">
+              Fractional CO2 laser resurfacing uses controlled light beams to vaporize damaged skin, stimulate collagen, and tighten loose skin around the eyes. A non-surgical lift to reduce wrinkles, fine lines, hooded lids and under-eye crepiness — results comparable to traditional blepharoplasty, but without the surgery. Treat the upper lids, lower lids, or both.
+            </p>
+
+            {/* Two priced treatments */}
+            <div className="grid sm:grid-cols-2 gap-4 sm:gap-5 mb-5">
+              {/* Upper */}
+              <div className="rounded-2xl border border-neutral-200 p-5 flex flex-col">
+                <div className="relative rounded-xl overflow-hidden mb-4">
+                  <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-[10px] px-2 py-0.5 rounded-full z-10">Before &amp; After</span>
+                  <img
+                    src="/images/blepharoplasty-upper.jpeg"
+                    alt="Upper eyelid non-surgical blepharoplasty before and after"
+                    className="w-full h-auto"
+                  />
+                </div>
+                <p className="text-[11px] sm:text-xs text-primary-600 font-semibold uppercase tracking-wider mb-1">Non-Surgical Blepharoplasty</p>
+                <h5 className="text-base sm:text-lg font-bold text-neutral-800 mb-2">Upper Eyelids</h5>
+                <p className="text-xs sm:text-sm text-neutral-600 mb-4">Lifts hooded, heavy upper lids and smooths crepey skin above the eye.</p>
+                <ul className="space-y-2 mb-5 flex-grow">
                   {[
-                    'Upper & lower eyelid tightening',
-                    'Non-surgical alternative to blepharoplasty',
+                    'Tightens hooded upper lids',
+                    'Smooths fine lines & crepiness',
                     'Stimulates collagen production',
-                    'Tightens loose skin naturally',
                   ].map((feature, idx) => (
                     <li key={idx} className="flex items-center text-xs sm:text-sm text-neutral-700">
                       <svg className="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -136,40 +148,82 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
                     </li>
                   ))}
                 </ul>
+                <div className="flex items-center justify-between pt-3 border-t border-neutral-100 mt-auto">
+                  <p className="text-xl sm:text-2xl font-bold gradient-text">£190</p>
+                  <button
+                    onClick={trackAndBook}
+                    className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white font-medium hover:shadow-lg transition-all duration-300 text-xs sm:text-sm"
+                  >
+                    Book Upper
+                  </button>
+                </div>
               </div>
 
-              {/* RIGHT — before/after eye images */}
-              <div>
-                <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                  <div className="relative">
-                    <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-xs px-2 py-1 rounded-full z-10">Before</span>
-                    <img
-                      src="/before-eyes.png"
-                      alt="Before non-surgical blepharoplasty"
-                      className="w-full h-auto rounded-xl shadow-md"
-                    />
-                  </div>
-                  <div className="relative">
-                    <button
-                      onClick={() => setShowAfterModal(true)}
-                      className="w-full h-full group cursor-pointer"
-                    >
-                      <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-xs px-2 py-1 rounded-full z-10">After</span>
-                      <span className="absolute top-2 right-2 bg-white/90 text-cyan-600 text-xs px-2 py-1 rounded-full z-10 font-medium group-hover:bg-cyan-500 group-hover:text-white transition-colors">
-                        Tap to enlarge
-                      </span>
-                      <img
-                        src="/after-eyes.png"
-                        alt="After non-surgical blepharoplasty"
-                        className="w-full h-auto rounded-xl shadow-md group-hover:ring-2 ring-cyan-400 transition-all"
-                      />
-                    </button>
-                  </div>
+              {/* Lower */}
+              <div className="rounded-2xl border border-neutral-200 p-5 flex flex-col">
+                <div className="relative rounded-xl overflow-hidden mb-4">
+                  <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-[10px] px-2 py-0.5 rounded-full z-10">Before &amp; After</span>
+                  <img
+                    src="/images/blepharoplasty-lower.jpeg"
+                    alt="Lower eyelid non-surgical blepharoplasty before and after"
+                    className="w-full h-auto"
+                  />
                 </div>
-                <p className="text-center text-xs text-neutral-500 mt-2">
-                  Real CO2 laser eyelid rejuvenation results.
-                </p>
+                <p className="text-[11px] sm:text-xs text-primary-600 font-semibold uppercase tracking-wider mb-1">Non-Surgical Blepharoplasty</p>
+                <h5 className="text-base sm:text-lg font-bold text-neutral-800 mb-2">Lower Eyelids</h5>
+                <p className="text-xs sm:text-sm text-neutral-600 mb-4">Reduces under-eye crepiness, fine lines and tired-looking bags.</p>
+                <ul className="space-y-2 mb-5 flex-grow">
+                  {[
+                    'Firms under-eye crepiness',
+                    'Softens fine lines & bags',
+                    'Stimulates collagen production',
+                  ].map((feature, idx) => (
+                    <li key={idx} className="flex items-center text-xs sm:text-sm text-neutral-700">
+                      <svg className="w-4 h-4 text-cyan-500 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                      </svg>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex items-center justify-between pt-3 border-t border-neutral-100 mt-auto">
+                  <p className="text-xl sm:text-2xl font-bold gradient-text">£190</p>
+                  <button
+                    onClick={trackAndBook}
+                    className="px-4 sm:px-5 py-2 sm:py-2.5 rounded-full bg-gradient-to-r from-primary-400 to-primary-600 text-white font-medium hover:shadow-lg transition-all duration-300 text-xs sm:text-sm"
+                  >
+                    Book Lower
+                  </button>
+                </div>
               </div>
+            </div>
+
+            {/* Bundle note */}
+            <div className="mb-6 p-3 bg-cyan-50 rounded-xl border border-cyan-200">
+              <p className="text-xs sm:text-sm text-cyan-800">
+                <span className="font-semibold">Book both together — £290</span> (save £90). Lower eyelids just £100 when combined with upper.
+              </p>
+            </div>
+
+            {/* Real result — enlargeable before/after */}
+            <div className="max-w-md mx-auto">
+              <button
+                onClick={() => setShowAfterModal(true)}
+                className="relative w-full group cursor-pointer block rounded-xl overflow-hidden shadow-md"
+              >
+                <span className="absolute top-2 left-2 bg-neutral-800/70 text-white text-xs px-2 py-1 rounded-full z-10">Before &amp; After</span>
+                <span className="absolute top-2 right-2 bg-white/90 text-cyan-600 text-xs px-2 py-1 rounded-full z-10 font-medium group-hover:bg-cyan-500 group-hover:text-white transition-colors">
+                  Tap to enlarge
+                </span>
+                <img
+                  src="/images/blepharoplasty-result.jpeg"
+                  alt="Non-surgical blepharoplasty before and after — real CO2 laser result"
+                  className="w-full h-auto group-hover:ring-2 ring-cyan-400 transition-all"
+                />
+              </button>
+              <p className="text-center text-xs text-neutral-500 mt-2">
+                Real CO2 laser eyelid rejuvenation results.
+              </p>
             </div>
           </div>
         </div>
@@ -259,8 +313,8 @@ export default function PremiumTreatments({ onBookingClick }: PremiumTreatmentsP
 
             <div className="bg-white rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="/after-eyes.png"
-                alt="After non-surgical blepharoplasty - real result"
+                src="/images/blepharoplasty-result.jpeg"
+                alt="Non-surgical blepharoplasty before and after - real result"
                 className="w-full h-auto"
               />
               <div className="p-4 sm:p-6 bg-gradient-to-r from-cyan-50 to-blue-50">
